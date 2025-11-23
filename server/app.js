@@ -1,19 +1,29 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser'); // Có thể dùng hoặc dùng express.json() đều được
+const bodyParser = require('body-parser');
 
 // Khởi tạo app
 const app = express();
-const PORT = 5000; // Client chạy port 3000, Server chạy port 5000
+const PORT = 5000;
 
 // Cấu hình Middleware
-app.use(cors()); // Cho phép React ở port 3000 gọi sang
-app.use(express.json()); // Để server hiểu dữ liệu JSON gửi lên
+app.use(cors()); 
+app.use(express.json()); 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// --- KHU VỰC IMPORT ROUTES (Sẽ thêm dần sau này) ---
-// Ví dụ: const groupRoutes = require('./services/groupController/groupController');
-// app.use('/api/groups', groupRoutes);
+// --- KHU VỰC IMPORT ROUTES ---
+// 1. Import LoginController (Lưu ý đường dẫn file)
+// Giả định folder của bạn tên là 'loginController' hoặc 'authController'. 
+// Hãy kiểm tra kỹ tên folder chứa file loginController.js nhé!
+// Dưới đây mình để đường dẫn phổ biến nhất dựa trên ảnh bạn gửi trước đó:
+const loginRoutes = require('./services/loginController/loginController'); 
+// HOẶC nếu folder vẫn tên là authController thì dùng dòng dưới:
+// const loginRoutes = require('./services/authController/loginController');
+
+// --- ĐĂNG KÝ ROUTES ---
+// 2. Kích hoạt route. Khi Client gọi '/api/auth/...', nó sẽ chạy vào loginRoutes
+app.use('/api/auth', loginRoutes);
+
 
 // Route kiểm tra Server sống hay chết
 app.get('/', (req, res) => {
