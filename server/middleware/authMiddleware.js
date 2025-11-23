@@ -1,0 +1,34 @@
+// server/middleware/authMiddleware.js
+const SSO_Adapter = require('../integration/hcmutSSO');
+const DataCore_Adapter = require('../integration/hcmutDATACORE');
+
+// 1. Xác thực: Kiểm tra Token
+const verifyToken = (req, res, next) => {
+    const token = req.headers['authorization']; 
+    if (!token) return res.status(403).json({ success: false, message: "Chưa đăng nhập" });
+
+    const userID = SSO_Adapter.getUserID(token);
+    if (!userID) return res.status(401).json({ success: false, message: "Token không hợp lệ" });
+
+    // Lấy thông tin user để các hàm sau sử dụng
+    const user = DataCore_Adapter.getUserProfile(userID);
+    if (!user) return res.status(404).json({ success: false, message: "User không tồn tại" });
+
+    req.currentUser = user; // Gắn user vào request
+    next();
+};
+
+// 2. Phân quyền: Kiểm tra Role
+const requireRole = (role) => {
+    return (req, res, next) => {
+        if (req.currentUser.role !== role) {
+            return res.status(403).json({ 
+                success: false, 
+                message: `Truy cập bị từ chối. Bạn không phải là ${role}` 
+            });
+        }
+        next();
+    };
+};
+
+module.exports = { verifyToken, requireRole };

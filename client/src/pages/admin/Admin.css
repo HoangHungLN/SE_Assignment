@@ -1,0 +1,282 @@
+/* client/src/pages/dashboard/Admin.css */
+
+/* --- BỐ CỤC CHUNG --- */
+.admin-page-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background-color: #f5f7fa; /* Nền tổng thể xám rất nhạt */
+    min-height: 100%;
+}
+
+/* --- SIDEBAR BỘ LỌC (TRÁI) --- */
+.filter-sidebar {
+    width: 280px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px; /* Bo góc mềm mại hơn */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    height: fit-content;
+    border: 1px solid #e1e4e8;
+}
+
+.filter-title {
+    color: #0066b3; /* Xanh BK */
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f0f2f5;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-group {
+    margin-bottom: 20px;
+}
+
+.filter-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #4a5568;
+}
+
+.filter-input, .filter-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.filter-input:focus, .filter-select:focus {
+    border-color: #0066b3;
+}
+
+.btn-search {
+    width: 100%;
+    background-color: #0066b3;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: background 0.2s;
+}
+
+.btn-search:hover {
+    background-color: #005091;
+}
+
+.btn-reset {
+    width: 100%;
+    background-color: #edf2f7;
+    color: #4a5568;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-reset:hover {
+    background-color: #e2e8f0;
+}
+
+/* --- NỘI DUNG CHÍNH (PHẢI) --- */
+.main-content {
+    flex: 1;
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border: 1px solid #e1e4e8;
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #f0f2f5;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.header-title {
+    color: #0066b3;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.header-note {
+    color: #e53e3e; /* Màu đỏ báo tuần */
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* --- CARD REVIEW (Trang đánh giá Tutor) --- */
+.review-card {
+    border: 1px solid #e2e8f0;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: #fafbfc;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.review-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.tutor-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.tutor-avatar {
+    width: 48px;
+    height: 48px;
+    background-color: #cbd5e0;
+    border-radius: 50%;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #fff;
+}
+
+.tutor-name {
+    color: #0066b3;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.tutor-sub {
+    font-size: 13px;
+    color: #718096;
+    margin-top: 4px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    gap: 15px;
+    font-size: 14px;
+    color: #2d3748;
+}
+
+.stat-item strong {
+    display: block;
+    font-size: 12px;
+    color: #718096;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+}
+
+.link-detail {
+    color: #0066b3;
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+/* --- TABLE DATA (Trang kết quả tham gia & Modal) --- */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.data-table th {
+    background-color: #f7fafc;
+    color: #4a5568;
+    font-weight: 600;
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 2px solid #edf2f7;
+}
+
+.data-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #edf2f7;
+    color: #2d3748;
+}
+
+.data-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* --- MODAL POPUP --- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(2px);
+}
+
+.modal-box {
+    background: white;
+    padding: 25px;
+    width: 850px;
+    border-radius: 12px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+    text-align: center;
+    color: #0066b3;
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.modal-footer {
+    text-align: right;
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.footer-info {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #718096;
+    display: flex;
+    justify-content: space-between;
+}
+
+.link-refresh {
+    color: #0066b3;
+    cursor: pointer;
+    text-decoration: underline;
+}

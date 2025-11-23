@@ -4,7 +4,7 @@ const router = express.Router();
 
 // Import Adapter
 const SSO_Adapter = require('../../integration/hcmutSSO');
-const DataCore_Adapter = require('../../integration/hcmutDatacore');
+const DataCore_Adapter = require('../../integration/hcmutDATACORE');
 // Import Database để thực hiện thao tác lưu (sync)
 const UserDatabase = require('../../dataBase/users'); 
 

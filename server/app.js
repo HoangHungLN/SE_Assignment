@@ -17,12 +17,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Hãy kiểm tra kỹ tên folder chứa file loginController.js nhé!
 // Dưới đây mình để đường dẫn phổ biến nhất dựa trên ảnh bạn gửi trước đó:
 const loginRoutes = require('./services/loginController/loginController'); 
+const evaluateRoutes = require('./services/learningController/evaluateController');
+
 // HOẶC nếu folder vẫn tên là authController thì dùng dòng dưới:
 // const loginRoutes = require('./services/authController/loginController');
 
 // --- ĐĂNG KÝ ROUTES ---
 // 2. Kích hoạt route. Khi Client gọi '/api/auth/...', nó sẽ chạy vào loginRoutes
 app.use('/api/auth', loginRoutes);
+app.use('/api/learning/evaluate', evaluateRoutes);
 
 
 // Route kiểm tra Server sống hay chết
