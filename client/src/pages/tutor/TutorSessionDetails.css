@@ -1,0 +1,865 @@
+/* TutorSessionDetails.css */
+
+.tutor-session-details-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+    background: #ffffff;
+    min-height: calc(100vh - 80px);
+}
+
+/* Header */
+.session-details-header {
+    margin-bottom: 32px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.header-content {
+    flex: 1;
+}
+
+.session-details-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0072C1;
+    margin: 0 0 8px 0;
+}
+
+.session-time {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+/* Main Content - Grid Layout 2x2 */
+.session-details-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.details-section {
+    background: #f8f9fa;
+    padding: 24px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.details-section h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0072C1;
+    margin: 0 0 16px 0;
+    padding: 0;
+    border: none;
+}
+
+/* Materials Section */
+.materials-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+}
+
+.material-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    transition: none;
+}
+
+.material-item:hover {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.material-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    color: #999;
+}
+
+.material-name {
+    flex: 1;
+    font-size: 14px;
+    color: #0072C1;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.material-name:hover {
+    color: #0058a3;
+    text-decoration: underline;
+}
+
+.no-materials {
+    text-align: center;
+    color: #999;
+    font-size: 13px;
+    padding: 20px 0;
+    margin: 0;
+}
+
+/* Materials Buttons */
+.materials-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.btn-upload {
+    background: #0284C7;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-upload:hover {
+    background: #0266a0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+
+.btn-reference {
+    background: #0284C7;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-reference:hover {
+    background: #0266a0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+
+/* Review Section */
+.review-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+}
+
+.review-description {
+    font-size: 13px;
+    color: #000;
+    margin: 0;
+}
+
+.btn-review {
+    background: #0284C7;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+    margin-top: auto;
+}
+
+.btn-review:hover {
+    background: #0266a0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+
+/* Attendance Section */
+.attendance-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+}
+
+/* Attendance Top Row */
+.attendance-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.attendance-stat {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.attendance-icon {
+    font-size: 20px;
+}
+
+.attendance-text {
+    color: #333;
+}
+
+/* Link Button Style */
+.link-button {
+    background: none;
+    border: none;
+    color: #0284C7;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 0;
+    font-style: italic;
+}
+
+.link-button:hover {
+    color: #0266a0;
+    text-decoration: underline;
+}
+
+/* Attendance Export */
+.attendance-export {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.export-icon {
+    font-size: 18px;
+}
+
+.export-link {
+    font-size: 13px;
+}
+
+/* Attendance Button Full Width */
+.btn-request-attendance-full {
+    background: #0284C7;
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.btn-request-attendance-full:hover:not(:disabled) {
+    background: #0266a0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+
+.btn-request-attendance-full:disabled {
+    background: #4caf50;
+    cursor: default;
+    transform: none;
+}
+
+.btn-attendance {
+    background: #666;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+    margin-top: auto;
+}
+
+.btn-attendance:hover {
+    background: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Summary Section */
+.summary-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 13px;
+}
+
+.summary-label {
+    color: #666;
+    font-weight: 500;
+}
+
+.summary-value {
+    color: #000;
+    font-weight: 600;
+}
+
+.btn-summary {
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+    margin-top: auto;
+}
+
+.btn-summary:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+/* Button Base */
+.btn {
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Attendance Modal */
+.attendance-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.attendance-modal-content {
+    background: white;
+    border-radius: 8px;
+    padding: 0;
+    max-width: 900px;
+    width: 90%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Modal Header */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.modal-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #0072C1;
+    margin: 0;
+}
+
+.close-btn-text {
+    background: none;
+    border: none;
+    color: #d32f2f;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 6px 12px;
+    transition: background 0.3s ease;
+}
+
+.close-btn-text:hover {
+    background: #ffebee;
+    border-radius: 4px;
+}
+
+/* Modal Body */
+.modal-body {
+    padding: 24px;
+}
+
+/* Attendance Stats in Modal */
+.attendance-stats-modal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.stat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.stat-number {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.stat-number.attended {
+    color: #4caf50;
+}
+
+.stat-number.absent {
+    color: #f44336;
+}
+
+.stat-text {
+    font-size: 13px;
+    color: #666;
+}
+
+/* Attendance Table */
+.attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.attendance-table thead {
+    background: #f5f5f5;
+}
+
+.attendance-table th {
+    padding: 12px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.attendance-table tbody tr {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.attendance-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.attendance-table td {
+    padding: 12px;
+    font-size: 13px;
+    color: #000;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-badge.attended {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-badge.absent {
+    background: #ffebee;
+    color: #c62828;
+}
+
+/* Review Modal */
+.review-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.review-modal-content {
+    background: white;
+    border-radius: 8px;
+    padding: 0;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Form Controls */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-control {
+    padding: 10px 12px;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: inherit;
+    background: #fff;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #0072C1;
+    box-shadow: 0 0 0 2px rgba(0, 114, 193, 0.1);
+}
+
+.form-control.textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Modal Footer */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px 24px;
+    border-top: 1px solid #e0e0e0;
+    background: #f8f9fa;
+}
+
+.btn-save {
+    background: #0284C7;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-save:hover {
+    background: #0266a0;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+
+/* Materials Modal */
+.materials-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.materials-modal-content {
+    background: white;
+    border-radius: 8px;
+    padding: 0;
+    max-width: 700px;
+    width: 90%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Materials Tabs */
+.materials-tabs {
+    display: flex;
+    gap: 0;
+    padding: 0;
+    border-bottom: 2px solid #e0e0e0;
+    background: #f8f9fa;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 14px 16px;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: #666;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.tab-btn:hover {
+    color: #0072C1;
+}
+
+.tab-btn.active {
+    color: #0072C1;
+    border-bottom-color: #0072C1;
+    background: white;
+}
+
+/* Tab Content */
+.tab-content {
+    padding: 24px;
+}
+
+/* Upload Area */
+.upload-area {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+#file-input {
+    display: none;
+}
+
+.upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 40px 20px;
+    border: 2px dashed #0284C7;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #f0f7ff;
+}
+
+.upload-label:hover {
+    background: #e8f4ff;
+    border-color: #0266a0;
+}
+
+.upload-icon {
+    font-size: 40px;
+}
+
+.upload-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0072C1;
+}
+
+.upload-hint {
+    font-size: 12px;
+    color: #999;
+}
+
+/* Uploaded Files List */
+.uploaded-files-list {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.uploaded-files-list h3 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 12px 0;
+}
+
+.files-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+}
+
+.file-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.file-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+
+.file-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: #333;
+    word-break: break-all;
+}
+
+.file-size {
+    font-size: 12px;
+    color: #999;
+}
+.library-search {
+    margin-bottom: 20px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: inherit;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #0072C1;
+    box-shadow: 0 0 0 2px rgba(0, 114, 193, 0.1);
+}
+
+/* Library Items */
+.library-items {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.library-placeholder {
+    color: #999;
+    font-size: 13px;
+    text-align: center;
+    margin: 0;
+}
+
+/* Modal Footer Buttons */
+.btn-cancel {
+    background: #f0f0f0;
+    color: #333;
+    border: 1px solid #d0d0d0;
+    padding: 10px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background: #e0e0e0;
+}
+
+.btn-confirm {
+    background: #0284C7;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-confirm:hover {
+    background: #0266a0;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+@media (max-width: 1024px) {
+    .session-details-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .tutor-session-details-container {
+        padding: 16px;
+    }
+
+    .session-details-header {
+        flex-direction: column;
+    }
+
+    .session-details-header h1 {
+        font-size: 22px;
+    }
+
+    .details-section {
+        padding: 16px;
+    }
+
+    .attendance-stats-modal {
+        grid-template-columns: 1fr;
+    }
+
+    .attendance-table {
+        font-size: 12px;
+    }
+
+    .attendance-table th,
+    .attendance-table td {
+        padding: 8px;
+    }
+}

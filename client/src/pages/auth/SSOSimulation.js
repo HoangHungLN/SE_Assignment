@@ -25,6 +25,9 @@ const SSOSimulation = () => {
     
                 // Lưu thông tin
                 localStorage.setItem('user', JSON.stringify(userData));
+                localStorage.setItem('studentId', userData.id);
+                localStorage.setItem('userId', userData.id);
+                localStorage.setItem('userRole', userData.role);
                 
                 // --- PHÂN QUYỀN ĐIỀU HƯỚNG ---
                 // Kiểm tra role trả về từ Server (khớp với file dataBase/users.js)

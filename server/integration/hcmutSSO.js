@@ -12,6 +12,9 @@ class HCMUT_SSO {
         if (username === "admin" && password === "123") {
             return "token_admin_999";
         }
+        if (username === "qwe" && password === "123") {
+            return "token_student_qwe";
+        }
         return null; // Sai mật khẩu
     }
 
@@ -19,7 +22,8 @@ class HCMUT_SSO {
     getUserID(token) {
         if (token === "token_student_123") return "2311327";
         if (token === "token_tutor_456") return "GV001";
-        if (token === "token_admin_999") return "ADMIN01"
+        if (token === "token_admin_999") return "ADMIN01";
+        if (token === "token_student_qwe") return "SV002";
         return null;
     }
 }

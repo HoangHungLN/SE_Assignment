@@ -16,7 +16,15 @@ import AdminDashboard from './pages/dashboard/AdminDashboard';
 import TutorReviews from './pages/admin/TutorReviews';
 import ParticipationResults from './pages/admin/ParticipationResults';
 
-// --- 4. Student & Tutor Features ---
+// --- 4. Student Features ---
+import MySession from './pages/student/MySession';
+import SessionDetails from './pages/student/SessionDetails';
+
+// --- 5. Tutor Features ---
+import ManageSessions from './pages/tutor/ManageSessions';
+import TutorSessionDetails from './pages/tutor/TutorSessionDetails';
+
+// --- 6. Other Features ---
 // ĐÃ XÓA: import RegisterGroup ...
 import GenericPage from './pages/dashboard/GenericPage'; // Trang mẫu cho các tính năng đang phát triển
 
@@ -30,15 +38,14 @@ function App() {
         
         {/* --- STUDENT ROUTES --- */}
         <Route path="/student-dashboard" element={<StudentDashboard />} />
-        {/* ĐÃ XÓA: Route /register-group */}
-        
-        {/* Các trang dùng GenericPage tạm thời */}
-        <Route path="/my-sessions" element={<GenericPage role="student" title="Buổi học của tôi" />} />
+        <Route path="/my-sessions" element={<MySession />} />
+        <Route path="/session-details" element={<SessionDetails />} />
         <Route path="/register-session" element={<GenericPage role="student" title="Đăng ký buổi học" />} />
 
         {/* --- TUTOR ROUTES --- */}
         <Route path="/tutor-dashboard" element={<TutorDashboard />} />
-        <Route path="/manage-sessions" element={<GenericPage role="tutor" title="Quản lý buổi học" />} />
+        <Route path="/manage-sessions" element={<ManageSessions />} />
+        <Route path="/tutor-session-details" element={<TutorSessionDetails />} />
         <Route path="/register-teaching" element={<GenericPage role="tutor" title="Đăng ký dạy" />} />
         <Route path="/accept-group" element={<GenericPage role="tutor" title="Nhận nhóm" />} />
 

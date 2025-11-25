@@ -14,8 +14,7 @@ const Navbar = ({ role, userName }) => {
                 return [
                     { name: 'Trang chủ', path: '/student-dashboard' },
                     { name: 'Buổi học của tôi', path: '/my-sessions' },
-                    { name: 'Đăng ký nhóm', path: '/register-group' },
-                    { name: 'Đăng ký buổi học', path: '/register-session' }
+                    { name: 'Đăng ký nhóm', path: '/register-group' }
                 ];
             case 'tutor':
                 return [

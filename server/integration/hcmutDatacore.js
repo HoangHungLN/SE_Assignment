@@ -13,6 +13,15 @@ const DATACORE_USERS = [
         gpa: 3.8 // Dữ liệu mà chỉ trường mới có
     },
     {
+        id: "SV002",
+        name: "Nguyễn Thái Sơn",
+        email: "hohoho@hcmut.edu.vn",
+        role: "student",
+        faculty: "Khoa học và Kỹ thuật Máy tính",
+        avatar: "https://via.placeholder.com/150",
+        gpa: 3.5
+    },
+    {
         id: "GV001", 
         name: "Nguyễn Văn H",
         email: "h.nguyenvan@hcmut.edu.vn",

@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Dưới đây mình để đường dẫn phổ biến nhất dựa trên ảnh bạn gửi trước đó:
 const loginRoutes = require('./services/loginController/loginController'); 
 const evaluateRoutes = require('./services/learningController/evaluateController');
+const sessionRoutes = require('./services/sessionController/sessionController');
 
 // HOẶC nếu folder vẫn tên là authController thì dùng dòng dưới:
 // const loginRoutes = require('./services/authController/loginController');
@@ -26,6 +27,7 @@ const evaluateRoutes = require('./services/learningController/evaluateController
 // 2. Kích hoạt route. Khi Client gọi '/api/auth/...', nó sẽ chạy vào loginRoutes
 app.use('/api/auth', loginRoutes);
 app.use('/api/learning/evaluate', evaluateRoutes);
+app.use('/api/sessions', sessionRoutes);
 
 
 // Route kiểm tra Server sống hay chết
