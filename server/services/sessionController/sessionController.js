@@ -316,6 +316,16 @@ class SessionController {
         ];
 
         this.enrollments = []; // Lưu các sinh viên tham gia
+        this.registrations = [
+            // SV001 đã tham gia lớp id = 1
+            {
+                id: 10,
+                studentId: 'SV01',
+                classId: 1,
+                joinedAt: '2025-10-06T16:05:00.000Z'
+            }
+            // có thể thêm vài cái nếu muốn
+            ];
     }
 
     /**
@@ -629,11 +639,49 @@ class SessionController {
      * @param {Object} sessionData - Dữ liệu buổi học
      * @returns {Object} Buổi học vừa tạo
      */
+    // createSession(sessionData) {
+    //     const { tutorId, subject, date, time, room, description } = sessionData;
+        
+    //     console.log(`[SessionController] Tạo buổi học mới: ${subject}`);
+        
+    //     const newSession = {
+    //         id: Math.max(...this.sessions.map(s => s.id), 0) + 1,
+    //         tutorId: tutorId,
+    //         subject: subject,
+    //         date: date,
+    //         time: time,
+    //         room: room,
+    //         description: description || '',
+    //         status: 'Sắp diễn ra',
+    //         materials: [],
+    //         createdAt: new Date().toISOString()
+    //     };
+
+    //     this.sessions.push(newSession);
+    //     console.log(`-> Buổi học mới đã tạo với ID: ${newSession.id}`);
+        
+    //     return {
+    //         success: true,
+    //         message: 'Buổi học đã được tạo thành công',
+    //         data: newSession
+    //     };
+    // }
     createSession(sessionData) {
-        const { tutorId, subject, date, time, room, description } = sessionData;
+        const {
+            tutorId,
+            subject,
+            date,
+            time,
+            room,
+            description,
+            format,
+            onlineLink,
+            capacity
+        } = sessionData;
         
         console.log(`[SessionController] Tạo buổi học mới: ${subject}`);
         
+        // 1) Tạo bản ghi trong "sessions" (mock DB cho buổi học)
         const newSession = {
             id: Math.max(...this.sessions.map(s => s.id), 0) + 1,
             tutorId: tutorId,
@@ -644,16 +692,45 @@ class SessionController {
             description: description || '',
             status: 'Sắp diễn ra',
             materials: [],
+            capacity: capacity || null,
             createdAt: new Date().toISOString()
         };
 
         this.sessions.push(newSession);
-        console.log(`-> Buổi học mới đã tạo với ID: ${newSession.id}`);
-        
+        console.log(`-> Buổi học mới đã tạo với ID (session): ${newSession.id}`);
+
+        // 2) Đồng thời tạo bản ghi trong "classes"
+        //    để API /tutor-classes/:tutorId và /tutor-subjects/:tutorId nhìn thấy
+        const newClassId =
+            this.classes.length === 0
+                ? 1
+                : Math.max(...this.classes.map(c => c.id)) + 1;
+
+        const newClass = {
+            id: newClassId,
+            tutorId: tutorId,
+            className: description || `Buổi dạy: ${subject}`,
+            classCode: '', // hiện tại không có mã lớp => để rỗng
+            subject: subject,
+            date: date,
+            time: time,
+            description: description || '',
+            format: format || 'Không có',
+            location: room || '',
+            onlineLink: onlineLink || null,
+            status: 'Sắp diễn ra',
+            studentCount: 0
+        };
+
+        this.classes.push(newClass);
+        console.log(`-> Đồng thời tạo lớp mới với ID (class): ${newClass.id}`);
+
+        // 3) Trả về cả session lẫn class vừa tạo
         return {
             success: true,
             message: 'Buổi học đã được tạo thành công',
-            data: newSession
+            data: newSession,
+            class: newClass
         };
     }
 
@@ -697,6 +774,28 @@ class SessionController {
      * @param {number} sessionId - ID buổi học
      * @returns {Object} Kết quả xóa
      */
+    // deleteSession(sessionId) {
+    //     console.log(`[SessionController] Xóa buổi học ID: ${sessionId}`);
+        
+    //     const sessionIndex = this.sessions.findIndex(s => s.id == sessionId);
+        
+    //     if (sessionIndex === -1) {
+    //         console.log(`-> Lỗi: Buổi học không tồn tại`);
+    //         return {
+    //             success: false,
+    //             message: 'Buổi học không tồn tại'
+    //         };
+    //     }
+
+    //     const deletedSession = this.sessions.splice(sessionIndex, 1)[0];
+    //     console.log(`-> Xóa thành công buổi học: ${deletedSession.subject}`);
+        
+    //     return {
+    //         success: true,
+    //         message: 'Buổi học đã được xóa',
+    //         data: deletedSession
+    //     };
+    // }
     deleteSession(sessionId) {
         console.log(`[SessionController] Xóa buổi học ID: ${sessionId}`);
         
@@ -711,15 +810,23 @@ class SessionController {
         }
 
         const deletedSession = this.sessions.splice(sessionIndex, 1)[0];
-        console.log(`-> Xóa thành công buổi học: ${deletedSession.subject}`);
-        
+        console.log(`-> Xóa thành công buổi học (session): ${deletedSession.subject}`);
+
+        // XÓA LUÔN record tương ứng trong this.classes (nếu có)
+        const beforeLen = this.classes.length;
+        this.classes = this.classes.filter(c => c.id != sessionId);
+        const afterLen = this.classes.length;
+
+        if (beforeLen !== afterLen) {
+            console.log(`-> Đồng thời xóa lớp dạy có id = ${sessionId} khỏi classes`);
+        }
+
         return {
             success: true,
             message: 'Buổi học đã được xóa',
             data: deletedSession
         };
     }
-
     /**
      * Lấy danh sách lớp điểm danh của một buổi học
      * @param {number} sessionId - ID của buổi học
@@ -743,7 +850,98 @@ class SessionController {
             attendanceList: attendanceListSample
         };
     }
+      // Lấy danh sách buổi học có thể đăng ký (cho student)
+    getAvailableClasses(filters = {}) {
+        const { subject, format } = filters;
+
+        return this.classes.filter(cls => {
+        // chỉ lấy các buổi chưa kết thúc
+        if (cls.status === 'Đã kết thúc') return false;
+
+        if (subject && subject.trim()) {
+            const s = subject.toLowerCase();
+            const subName = (cls.subject || '').toLowerCase();
+            if (!subName.includes(s)) return false;
+        }
+
+        if (format && format !== 'Any') {
+            if ((cls.format || '').toLowerCase() !== format.toLowerCase()) {
+            return false;
+            }
+        }
+
+        return true;
+        });
+    }
+
+    // Lấy danh sách buổi học mà 1 student đã tham gia
+    getStudentJoinedClasses(studentId) {
+        const joined = this.registrations.filter(r => r.studentId === studentId);
+        const ids = joined.map(r => r.classId);
+
+        return this.classes.filter(cls => ids.includes(cls.id));
+    }
+
+    // Student tham gia 1 lớp
+    joinClass(studentId, classId) {
+        console.log(`[SessionController] Student ${studentId} tham gia lớp ${classId}`);
+
+        const cls = this.classes.find(c => c.id == classId);
+        if (!cls) {
+        return {
+            success: false,
+            message: 'Lớp học không tồn tại'
+        };
+        }
+
+        // check đã đăng ký chưa
+        const existed = this.registrations.find(
+        r => r.studentId === studentId && r.classId == classId
+        );
+        if (existed) {
+        return {
+            success: false,
+            message: 'Bạn đã tham gia buổi học này rồi'
+        };
+        }
+
+        // check full lớp
+        if (cls.capacity && cls.studentCount >= cls.capacity) {
+        return {
+            success: false,
+            message: 'Buổi học đã đủ số lượng'
+        };
+        }
+
+        const newRegId =
+        this.registrations.length === 0
+            ? 1
+            : Math.max(...this.registrations.map(r => r.id)) + 1;
+
+        const reg = {
+        id: newRegId,
+        studentId,
+        classId: cls.id,
+        joinedAt: new Date().toISOString()
+        };
+
+        this.registrations.push(reg);
+
+        // tăng số lượng
+        cls.studentCount = (cls.studentCount || 0) + 1;
+
+        console.log('-> Tham gia thành công, tổng SV:', cls.studentCount);
+
+        return {
+        success: true,
+        message: 'Đăng ký buổi học thành công',
+        registration: reg,
+        updatedClass: cls
+        };
+    }
+
 }
+
 
 // Khởi tạo Controller
 const sessionController = new SessionController();
@@ -1088,5 +1286,72 @@ function getAttendanceList(req, res) {
 
 router.get('/:sessionId/attendance-list', getAttendanceList);
 
+router.get('/available-classes', (req, res) => {
+  try {
+    const { subject = '', format = '' } = req.query;
+    const data = sessionController.getAvailableClasses({ subject, format });
+
+    res.json({
+      success: true,
+      total: data.length,
+      data
+    });
+  } catch (error) {
+    console.error('[Error] GET /api/sessions/available-classes:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Lỗi khi lấy danh sách buổi học có thể đăng ký',
+      error: error.message
+    });
+  }
+});
+
+/**
+ * GET /api/sessions/student-classes/:studentId
+ * Lấy danh sách buổi học mà student đã tham gia
+ */
+router.get('/student-classes/:studentId', (req, res) => {
+  try {
+    const { studentId } = req.params;
+    const data = sessionController.getStudentJoinedClasses(studentId);
+
+    res.json({
+      success: true,
+      total: data.length,
+      data
+    });
+  } catch (error) {
+    console.error('[Error] GET /api/sessions/student-classes/:studentId:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Lỗi khi lấy danh sách buổi học đã tham gia',
+      error: error.message
+    });
+  }
+});
+
+/**
+ * POST /api/sessions/join
+ * body: { studentId, classId }
+ */
+router.post('/join', (req, res) => {
+  try {
+    const { studentId, classId } = req.body;
+    const result = sessionController.joinClass(studentId, classId);
+
+    if (!result.success) {
+      return res.status(400).json(result);
+    }
+
+    res.json(result);
+  } catch (error) {
+    console.error('[Error] POST /api/sessions/join:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Lỗi khi đăng ký tham gia buổi học',
+      error: error.message
+    });
+  }
+});
 module.exports = router;
 

@@ -32,7 +32,7 @@ function MySession() {
     const [showDetail, setShowDetail] = useState(false);
     
     // Lấy studentId từ localStorage
-    const studentId = localStorage.getItem('studentId') || 'SV001';
+    const studentId = localStorage.getItem('userID') || '2311327';
     
     // Get current timestamp
     const getCurrentTimestamp = () => {

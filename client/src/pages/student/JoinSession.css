@@ -1,0 +1,407 @@
+/* ========== LAYOUT CHUNG ========== */
+
+.sj-wrapper {
+  padding: 40px 20px;
+  min-height: calc(100vh - 80px);
+  background: #f8f9fa; /* nền xám nhạt giống MySession */
+  box-sizing: border-box;
+}
+
+.sj-container {
+  display: flex;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: flex-start;
+}
+
+/* ========== SIDEBAR TRÁI ========== */
+
+.sj-sidebar {
+  width: 320px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sj-card {
+  background: #ffffff; /* card trắng */
+  border-radius: 16px;
+  border: 1px solid #e1e4ea;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+/* header sidebar – giống “Tìm kiếm / Buổi học của tôi” */
+.sj-card-header {
+  padding: 14px 18px 6px;
+}
+
+.sj-card-header h3,
+.sj-card-header.small h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0072c1;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #0072c1; /* gạch dưới xanh dương */
+}
+
+.sj-card-body {
+  padding: 10px 18px 14px;
+}
+
+/* form filter */
+
+.sj-form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.sj-form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #0072c1; /* label xanh */
+}
+
+.sj-form-group select {
+  font-size: 13px;
+  padding: 7px 9px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  outline: none;
+  background: #ffffff;
+}
+
+.sj-form-group select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.12);
+}
+
+.sj-search-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+/* buttons */
+
+.sj-btn-primary,
+.sj-btn-secondary {
+  font-size: 14px;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+.sj-btn-primary {
+  background: #0066cc;
+  color: #ffffff;
+}
+
+.sj-btn-primary:hover {
+  background: #0052a3;
+}
+
+.sj-btn-secondary {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.sj-btn-secondary:hover {
+  background: #e5e7eb;
+}
+
+.sj-link-btn {
+  background: none;
+  border: none;
+  font-size: 12px;
+  color: #0066cc;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* joined list */
+
+.sj-muted {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.sj-joined-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.sj-joined-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.sj-joined-text {
+  flex: 1;
+}
+
+.sj-joined-subject {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0072c1;
+}
+
+.sj-joined-desc {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* ========== MAIN PHẢI ========== */
+
+.sj-main {
+  flex: 1;
+  background: rgba(234, 234, 234, 0.5);;
+  border-radius: 16px;
+  border: 1px solid #e1e4ea;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  padding: 20px;
+}
+
+/* header chính – giống MySession */
+
+.sj-main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #0388b4; /* gạch dưới xanh */
+}
+
+.sj-main-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #0072c1;
+}
+
+.sj-main-header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.sj-week-sort {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sj-week-label {
+  font-size: 14px;
+  font-weight: 700;   /* đậm hơn */
+  font-style: italic; /* in nghiêng */
+  color: #dc2626;     /* giữ màu đỏ như cũ */
+}
+
+.sj-sort-select {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #4b5563;
+}
+
+.sj-sort-select select {
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  padding: 4px 8px;
+  font-size: 12px;
+  background: #fff;
+}
+
+.sj-last-update {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* trạng thái */
+
+.sj-error {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin: 10px 0;
+}
+
+.sj-loading,
+.sj-empty {
+  padding: 18px;
+  text-align: center;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* ========== CARD DANH SÁCH BUỔI HỌC ========== */
+
+.sj-class-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+/* card trắng, border xám, hover giống session-card-v2 */
+
+.sj-class-card {
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1.5px solid #e8e8e8;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  min-height: 220px;
+  transition: all 0.3s ease;
+}
+
+.sj-class-card:hover {
+  box-shadow: 0 8px 24px rgba(3, 136, 180, 0.15);
+  border-color: #0388b4;
+  transform: translateY(-2px);
+}
+
+/* header trong card */
+
+.sj-class-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4px;
+}
+
+.sj-class-subject {
+  font-size: 17px;
+  font-weight: 700;
+  color: #0072c1;
+}
+
+.sj-class-tutor {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 2px;
+}
+
+.sj-class-header-right {
+  text-align: right;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.sj-class-date-top {
+  font-weight: 600;
+}
+
+/* nội dung card */
+
+.sj-class-body {
+  flex: 1;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 8px;
+}
+
+.sj-class-body p {
+  margin: 2px 0;
+}
+
+/* footer card */
+
+.sj-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.sj-status {
+  font-size: 12px;
+  color: #16a34a;
+}
+
+/* ========== FOOTER & PHÂN TRANG ========== */
+
+.sj-main-footer {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.sj-group-count {
+  color: #4b5563;
+}
+
+.sj-pagination {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sj-page-btn {
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  border-radius: 3px;
+  padding: 2px 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.sj-page-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.sj-page-info {
+  font-size: 12px;
+  color: #111827;
+}
+
+/* ========== RESPONSIVE ========== */
+
+@media (max-width: 1024px) {
+  .sj-container {
+    flex-direction: column;
+  }
+
+  .sj-sidebar {
+    width: 100%;
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 768px) {
+  .sj-sidebar {
+    flex-direction: column;
+  }
+
+  .sj-main-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}

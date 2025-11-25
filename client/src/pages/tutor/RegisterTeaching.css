@@ -1,0 +1,552 @@
+/* ========== LAYOUT CHUNG ========== */
+
+.rt-wrapper {
+  padding: 40px 20px;
+  min-height: calc(100vh - 80px);
+  background: #f8f9fa; /* nền xám nhạt giống student */
+  box-sizing: border-box;
+}
+.rt-week-label {
+  font-size: 14px;
+  font-weight: 700;   /* in đậm */
+  font-style: italic; /* in nghiêng */
+  color: #dc2626;     /* giữ màu đỏ */
+}
+.rt-container {
+  display: flex;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: flex-start;
+}
+
+/* ========== SIDEBAR TRÁI (ACCORDION) ========== */
+
+.rt-sidebar {
+  width: 320px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* mỗi section là 1 card trắng */
+
+.rt-accordion-section {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e1e4ea;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+/* header accordion – chữ xanh + gạch dưới */
+
+.rt-accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px 6px;
+  cursor: pointer;
+}
+
+.rt-accordion-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0072c1;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #0072c1;
+}
+
+.rt-accordion-arrow {
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.rt-accordion-body {
+  padding: 10px 16px 14px;
+}
+
+.rt-accordion-note {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* search subject */
+
+.rt-subject-search {
+  margin-bottom: 8px;
+}
+
+.rt-subject-search input {
+  width: 100%;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 13px;
+}
+
+.rt-subject-list {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.rt-subject-item {
+  padding: 6px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.rt-subject-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0072c1;
+}
+
+.rt-subject-code {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* form đăng ký dạy */
+
+.rt-form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.rt-form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #0072c1;
+}
+
+.rt-form-group input,
+.rt-form-group select,
+.rt-form-group textarea {
+  font-size: 13px;
+  padding: 7px 9px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  outline: none;
+}
+
+.rt-form-group input:focus,
+.rt-form-group select:focus,
+.rt-form-group textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.12);
+}
+
+.rt-form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.rt-create-actions {
+  margin-top: 6px;
+}
+
+/* buttons */
+
+.rt-btn-primary,
+.rt-btn-secondary,
+.rt-btn-link {
+  font-size: 14px;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.rt-btn-primary {
+  background: #0066cc;
+  color: #ffffff;
+}
+
+.rt-btn-primary:hover {
+  background: #0052a3;
+}
+
+.rt-btn-secondary {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.rt-btn-secondary:hover {
+  background: #e5e7eb;
+}
+
+.rt-btn-link {
+  background: none;
+  color: #0066cc;
+  padding: 0;
+}
+
+/* ========== MAIN PHẢI: DANH SÁCH BUỔI DẠY ========== */
+
+.rt-main {
+  flex: 1;
+  background:rgba(234, 234, 234, 0.5);
+  border-radius: 16px;
+  border: 1px solid #e1e4ea;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  padding: 20px;
+}
+
+/* header chính */
+
+.rt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #0388b4;
+}
+
+.rt-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #0072c1;
+}
+
+.rt-header-sub {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.rt-header-info {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* trạng thái */
+
+.rt-error {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.rt-loading,
+.rt-empty {
+  padding: 18px;
+  text-align: center;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* ========== CARD BUỔI DẠY (TUTOR) ========== */
+
+.rt-class-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+/* card trắng giống Student */
+
+.rt-class-card {
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1.5px solid #e8e8e8;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  min-height: 220px;
+  transition: all 0.3s ease;
+}
+
+.rt-class-card:hover {
+  box-shadow: 0 8px 24px rgba(3, 136, 180, 0.15);
+  border-color: #0388b4;
+  transform: translateY(-2px);
+}
+
+.rt-class-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4px;
+}
+
+.rt-class-subject {
+  font-size: 17px;
+  font-weight: 700;
+  color: #0072c1;
+}
+
+.rt-class-mssv {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 2px;
+}
+
+.rt-class-header-right {
+  text-align: right;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.rt-class-date-top {
+  font-weight: 600;
+}
+
+.rt-class-time-top {
+  margin-top: 2px;
+}
+
+/* nội dung card */
+
+.rt-class-body {
+  flex: 1;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 8px;
+}
+
+.rt-class-line {
+  margin: 2px 0;
+}
+
+/* footer card */
+
+.rt-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.rt-class-status {
+  font-size: 12px;
+  color: #16a34a;
+}
+
+.rt-card-actions {
+  display: flex;
+  gap: 6px;
+}
+
+/* nút hủy buổi dạy */
+
+.rt-btn-danger {
+  border-radius: 6px;
+  padding: 5px 10px;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+  background: #ef4444;
+  color: #fff;
+}
+
+.rt-btn-danger:hover {
+  background: #dc2626;
+}
+
+/* ========== FOOTER & PHÂN TRANG ========== */
+
+.rt-main-footer {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.rt-group-count {
+  color: #4b5563;
+}
+
+.rt-pagination {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rt-page-btn {
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  border-radius: 3px;
+  padding: 2px 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.rt-page-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.rt-page-info {
+  font-size: 12px;
+  color: #111827;
+}
+
+/* ========== MODAL CHỈNH SỬA ========== */
+
+.rt-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 40;
+}
+
+.rt-modal {
+  background: #ffffff;
+  border-radius: 16px;
+  width: 650px;
+  max-width: 95%;
+  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.4);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.rt-modal-header {
+  padding: 14px 18px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rt-modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0072c1;
+}
+
+.rt-modal-close {
+  border: none;
+  background: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.rt-modal-body {
+  padding: 14px 18px 10px;
+  overflow-y: auto;
+}
+
+.rt-modal-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.rt-modal-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.rt-modal-field.full-width {
+  flex: 1 1 100%;
+}
+
+.rt-modal-field label {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #0072c1;
+}
+
+.rt-modal-field input,
+.rt-modal-field textarea {
+  font-size: 13px;
+  padding: 7px 9px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  outline: none;
+}
+
+.rt-modal-field textarea {
+  resize: vertical;
+}
+
+.rt-modal-footer {
+  padding: 10px 18px 14px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* ========== RESPONSIVE ========== */
+
+@media (max-width: 1024px) {
+  .rt-container {
+    flex-direction: column;
+  }
+
+  .rt-sidebar {
+    width: 100%;
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 768px) {
+  .rt-sidebar {
+    flex-direction: column;
+  }
+
+  .rt-main-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}
+.rt-header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+/* Hàng chứa "Tuần 43  Sắp xếp theo: [select]" */
+.rt-header-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Tuần 43 – đỏ đậm nghiêng */
+.rt-week-label {
+  font-size: 14px;
+  font-weight: 700;
+  font-style: italic;
+  color: #dc2626;
+}
+
+/* chữ "Sắp xếp theo:" */
+.rt-header-sort-label {
+  font-size: 14px;
+  color: #4b5563;
+}
+
+/* select "Thứ tự dạy" */
+.rt-header-sort-select {
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  padding: 4px 8px;
+  font-size: 13px;
+  background: #ffffff;
+}

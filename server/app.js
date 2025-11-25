@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const loginRoutes = require('./services/loginController/loginController'); 
 const evaluateRoutes = require('./services/learningController/evaluateController');
 const sessionRoutes = require('./services/sessionController/sessionController');
+const groupRoutes = require('./services/groupController/groupController');
 
 // HOẶC nếu folder vẫn tên là authController thì dùng dòng dưới:
 // const loginRoutes = require('./services/authController/loginController');
@@ -28,6 +29,7 @@ const sessionRoutes = require('./services/sessionController/sessionController');
 app.use('/api/auth', loginRoutes);
 app.use('/api/learning/evaluate', evaluateRoutes);
 app.use('/api/sessions', sessionRoutes);
+app.use('/api/groups', groupRoutes);
 
 
 // Route kiểm tra Server sống hay chết
