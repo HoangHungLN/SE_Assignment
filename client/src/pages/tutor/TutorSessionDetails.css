@@ -1,3 +1,215 @@
+.file-summary-section {
+    background: #f8f9fa;
+    padding: 24px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.file-summary-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.file-summary-updated {
+    font-size: 15px;
+    color: #222;
+    margin-bottom: 4px;
+}
+.file-summary-attachment {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+.file-summary-icon {
+    font-size: 22px;
+    color: #d32f2f;
+}
+.file-summary-link {
+    font-size: 15px;
+    color: #0284C7;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.file-summary-link:hover {
+    color: #0266a0;
+    text-decoration: underline;
+}
+.btn-upload-file {
+    background: #0284C7;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+}
+.btn-upload-file:hover {
+    background: #0266a0;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+.btn-request-attendance {
+    background: #0284C7;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+    margin-top: 16px;
+    margin-left: 0;
+    box-shadow: none;
+}
+.btn-request-attendance:hover:not(:disabled) {
+    background: #0266a0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+.btn-request-attendance:disabled {
+    background: #e0e0e0;
+    color: #888;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+.attendance-actions-row {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+    margin-top: 8px;
+}
+.btn-request-attendance-small {
+    min-width: 140px;
+    font-size: 13px;
+    padding: 10px 16px;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-top: 8px;
+    transition: background 0.2s;
+}
+
+.btn-request-attendance-sent {
+    background: #e0e0e0 !important;
+    color: #888 !important;
+    cursor: not-allowed;
+    border: none;
+}
+/* Time Selection Modal Styles */
+.time-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.12);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.time-modal-content {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    padding: 40px 48px 32px 48px;
+    min-width: 400px;
+    max-width: 95vw;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.time-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+.time-modal-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0072C1;
+    margin: 0;
+}
+.time-modal-close {
+    font-size: 18px;
+    color: #d32f2f;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 24px;
+    transition: color 0.2s;
+}
+.time-modal-close:hover {
+    color: #b71c1c;
+}
+.time-modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 12px;
+}
+.time-input-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+.time-input-label {
+    font-weight: bold;
+    color: #111;
+    min-width: 120px;
+}
+.time-input-value {
+    font-weight: normal;
+    color: #222;
+    min-width: 120px;
+}
+.time-input-link {
+    color: #0072C1;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 17px;
+    margin-left: 8px;
+    transition: color 0.2s;
+}
+.time-input-link:hover {
+    color: #0056a3;
+}
+.time-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+}
+.time-modal-btn-confirm {
+    background: #e0e0e0;
+    color: #333;
+    border: none;
+    padding: 10px 32px;
+    border-radius: 6px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.time-modal-btn-confirm:disabled {
+    background: #f5f5f5;
+    color: #aaa;
+    cursor: not-allowed;
+}
+.time-modal-btn-confirm:not(:disabled):hover {
+    background: #cccccc;
+}
 /* TutorSessionDetails.css */
 
 .tutor-session-details-container {
@@ -51,7 +263,7 @@
 }
 
 .details-section h2 {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
     color: #0072C1;
     margin: 0 0 16px 0;
@@ -203,8 +415,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 12px;
-    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 36px;
+    border-bottom: none;
 }
 
 .attendance-stat {
@@ -342,7 +554,7 @@
     font-weight: 500;
     transition: all 0.3s ease;
     align-self: flex-start;
-    margin-top: auto;
+     font-size: 13px;
 }
 
 .btn-summary:hover {
@@ -354,7 +566,7 @@
 /* Button Base */
 .btn {
     border: none;
-    border-radius: 4px;
+     font-size: 13px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -375,15 +587,14 @@
 }
 
 .attendance-modal-content {
-    background: white;
-    border-radius: 8px;
-    padding: 0;
-    max-width: 900px;
-    width: 90%;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    position: relative;
-    max-height: 90vh;
-    overflow-y: auto;
+    max-width: 800px;
+    width: 95%;
+    margin: 0 auto;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    border-radius: 16px;
+    background: #fff;
+    border: 1.5px solid #e0e0e0;
+    padding-bottom: 32px;
 }
 
 /* Modal Header */
@@ -464,19 +675,25 @@
 .attendance-table {
     width: 100%;
     border-collapse: collapse;
+    background: #fff;
 }
 
 .attendance-table thead {
     background: #f5f5f5;
 }
 
-.attendance-table th {
-    padding: 12px;
+.attendance-table th, .attendance-table td {
+    border: 1px solid #e0e0e0;
+    padding: 10px 16px;
+    font-size: 15px;
     text-align: left;
-    font-size: 13px;
+}
+
+.attendance-table th {
+    background: #f5f5f5;
+    color: #222;
     font-weight: 600;
-    color: #333;
-    border-bottom: 2px solid #e0e0e0;
+    border: 1px solid #e0e0e0;
 }
 
 .attendance-table tbody tr {
@@ -529,12 +746,102 @@
     background: white;
     border-radius: 8px;
     padding: 0;
-    max-width: 600px;
-    width: 90%;
+    max-width: 800px;
+    width: 100%;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     position: relative;
     max-height: 90vh;
     overflow-y: auto;
+}
+
+/* Review Modal UI giống ảnh */
+.review-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 24px 0 24px;
+    border-bottom: none;
+}
+.review-modal-title {
+    color: #0072C1;
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+    flex: 1;
+    margin: 0;
+}
+.review-modal-close {
+    background: none;
+    border: none;
+    color: #d32f2f;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 500;
+    cursor: pointer;
+    margin-left: 16px;
+}
+.review-modal-close:hover {
+    text-decoration: underline;
+}
+.review-modal-body {
+    padding: 24px;
+}
+.review-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 0;
+}
+.review-table th, .review-table td {
+    border: 1px solid #e0e0e0;
+    padding: 12px 20px;
+    font-size: 15px;
+    text-align: left;
+}
+.review-table th {
+    background: #f5f5f5;
+    font-weight: 600;
+}
+.review-input {
+    width: 100%;
+    padding: 6px 8px;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    background: #fff;
+}
+.review-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 114, 193, 0.08);
+}
+.review-modal-footer {
+    padding: 16px 24px;
+    text-align: right;
+    border-top: none;
+    background: none;
+}
+.review-modal-btn-save {
+    background: #0072C1;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.review-modal-btn-save:hover {
+    background: #0056a3;
+}
+
+/* Review Summary */
+.review-summary {
+    margin-bottom: 24px;
+    font-size: 15px;
+    color: #222;
+}
+.review-summary > div {
+    margin-bottom: 4px;
 }
 
 /* Form Controls */
@@ -827,6 +1134,101 @@
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
 }
+
+/* Modal điểm danh chi tiết UI */
+.attendance-modal-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.attendance-modal-title {
+    color: #0072C1;
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin: 32px 0 0 0;
+}
+.attendance-modal-sort {
+    position: absolute;
+    right: 32px;
+    top: 32px;
+    font-size: 13px;
+    color: #0284C7;
+    font-weight: normal;
+}
+.sort-link {
+    color: #0284C7;
+    cursor: pointer;
+    text-decoration: underline;
+    margin: 0 4px;
+    font-size: 13px;
+    font-weight: normal;
+}
+.sort-link:hover {
+    color: #0056a3;
+}
+.attendance-modal-table {
+    margin: 32px auto 0 auto;
+    max-width: 95%;
+    background: #fff;
+    border-radius: 8px;
+    border: 1.5px solid #e0e0e0;
+    overflow-x: auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+}
+.attendance-table th, .attendance-table td {
+    border: 1px solid #e0e0e0;
+    padding: 10px 16px;
+    font-size: 15px;
+    text-align: left;
+}
+.attendance-table th {
+    background: #f5f5f5;
+    color: #222;
+    font-weight: 600;
+    border: 1px solid #e0e0e0;
+}
+.attendance-table th.stt, .attendance-table td.stt {
+    width: 48px;
+    text-align: center;
+}
+.attendance-table th.mssv, .attendance-table td.mssv {
+    width: 110px;
+    text-align: center;
+}
+.attendance-table input[type="checkbox"] {
+    pointer-events: none;
+    accent-color: #0284C7;
+    width: 18px;
+    height: 18px;
+}
+.attendance-modal-footer {
+    padding: 24px;
+    text-align: right;
+}
+.attendance-modal-btn-close {
+    background: #0284C7;
+    color: white;
+    border: none;
+    padding: 10px 32px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.attendance-modal-btn-close:hover {
+    background: #0056a3;
+}
+
 @media (max-width: 1024px) {
     .session-details-content {
         grid-template-columns: 1fr;

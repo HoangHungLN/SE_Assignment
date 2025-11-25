@@ -719,6 +719,30 @@ class SessionController {
             data: deletedSession
         };
     }
+
+    /**
+     * Lấy danh sách lớp điểm danh của một buổi học
+     * @param {number} sessionId - ID của buổi học
+     * @returns {Array} Danh sách lớp điểm danh
+     */
+    getAttendanceList(sessionId) {
+        console.log(`[SessionController] Lấy danh sách lớp điểm danh cho buổi học ID: ${sessionId}`);
+        
+        // Danh sách lớp điểm danh mẫu
+        const attendanceListSample = [
+            { id: 1, name: 'Nguyễn A', mssv: '2196542', lop: 'MT21KTTN', email: 'abcdef@hcmut.edu.vn', present: true },
+            { id: 2, name: 'Trần Quang B', mssv: '2213654', lop: 'MT22KTT', email: 'abcfqef@hcmut.edu.vn', present: true },
+            { id: 3, name: 'Thái Thị C', mssv: '2310166', lop: 'MT23KTT', email: 'abcwvf@hcmut.edu.vn', present: true },
+            { id: 4, name: 'Lương Ngọc Thảo D', mssv: '2310007', lop: 'MT23KTT', email: 'avewcwef@hcmut.edu.vn', present: false },
+            { id: 5, name: 'Võ Quang H', mssv: '2345678', lop: 'MT23KTT', email: 'sieudz@hcmut.edu.vn', present: false },
+        ];
+
+        // sessionId có thể dùng để lấy dữ liệu động, hiện tại hardcode
+        return {
+            sessionId: sessionId,
+            attendanceList: attendanceListSample
+        };
+    }
 }
 
 // Khởi tạo Controller
@@ -1017,7 +1041,7 @@ router.get('/tutor-subjects/:tutorId', (req, res) => {
             data: subjects
         });
     } catch (error) {
-        console.error('[Error] GET /tutor-subjects/:tutorId:', error);
+        console.error('[Error] GET /tutor-subjects/:tutorId', error);
         res.status(500).json({
             success: false,
             message: 'Lỗi khi lấy danh sách môn học',
@@ -1025,6 +1049,44 @@ router.get('/tutor-subjects/:tutorId', (req, res) => {
         });
     }
 });
+
+/**
+ * GET /api/sessions/:sessionId/attendance-list
+ * Lấy danh sách lớp điểm danh của một buổi học
+ */
+router.get('/api/sessions/:sessionId/attendance-list', (req, res) => {
+    try {
+        const { sessionId } = req.params;
+        
+        const attendanceList = sessionController.getAttendanceList(sessionId);
+        
+        res.json({
+            success: true,
+            data: attendanceList
+        });
+    } catch (error) {
+        console.error('[Error] GET /api/sessions/:sessionId/attendance-list:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Lỗi khi lấy danh sách lớp điểm danh',
+            error: error.message
+        });
+    }
+});
+
+// Định nghĩa hàm lấy danh sách lớp điểm danh
+function getAttendanceList(req, res) {
+  const attendanceListSample = [
+    { id: 1, name: 'Nguyễn A', mssv: '2196542', lop: 'MT21KTTN', email: 'abcdef@hcmut.edu.vn', present: true },
+    { id: 2, name: 'Trần Quang B', mssv: '2213654', lop: 'MT22KTT', email: 'abcfqef@hcmut.edu.vn', present: true },
+    { id: 3, name: 'Thái Thị C', mssv: '2310166', lop: 'MT23KTT', email: 'abcwvf@hcmut.edu.vn', present: true },
+    { id: 4, name: 'Lương Ngọc Thảo D', mssv: '2310007', lop: 'MT23KTT', email: 'avewcwef@hcmut.edu.vn', present: false },
+    { id: 5, name: 'Võ Quang H', mssv: '2345678', lop: 'MT23KTT', email: 'sieudz@hcmut.edu.vn', present: false },
+  ];
+  res.json({ attendanceList: attendanceListSample });
+}
+
+router.get('/:sessionId/attendance-list', getAttendanceList);
 
 module.exports = router;
 

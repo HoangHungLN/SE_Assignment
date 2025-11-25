@@ -5,6 +5,17 @@ import './TutorSessionDetails.css';
 import axios from 'axios';
 
 function TutorSessionDetails() {
+        // State cho file biên bản đính kèm
+        const [summaryFile, setSummaryFile] = useState(null);
+
+        // Xử lý upload file biên bản
+        const handleSummaryFileUpload = (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                setSummaryFile(file);
+                setLastEditTime(new Date());
+            }
+        };
     const location = useLocation();
     const navigate = useNavigate();
     const [classData, setClassData] = useState(null);
@@ -32,7 +43,16 @@ function TutorSessionDetails() {
         recommendations: ''
     });
 
-    const tutorId = localStorage.getItem('userId') || 'GV001';
+    const [reviewList, setReviewList] = useState([
+        { id: 1, name: 'Nguyễn A', mssv: '2196542', passed: true, comment: '' },
+        { id: 2, name: 'Trần Quang B', mssv: '2213654', passed: true, comment: '' },
+        { id: 3, name: 'Thái Thị C', mssv: '2310166', passed: true, comment: '' },
+        { id: 4, name: 'Lương Ngọc Thảo D', mssv: '2310007', passed: false, comment: '' },
+        { id: 5, name: 'Võ Quang H', mssv: '2345678', passed: false, comment: 'Chưa nắm rõ kiến thức cơ bản' },
+    ]);
+    const [reviewDraft, setReviewDraft] = useState([]);
+    const [lastEditTime, setLastEditTime] = useState(null);
+
     const userRole = localStorage.getItem('userRole') || 'tutor';
     const userName = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).name : 'Giảng viên';
 
@@ -95,7 +115,26 @@ function TutorSessionDetails() {
     };
 
     const handleOpenAttendanceModal = () => {
-        setShowAttendanceModal(true);
+        setLoading(true);
+        axios.get('http://localhost:5000/api/sessions/1/attendance-list')
+            .then(res => {
+                // Chuyển đổi dữ liệu backend về đúng format cho bảng
+                const data = res.data.attendanceList.map((item, idx) => ({
+                    id: item.id,
+                    mssv: item.mssv,
+                    name: item.name,
+                    lop: item.lop,
+                    email: item.email,
+                    present: item.present
+                }));
+                setAttendanceList(data);
+                setShowAttendanceModal(true);
+                setLoading(false);
+            })
+            .catch(() => {
+                setError('Không lấy được dữ liệu điểm danh');
+                setLoading(false);
+            });
     };
 
     const handleCloseAttendanceModal = () => {
@@ -103,6 +142,7 @@ function TutorSessionDetails() {
     };
 
     const handleOpenReviewModal = () => {
+        setReviewDraft(JSON.parse(JSON.stringify(reviewList)));
         setShowReviewModal(true);
     };
 
@@ -110,25 +150,16 @@ function TutorSessionDetails() {
         setShowReviewModal(false);
     };
 
-    const handleOpenMaterialsModal = () => {
-        setShowMaterialsModal(true);
-    };
-
     const handleCloseMaterialsModal = () => {
         setShowMaterialsModal(false);
-    };
-
-    const handleReviewChange = (field, value) => {
-        setReviewData(prev => ({
-            ...prev,
-            [field]: value
-        }));
     };
 
     const handleSubmitReview = async () => {
         try {
             // TODO: Call API to save review when backend is ready
             console.log('Review submitted:', reviewData);
+            setReviewList(reviewDraft);
+            setLastEditTime(new Date());
             setShowReviewModal(false);
         } catch (err) {
             console.error('Lỗi khi lưu đánh giá:', err);
@@ -167,10 +198,6 @@ function TutorSessionDetails() {
         }
     };
 
-    const handleGoBack = () => {
-        navigate(-1);
-    };
-
     const handleRequestAttendance = async () => {
         try {
             // Open time selection modal instead of directly requesting
@@ -191,6 +218,29 @@ function TutorSessionDetails() {
             console.error('Lỗi khi gửi yêu cầu điểm danh:', err);
         }
     };
+
+    const handleReviewCheck = (idx, checked) => {
+        const newList = [...reviewDraft];
+        newList[idx].passed = checked;
+        setReviewDraft(newList);
+    };
+
+    const handleReviewComment = (idx, value) => {
+        const newList = [...reviewDraft];
+        newList[idx].comment = value;
+        setReviewDraft(newList);
+    };
+
+    const [sortType, setSortType] = useState('default');
+    const attendanceListSorted = React.useMemo(() => {
+        if (sortType === 'name') {
+            return [...attendanceList].sort((a, b) => a.name.localeCompare(b.name));
+        }
+        if (sortType === 'present') {
+            return [...attendanceList].sort((a, b) => b.present - a.present);
+        }
+        return attendanceList;
+    }, [attendanceList, sortType]);
 
     if (loading) {
         return (
@@ -214,7 +264,8 @@ function TutorSessionDetails() {
         );
     }
 
-    const attendedCount = attendanceList.filter(a => a.attended).length;
+    // Đếm số sinh viên có mặt dựa trên trường 'present' (backend) hoặc 'attended' (mock)
+    const attendedCount = attendanceList.filter(a => a.present || a.attended).length;
     const totalStudents = attendanceList.length;
 
     return (
@@ -255,29 +306,27 @@ function TutorSessionDetails() {
                             )}
                         </div>
                         <div className="materials-buttons">
-                            <button className="btn btn-upload" onClick={handleOpenMaterialsModal}>
+                            <button className="btn btn-upload" onClick={() => { setActiveMaterialsTab('upload'); setShowMaterialsModal(true); }}>
                                 Tải lên tài liệu
                             </button>
-                            <button className="btn btn-reference" onClick={handleOpenMaterialsModal}>
+                            <button className="btn btn-reference" onClick={() => { setActiveMaterialsTab('library'); setShowMaterialsModal(true); }}>
                                 Giáo trình tham khảo
                             </button>
                         </div>
                     </div>
 
                     {/* Section 2: Đánh giá tiến độ sinh viên */}
-                    <div className="details-section">
+                    <div className="details-section review-section">
                         <h2>Đánh giá tiến độ sinh viên</h2>
-                        <div className="review-section">
-                            <p className="review-description">
-                                Đánh giá tổng thể tiến độ học tập của sinh viên trong buổi dạy
-                            </p>
-                            <button
-                                className="btn btn-review"
-                                onClick={handleOpenReviewModal}
-                            >
-                                Tạo đánh giá
-                            </button>
+                        <div className="review-summary">
+                            <div>
+                                Tổng quan: {reviewList.filter(s => s.passed).length}/{reviewList.length} Đạt
+                            </div>
+                            <div>
+                                Chỉnh sửa lần cuối: {lastEditTime ? lastEditTime.toLocaleString('vi-VN') : 'chưa chỉnh sửa'}
+                            </div>
                         </div>
+                        <button className="btn-review" onClick={handleOpenReviewModal}>Truy cập danh sách</button>
                     </div>
 
                     {/* Section 3: Điểm danh sinh viên */}
@@ -287,7 +336,7 @@ function TutorSessionDetails() {
                             <div className="attendance-top-row">
                                 <div className="attendance-stat">
                                     <span className="attendance-icon">👥</span>
-                                    <span className="attendance-text">Có mặt: {attendedCount} / {totalStudents}</span>
+                                    <span className="attendance-text" style={{fontWeight: 'normal'}}>Có mặt: {attendedCount} / {totalStudents}</span>
                                 </div>
                                 <button 
                                     className="link-button"
@@ -297,15 +346,8 @@ function TutorSessionDetails() {
                                 </button>
                             </div>
                             
-                            <div className="attendance-export">
-                                <span className="export-icon">📄</span>
-                                <button className="link-button export-link">
-                                    Danh sách lớp
-                                </button>
-                            </div>
-
                             <button
-                                className="btn btn-request-attendance-small"
+                                className="btn-request-attendance"
                                 onClick={handleRequestAttendance}
                                 disabled={attendanceRequested}
                                 title={attendanceRequested ? 'Yêu cầu đã được gửi' : 'Gửi yêu cầu điểm danh cho sinh viên'}
@@ -316,24 +358,24 @@ function TutorSessionDetails() {
                     </div>
 
                     {/* Section 4: Tổng hợp biên bản */}
-                    <div className="details-section">
+                    <div className="details-section file-summary-section">
                         <h2>Tổng hợp biên bản</h2>
-                        <div className="summary-section">
-                            <div className="summary-item">
-                                <span className="summary-label">Nội dung bài giảng:</span>
-                                <span className="summary-value">{classData.description}</span>
+                        <div className="file-summary-content">
+                            <div className="file-summary-updated">
+                                Chỉnh sửa lần cuối: {lastEditTime ? lastEditTime.toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'chưa chỉnh sửa'}
                             </div>
-                            <div className="summary-item">
-                                <span className="summary-label">Hình thức:</span>
-                                <span className="summary-value">{classData.format}</span>
+                            <div className="file-summary-attachment">
+                                <span className="file-summary-icon" role="img" aria-label="PDF">📄</span>
+                                {summaryFile ? (
+                                    <a href={URL.createObjectURL(summaryFile)} className="file-summary-link" download={summaryFile.name}>{summaryFile.name}</a>
+                                ) : (
+                                    <span className="file-summary-link" style={{color: '#999'}}>Chưa có file biên bản</span>
+                                )}
                             </div>
-                            <div className="summary-item">
-                                <span className="summary-label">Số sinh viên tham gia:</span>
-                                <span className="summary-value">{attendedCount}/{totalStudents}</span>
-                            </div>
-                            <button className="btn btn-summary">
-                                Xuất biên bản
-                            </button>
+                            <label className="btn btn-upload-file" style={{marginTop: '16px', alignSelf: 'flex-start'}}>
+                                Tải file lên
+                                <input type="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.zip,.xlsx" style={{display: 'none'}} onChange={handleSummaryFileUpload} />
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -342,50 +384,47 @@ function TutorSessionDetails() {
             {/* Attendance Modal */}
             {showAttendanceModal && (
                 <div className="attendance-modal" onClick={handleCloseAttendanceModal}>
-                    <div className="attendance-modal-content" onClick={(e) => e.stopPropagation()}>
-                        <div className="modal-header">
-                            <h2>Danh sách điểm danh</h2>
-                            <button className="close-btn-text" onClick={handleCloseAttendanceModal}>Thoát</button>
-                        </div>
-                        
-                        <div className="modal-body">
-                            <div className="attendance-stats-modal">
-                                <div className="stat-card">
-                                    <span className="stat-number attended">{attendedCount}</span>
-                                    <span className="stat-text">Đã điểm danh</span>
-                                </div>
-                                <div className="stat-card">
-                                    <span className="stat-number absent">{totalStudents - attendedCount}</span>
-                                    <span className="stat-text">Vắng mặt</span>
-                                </div>
+                    <div className="attendance-modal-content" onClick={e => e.stopPropagation()}>
+                        <div className="attendance-modal-header">
+                            <h2 className="attendance-modal-title">Danh sách lớp</h2>
+                            <div className="attendance-modal-sort">
+                                Sắp xếp: <span className="sort-link" onClick={() => setSortType('default')}>Mặc định</span> | <span className="sort-link" onClick={() => setSortType('name')}>Tên</span> | <span className="sort-link" onClick={() => setSortType('present')}>Có mặt</span>
                             </div>
-
-                            <table className="attendance-table">
-                                <thead>
-                                    <tr>
-                                        <th>STT</th>
-                                        <th>MSSV</th>
-                                        <th>Tên sinh viên</th>
-                                        <th>Trạng thái</th>
-                                        <th>Thời gian</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {attendanceList.map((student, idx) => (
-                                        <tr key={student.studentId}>
-                                            <td>{idx + 1}</td>
-                                            <td>{student.studentId}</td>
-                                            <td>{student.studentName}</td>
-                                            <td>
-                                                <span className={`status-badge ${student.attended ? 'attended' : 'absent'}`}>
-                                                    {student.attended ? '✓ Đã điểm danh' : '✗ Vắng mặt'}
-                                                </span>
-                                            </td>
-                                            <td>{student.timestamp || '-'}</td>
+                        </div>
+                        {loading ? (
+                            <div style={{textAlign: 'center', padding: '32px'}}>Đang tải dữ liệu...</div>
+                        ) : error ? (
+                            <div style={{textAlign: 'center', color: 'red', padding: '32px'}}>{error}</div>
+                        ) : (
+                            <div className="attendance-modal-table">
+                                <table className="attendance-table">
+                                    <thead>
+                                        <tr>
+                                            <th className="stt">STT</th>
+                                            <th>Họ và tên</th>
+                                            <th className="mssv">MSSV</th>
+                                            <th>Lớp</th>
+                                            <th>Email</th>
+                                            <th>Có mặt</th>
                                         </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        {attendanceListSorted.map((student, idx) => (
+                                            <tr key={student.id}>
+                                                <td className="stt">{idx + 1}</td>
+                                                <td>{student.name}</td>
+                                                <td className="mssv">{student.mssv}</td>
+                                                <td>{student.lop}</td>
+                                                <td>{student.email}</td>
+                                                <td><input type="checkbox" checked={student.present} readOnly /></td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        )}
+                        <div className="attendance-modal-footer">
+                            <button className="attendance-modal-btn-close" onClick={handleCloseAttendanceModal}>Xong</button>
                         </div>
                     </div>
                 </div>
@@ -395,56 +434,40 @@ function TutorSessionDetails() {
             {showReviewModal && (
                 <div className="review-modal" onClick={handleCloseReviewModal}>
                     <div className="review-modal-content" onClick={(e) => e.stopPropagation()}>
-                        <div className="modal-header">
-                            <h2>Đánh giá tiến độ sinh viên</h2>
-                            <button className="close-btn-text" onClick={handleCloseReviewModal}>Thoát</button>
+                        <div className="review-modal-header">
+                            <h2 className="review-modal-title">Đánh giá tiến độ sinh viên</h2>
+                            <button className="review-modal-close" onClick={handleCloseReviewModal}>Thoát</button>
                         </div>
-                        
-                        <div className="modal-body">
-                            <div className="form-group">
-                                <label htmlFor="overall-progress">Đánh giá tổng thể:</label>
-                                <select
-                                    id="overall-progress"
-                                    className="form-control"
-                                    value={reviewData.overallProgress}
-                                    onChange={(e) => handleReviewChange('overallProgress', e.target.value)}
-                                >
-                                    <option value="Xuất sắc">Xuất sắc</option>
-                                    <option value="Tốt">Tốt</option>
-                                    <option value="Bình thường">Bình thường</option>
-                                    <option value="Yếu">Yếu</option>
-                                </select>
-                            </div>
-
-                            <div className="form-group">
-                                <label htmlFor="student-progress">Tiến độ học tập sinh viên:</label>
-                                <textarea
-                                    id="student-progress"
-                                    className="form-control textarea"
-                                    rows="5"
-                                    value={reviewData.studentProgress}
-                                    onChange={(e) => handleReviewChange('studentProgress', e.target.value)}
-                                    placeholder="Nhập đánh giá về tiến độ học tập..."
-                                ></textarea>
-                            </div>
-
-                            <div className="form-group">
-                                <label htmlFor="recommendations">Khuyến nghị:</label>
-                                <textarea
-                                    id="recommendations"
-                                    className="form-control textarea"
-                                    rows="5"
-                                    value={reviewData.recommendations}
-                                    onChange={(e) => handleReviewChange('recommendations', e.target.value)}
-                                    placeholder="Nhập khuyến nghị cho sinh viên..."
-                                ></textarea>
-                            </div>
+                        <div className="review-modal-body">
+                            <table className="review-table">
+                                <thead>
+                                    <tr>
+                                        <th className="stt">STT</th>
+                                        <th>Họ và tên</th>
+                                        <th className="mssv">MSSV</th>
+                                        <th>Đạt</th>
+                                        <th>Đánh giá thêm</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {reviewDraft.map((student, idx) => (
+                                        <tr key={student.id}>
+                                            <td className="stt">{idx + 1}</td>
+                                            <td>{student.name}</td>
+                                            <td className="mssv">{student.mssv}</td>
+                                            <td>
+                                                <input type="checkbox" checked={student.passed} onChange={e => handleReviewCheck(idx, e.target.checked)} />
+                                            </td>
+                                            <td>
+                                                <input type="text" className="review-input" value={student.comment} onChange={e => handleReviewComment(idx, e.target.value)} placeholder="Nhập đánh giá thêm..." />
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                         </div>
-
-                        <div className="modal-footer">
-                            <button className="btn btn-save" onClick={handleSubmitReview}>
-                                Lưu đánh giá
-                            </button>
+                        <div className="review-modal-footer">
+                            <button className="review-modal-btn-save" onClick={handleSubmitReview}>Lưu thay đổi</button>
                         </div>
                     </div>
                 </div>
@@ -546,37 +569,32 @@ function TutorSessionDetails() {
                 </div>
             )}
 
-            {/* Time Selection Modal */}
+            {/* Time Selection Modal - Styled to match screenshot */}
             {showTimeModal && (
                 <div className="time-modal-overlay" onClick={() => setShowTimeModal(false)}>
                     <div className="time-modal-content" onClick={(e) => e.stopPropagation()}>
                         <div className="time-modal-header">
-                            <h2 className="time-modal-title">Điểm danh sinh viên</h2>
-                            <button className="time-modal-close" onClick={() => setShowTimeModal(false)}>Thoát</button>
+                            <span className="time-modal-title">Điểm danh sinh viên</span>
+                            <span className="time-modal-close" onClick={() => setShowTimeModal(false)}>Thoát</span>
                         </div>
-                        
                         <div className="time-modal-body">
                             <div className="time-input-group">
-                                <div className="time-input-label">Bắt đầu lúc:</div>
-                                <div className="time-input-value">{attendanceTime.startTime || 'Bắt đầu lúc:'}</div>
-                                <a href="#" className="time-input-link" onClick={(e) => {
-                                    e.preventDefault();
+                                <span className="time-input-label">Bắt đầu lúc:</span>
+                                <span className="time-input-value">{attendanceTime.startTime || ''}</span>
+                                <span className="time-input-link" onClick={() => {
                                     const time = prompt('Nhập thời gian bắt đầu (HH:MM):');
                                     if (time) setAttendanceTime({...attendanceTime, startTime: time});
-                                }}>Chọn thời điểm</a>
+                                }}>Chọn thời điểm</span>
                             </div>
-
                             <div className="time-input-group">
-                                <div className="time-input-label">Kết thúc lúc:</div>
-                                <div className="time-input-value">{attendanceTime.endTime || 'Kết thúc lúc:'}</div>
-                                <a href="#" className="time-input-link" onClick={(e) => {
-                                    e.preventDefault();
+                                <span className="time-input-label">Kết thúc lúc:</span>
+                                <span className="time-input-value">{attendanceTime.endTime || ''}</span>
+                                <span className="time-input-link" onClick={() => {
                                     const time = prompt('Nhập thời gian kết thúc (HH:MM):');
                                     if (time) setAttendanceTime({...attendanceTime, endTime: time});
-                                }}>Chọn thời điểm</a>
+                                }}>Chọn thời điểm</span>
                             </div>
                         </div>
-
                         <div className="time-modal-footer">
                             <button 
                                 className="time-modal-btn-confirm" 
