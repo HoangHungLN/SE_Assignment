@@ -1,225 +1,15 @@
 // server/services/sessionController/sessionController.js
 const express = require('express');
 const router = express.Router();
+// Load feedback database (moved out from sessions)
+const feedbackDB = require('../../dataBase/feedback');
+// Feedback persistence moved to feedbackController
+const feedbackController = require('../learningController/feedbackController');
 
 class SessionController {
     // Constructor - Khởi tạo dữ liệu mock (không dùng database)
     constructor() {
-        this.sessions = [
-            {
-                id: 1,
-                studentId: '2311327',
-                subject: 'Giải Tích 1',
-                tutor: 'Nguyễn Văn A',
-                tutorId: 'GV001',
-                time: '14:00 - 16:00',
-                date: '2025-11-25',
-                status: 'Sắp diễn ra',
-                room: 'B4-101',
-                description: 'Giới hạn và tính liên tục của hàm',
-                materials: [
-                    { name: 'Slide bài giảng', url: '/files/giai-tich-1-slide.pdf' },
-                    { name: 'Bài tập về nhà', url: '/files/giai-tich-1-baitap.pdf' }
-                ],
-                attendanceRequested: false,
-                isAttended: false
-            },
-            {
-                id: 2,
-                studentId: '2311327',
-                subject: 'Kỹ thuật lập trình',
-                tutor: 'Trần Thị B',
-                tutorId: 'GV002',
-                time: '09:00 - 11:00',
-                date: '2025-11-24',
-                status: 'Đã diễn ra',
-                room: 'B4-102',
-                description: 'Pointer và Dynamic Memory',
-                materials: [
-                    { name: 'Slide bài giảng', url: '/files/ky-thuat-lap-trinh-slide.pdf' }
-                ],
-                attendanceRequested: true,
-                isAttended: true
-            },
-            {
-                id: 3,
-                studentId: '2311327',
-                subject: 'Cấu trúc dữ liệu và Giải thuật',
-                tutor: 'Lê Minh C',
-                tutorId: 'GV003',
-                time: '16:00 - 18:00',
-                date: '2025-11-26',
-                status: 'Sắp diễn ra',
-                room: 'B4-103',
-                description: 'Cây nhị phân và duyệt cây',
-                materials: [
-                    { name: 'Slide bài giảng', url: '/files/cau-truc-du-lieu-slide.pdf' },
-                    { name: 'Code ví dụ', url: '/files/cau-truc-du-lieu-code.zip' }
-                ],
-                attendanceRequested: false,
-                isAttended: false
-            },
-            {
-                id: 5,
-                studentId: '2311327',
-                subject: 'Giải Tích 2',
-                tutor: 'Phạm Thị E',
-                tutorId: 'GV005',
-                time: '10:00 - 12:00',
-                date: '2025-11-27',
-                status: 'Sắp diễn ra',
-                room: 'B4-104',
-                description: 'Hàm nhiều biến và đạo hàm riêng',
-                materials: [
-                    { name: 'Slide bài giảng', url: '/files/giai-tich-2-slide.pdf' }
-                ],
-                attendanceRequested: true,
-                isAttended: false
-            },
-            {
-                id: 6,
-                studentId: '2311327',
-                subject: 'Đại số tuyến tính',
-                tutor: 'Trần Văn F',
-                tutorId: 'GV006',
-                time: '13:00 - 15:00',
-                date: '2025-11-23',
-                status: 'Đã diễn ra',
-                room: 'B4-105',
-                description: 'Ma trận và định thức',
-                materials: [
-                    { name: 'Slide bài giảng', url: '/files/dai-so-tuyen-tinh-slide.pdf' },
-                    { name: 'Bài tập về nhà', url: '/files/dai-so-tuyen-tinh-baitap.pdf' }
-                ],
-                attendanceRequested: true,
-                isAttended: true
-            },
-            // Dữ liệu cho sinh viên SV002
-            {
-                id: 4,
-                studentId: 'SV002',
-                subject: 'Lập trình hướng đối tượng',
-                tutor: 'Trần Thị E',
-                tutorId: 'GV005',
-                time: '09:00 - 11:00',
-                date: '2025-11-20',
-                status: 'Đã diễn ra',
-                room: 'B1-301',
-                description: 'Kế thừa và Đa hình',
-                materials: [
-                    { name: 'OOP_Inheritance.pdf', url: '/files/oop1.pdf' },
-                    { name: 'Polymorphism_Examples.pptx', url: '/files/oop2.pptx' }
-                ],
-                feedback: {
-                    criteria1: true,
-                    criteria2: true,
-                    criteria3: false,
-                    additionalComments: 'Bài giảng rất chi tiết',
-                    criteriaCount: 2,
-                    lastUpdate: '23-11-2025 14:30'
-                },
-                attendanceRequested: true,
-                isAttended: true
-            },
-            {
-                id: 5,
-                studentId: 'SV002',
-                subject: 'Cơ sở dữ liệu',
-                tutor: 'Nguyễn Văn F',
-                tutorId: 'GV006',
-                time: '13:00 - 15:00',
-                date: '2025-11-22',
-                status: 'Đã diễn ra',
-                room: 'B2-204',
-                description: 'SQL và Relational Database',
-                materials: [
-                    { name: 'SQL_Basics.pdf', url: '/files/sql1.pdf' }
-                ],
-                feedback: null,
-                attendanceRequested: true,
-                isAttended: true
-            },
-            {
-                id: 6,
-                studentId: 'SV002',
-                subject: 'Hệ điều hành',
-                tutor: 'Lê Văn G',
-                tutorId: 'GV007',
-                time: '15:00 - 17:00',
-                date: '2025-11-27',
-                status: 'Sắp diễn ra',
-                room: 'B3-105',
-                description: 'Process và Thread Management',
-                materials: [],
-                feedback: null,
-                attendanceRequested: false,
-                isAttended: false
-            },
-            {
-                id: 7,
-                studentId: 'SV002',
-                subject: 'Mạng máy tính',
-                tutor: 'Phạm Thị H',
-                tutorId: 'GV008',
-                time: '10:00 - 12:00',
-                date: '2025-11-28',
-                status: 'Sắp diễn ra',
-                room: 'B4-201',
-                description: 'TCP/IP Protocol',
-                materials: [],
-                feedback: null,
-                attendanceRequested: false,
-                isAttended: false
-            },
-            {
-                id: 8,
-                studentId: 'SV002',
-                subject: 'Trí tuệ nhân tạo',
-                tutor: 'Đỗ Văn I',
-                tutorId: 'GV009',
-                time: '08:00 - 10:00',
-                date: '2025-12-01',
-                status: 'Sắp diễn ra',
-                room: 'B1-402',
-                description: 'Machine Learning cơ bản',
-                materials: [],
-                feedback: null,
-                attendanceRequested: false,
-                isAttended: false
-            },
-            {
-                id: 9,
-                studentId: 'SV002',
-                subject: 'Công nghệ phần mềm',
-                tutor: 'Hoàng Văn K',
-                tutorId: 'GV010',
-                time: '14:00 - 16:00',
-                date: '2025-12-03',
-                status: 'Sắp diễn ra',
-                room: 'B2-303',
-                description: 'Agile và Scrum',
-                materials: [],
-                feedback: null,
-                attendanceRequested: false,
-                isAttended: false
-            },
-            {
-                id: 10,
-                studentId: 'SV002',
-                subject: 'Lập trình hướng đối tượng',
-                tutor: 'Trần Thị E',
-                tutorId: 'GV005',
-                time: '16:00 - 18:00',
-                date: '2025-12-05',
-                status: 'Sắp diễn ra',
-                room: 'B1-301',
-                description: 'Design Patterns',
-                materials: [],
-                feedback: null,
-                attendanceRequested: false,
-                isAttended: false
-            }
-        ];
+        this.loadSessionsFromFile();
 
         // Dữ liệu lớp học của tutor (classes/sections)
         this.classes = [
@@ -329,12 +119,41 @@ class SessionController {
     }
 
     /**
+     * Load sessions from file (clear require cache to get latest data)
+     */
+    loadSessionsFromFile() {
+        const sessionPath = require.resolve('../../dataBase/session');
+        delete require.cache[sessionPath];
+        this.sessions = require('../../dataBase/session');
+    }
+
+    /**
+     * Lấy feedback từ feedbackDB theo sessionId và studentId
+     * @param {number} sessionId
+     * @param {string} studentId
+     * @returns {Object|null}
+     */
+    getFeedback(sessionId, studentId) {
+        // Load fresh feedback array from file to ensure latest saved data is returned
+        try {
+            const arr = feedbackController.loadFeedbackFromFile();
+            if (!Array.isArray(arr)) return null;
+            return arr.find(f => f.sessionId === sessionId && f.studentId === studentId) || null;
+        } catch (err) {
+            console.error('[SessionController] Lỗi khi load feedback từ file:', err.message);
+            return null;
+        }
+    }
+    /**
      * Lấy danh sách buổi học của một sinh viên (với phân trang, lọc, sắp xếp)
      * @param {string} studentId - ID của sinh viên
      * @param {Object} options - Tùy chọn { page, limit, sortBy, tutorId, subject }
      * @returns {Object} { sessions: Array, total: number, page: number, totalPages: number }
      */
     getStudentSessions(studentId, options = {}) {
+        // Reload sessions from file to ensure fresh data
+        this.loadSessionsFromFile();
+        
         const { 
             page = 1, 
             limit = 6, 
@@ -383,12 +202,17 @@ class SessionController {
         const startIndex = (page - 1) * limit;
         const endIndex = startIndex + limit;
         const paginatedSessions = filtered.slice(startIndex, endIndex);
-        
+        // Gắn feedback (nếu có) từ feedbackDB
+        const paginatedWithFeedback = paginatedSessions.map(s => ({
+            ...s,
+            feedback: this.getFeedback(s.id, s.studentId)
+        }));
+
         console.log(`-> Tìm thấy ${total} buổi học, trang ${page}/${totalPages}`);
-        
+
         return {
             success: true,
-            sessions: paginatedSessions,
+            sessions: paginatedWithFeedback,
             pagination: {
                 page,
                 limit,
@@ -461,16 +285,21 @@ class SessionController {
      * @returns {Object|null} Chi tiết buổi học hoặc null nếu không tìm thấy
      */
     getSessionDetail(sessionId) {
+        // Reload sessions from file to ensure fresh data
+        this.loadSessionsFromFile();
+        
         console.log(`[SessionController] Lấy chi tiết buổi học ID: ${sessionId}`);
         
         const session = this.sessions.find(s => s.id == sessionId);
-        
+
         if (session) {
             console.log(`-> Tìm thấy buổi học: ${session.subject}`);
+            // Gắn feedback từ feedbackDB (nếu có)
+            session.feedback = this.getFeedback(session.id, session.studentId);
         } else {
             console.log(`-> Không tìm thấy buổi học`);
         }
-        
+
         return session || null;
     }
 
@@ -1119,6 +948,73 @@ router.put('/:sessionId', (req, res) => {
             message: 'Lỗi khi cập nhật buổi học',
             error: error.message
         });
+    }
+});
+
+/**
+ * PUT /:sessionId/feedback
+ * Ghi hoặc cập nhật feedback cho một session (ghi đè vào server/dataBase/feedback.js)
+ * Body: { studentId, criteria1, criteria2, criteria3, additionalComments }
+ */
+router.put('/:sessionId/feedback', (req, res) => {
+    try {
+        console.log('[Route] PUT /:sessionId/feedback called with params:', req.params, 'body:', req.body);
+        const sessionId = parseInt(req.params.sessionId);
+        const {
+            studentId,
+            criteria1 = false,
+            criteria2 = false,
+            criteria3 = false,
+            additionalComments = ''
+        } = req.body;
+
+        if (!studentId) {
+            return res.status(400).json({ success: false, message: 'Thiếu studentId' });
+        }
+
+        // Tính criteriaCount và lastUpdate
+        const criteriaCount = [criteria1, criteria2, criteria3].filter(Boolean).length;
+        const now = new Date();
+        const lastUpdate = `${String(now.getDate()).padStart(2, '0')}-${String(now.getMonth() + 1).padStart(2, '0')}-${now.getFullYear()} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+        // Tìm session để xác nhận tồn tại (không bắt buộc phải match studentId ở đây, nhưng có thể kiểm tra)
+        const session = sessionController.getSessionDetail(sessionId);
+        if (!session) {
+            return res.status(404).json({ success: false, message: 'Buổi học không tồn tại' });
+        }
+
+        // Cập nhật hoặc thêm mới vào feedbackDB (in-memory)
+        const existingIndex = feedbackDB.findIndex(f => f.sessionId === sessionId && f.studentId === studentId);
+        const newRecord = {
+            sessionId,
+            studentId,
+            criteria1: !!criteria1,
+            criteria2: !!criteria2,
+            criteria3: !!criteria3,
+            additionalComments: additionalComments || '',
+            criteriaCount,
+            lastUpdate
+        };
+
+        if (existingIndex !== -1) {
+            feedbackDB[existingIndex] = newRecord;
+        } else {
+            feedbackDB.push(newRecord);
+        }
+
+        // Delegate persistence to feedbackController
+        try {
+            const saved = feedbackController.saveFeedback(newRecord);
+            // Cập nhật feedback trên đối tượng session trả về (in-memory)
+            session.feedback = saved;
+            res.json({ success: true, message: 'Feedback đã được lưu', data: saved });
+        } catch (err) {
+            console.error('[Error] saving feedback via feedbackController:', err.message);
+            return res.status(500).json({ success: false, message: 'Lỗi khi lưu feedback', error: err.message });
+        }
+    } catch (error) {
+        console.error('[Error] PUT /:sessionId/feedback:', error);
+        res.status(500).json({ success: false, message: 'Lỗi khi lưu feedback', error: error.message });
     }
 });
 
