@@ -2,7 +2,16 @@
 const express = require('express');
 const router = express.Router();
 
+// Import data từ file session.js
+const { sessions, classes, enrollments } = require('../../dataBase/session');
+
 class SessionController {
+    constructor() {
+        // Dùng dữ liệu import từ file session.js
+        this.sessions = sessions;
+        this.classes = classes;
+        this.enrollments = enrollments || [];
+    }
     
     /**
      * Lấy danh sách buổi học của một sinh viên (với phân trang, lọc, sắp xếp)
