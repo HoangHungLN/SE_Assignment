@@ -24,6 +24,7 @@ const SSOSimulation = () => {
                 const userData = response.data.user;
     
                 // Lưu thông tin
+                localStorage.setItem('token', response.data.token);
                 localStorage.setItem('user', JSON.stringify(userData));
                 localStorage.setItem('studentId', userData.id);
                 localStorage.setItem('userId', userData.id);

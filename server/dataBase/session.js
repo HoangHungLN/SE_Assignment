@@ -1,6 +1,6 @@
 // server/dataBase/session.js
 // Mock sessions data moved out from sessionController
-module.exports = [
+sessions = [
     {
         id: 1,
         studentId: '2311327',
@@ -208,3 +208,103 @@ module.exports = [
         isAttended: false
     }
 ];
+
+// Dữ liệu lớp học của tutor (classes/sections)
+const classes = [
+  // Copy NGUYÊN nội dung mảng this.classes trong constructor
+    {
+        id: 1,
+        tutorId: 'GV001',
+        className: 'Kiến trúc Máy tính',
+        classCode: 'CO2007',
+        subject: 'Kiến trúc Máy tính',
+        date: '2025-10-05',
+        time: '16:55',
+        description: 'Bộ nhớ và Cache',
+        format: 'On site',
+        location: 'B1-303',
+        onlineLink: null,
+        status: 'Sắp diễn ra',
+        studentCount: 30
+    },
+    {
+        id: 2,
+        tutorId: 'GV001',
+        className: 'Cấu trúc rời rạc',
+        classCode: 'CO1007',
+        subject: 'Cấu trúc rời rạc',
+        date: '2025-10-06',
+        time: '16:05',
+        description: 'Ứng dụng toán rời rạc',
+        format: 'Không có',
+        location: 'B1-303',
+        onlineLink: null,
+        status: 'Sắp diễn ra',
+        studentCount: 28
+    },
+    {
+        id: 3,
+        tutorId: 'GV001',
+        className: 'Kỹ thuật lập trình',
+        classCode: 'CO1027',
+        subject: 'Kỹ thuật lập trình',
+        date: '2025-11-24',
+        time: '16:55',
+        description: 'OOP nâng cao',
+        format: 'Off site',
+        location: 'H6-506',
+        onlineLink: 'Google Meet',
+        status: 'Sắp diễn ra',
+        studentCount: 35
+    },
+    {
+        id: 4,
+        tutorId: 'GV001',
+        className: 'Cấu trúc dữ liệu',
+        classCode: 'CO2003',
+        subject: 'Cấu trúc dữ liệu',
+        date: '2025-12-10',
+        time: '17:45',
+        description: 'Cấu trúc cây nâng cao',
+        format: 'Both',
+        location: 'B2-404',
+        onlineLink: 'Google Meet',
+        status: 'Sắp diễn ra',
+        studentCount: 32
+    },
+    {
+        id: 5,
+        tutorId: 'GV001',
+        className: 'Cơ sở dữ liệu',
+        classCode: 'CO3025',
+        subject: 'Cơ sở dữ liệu',
+        date: '2025-12-15',
+        time: '14:00',
+        description: 'Database Design',
+        format: 'On site',
+        location: 'B3-201',
+        onlineLink: null,
+        status: 'Sắp diễn ra',
+        studentCount: 25
+    },
+    {
+        id: 6,
+        tutorId: 'GV001',
+        className: 'Lập trình hệ thống',
+        classCode: 'CO3041',
+        subject: 'Lập trình hệ thống',
+        date: '2025-12-20',
+        time: '15:00',
+        description: 'System Call và API',
+        format: 'Off site',
+        location: 'B4-105',
+        onlineLink: 'Microsoft Teams',
+        status: 'Sắp diễn ra',
+        studentCount: 20
+    }
+];
+
+module.exports = {
+  sessions,
+  classes
+};

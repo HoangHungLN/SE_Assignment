@@ -4,7 +4,11 @@ const DataCore_Adapter = require('../integration/hcmutDATACORE');
 
 // 1. Xác thực: Kiểm tra Token
 const verifyToken = (req, res, next) => {
-    const token = req.headers['authorization']; 
+
+    const authHeader = req.headers['authorization'];
+    if (!authHeader) return res.status(403).json({ success: false, message: "Chưa đăng nhập" });
+    
+    const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader;
     if (!token) return res.status(403).json({ success: false, message: "Chưa đăng nhập" });
 
     const userID = SSO_Adapter.getUserID(token);
@@ -19,16 +23,15 @@ const verifyToken = (req, res, next) => {
 };
 
 // 2. Phân quyền: Kiểm tra Role
-const requireRole = (role) => {
+const requireRole = (roles) => {
+    const allowed = Array.isArray(roles) ? roles : [roles];
     return (req, res, next) => {
-        if (req.currentUser.role !== role) {
-            return res.status(403).json({ 
-                success: false, 
-                message: `Truy cập bị từ chối. Bạn không phải là ${role}` 
-            });
+        if (!allowed.includes(req.currentUser.role)) {
+        return res.status(403).json({ success:false, message:`...` });
         }
-        next();
+    next();
     };
 };
+
 
 module.exports = { verifyToken, requireRole };

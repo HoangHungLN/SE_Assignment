@@ -4,6 +4,8 @@ import Navbar from '../../components/Navbar';
 import './TutorSessionDetails.css';
 import axios from 'axios';
 
+// const evaluateRouter = require('../../services/learningController/evaluateController');
+
 function TutorSessionDetails() {
         // State cho file biên bản đính kèm
         const [summaryFile, setSummaryFile] = useState(null);
@@ -43,13 +45,42 @@ function TutorSessionDetails() {
         recommendations: ''
     });
 
-    const [reviewList, setReviewList] = useState([
-        { id: 1, name: 'Nguyễn A', mssv: '2196542', passed: true, comment: '' },
-        { id: 2, name: 'Trần Quang B', mssv: '2213654', passed: true, comment: '' },
-        { id: 3, name: 'Thái Thị C', mssv: '2310166', passed: true, comment: '' },
-        { id: 4, name: 'Lương Ngọc Thảo D', mssv: '2310007', passed: false, comment: '' },
-        { id: 5, name: 'Võ Quang H', mssv: '2345678', passed: false, comment: 'Chưa nắm rõ kiến thức cơ bản' },
-    ]);
+    const [reviewList, setReviewList] = useState([]);   // ← CÁI NÀY RẤT QUAN TRỌNG
+    // const [reviewDraft, setReviewDraft] = useState([]);
+    // const [showReviewModal, setShowReviewModal] = useState(false);
+
+    const loadReviewListFromServer = async () => {
+        try {
+            const token = localStorage.getItem('token');
+
+            const res = await axios.get(
+                'http://localhost:5000/api/learning/evaluate/progress',
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            const data = res.data.data;
+
+            const reviews = data.map((item, idx) => ({
+                id: idx + 1,
+                name: item.name,
+                mssv: item.mssv,
+                passed: item.percent >= 50,  // tạm quy ước: >= 50% là “Đạt”
+                comment: '',
+            }));
+
+            setReviewList(reviews);
+
+            return reviews;
+        } catch (err) {
+            console.error('Lỗi load review list:', err);
+            return [];
+        }
+    };
+
     const [reviewDraft, setReviewDraft] = useState([]);
     const [lastEditTime, setLastEditTime] = useState(null);
 
@@ -141,10 +172,16 @@ function TutorSessionDetails() {
         setShowAttendanceModal(false);
     };
 
-    const handleOpenReviewModal = () => {
-        setReviewDraft(JSON.parse(JSON.stringify(reviewList)));
+    const handleOpenReviewModal = async () => {
+        const reviews = await loadReviewListFromServer();  // chờ API xong
+
+        // clone sang draft để chỉnh trong modal
+        setReviewDraft(JSON.parse(JSON.stringify(reviews)));
+
         setShowReviewModal(true);
     };
+
+
 
     const handleCloseReviewModal = () => {
         setShowReviewModal(false);
@@ -155,15 +192,11 @@ function TutorSessionDetails() {
     };
 
     const handleSubmitReview = async () => {
-        try {
-            // TODO: Call API to save review when backend is ready
-            console.log('Review submitted:', reviewData);
-            setReviewList(reviewDraft);
-            setLastEditTime(new Date());
-            setShowReviewModal(false);
-        } catch (err) {
-            console.error('Lỗi khi lưu đánh giá:', err);
-        }
+        // TODO: nếu sau này bạn muốn gửi reviewDraft lên server thì gọi API ở đây
+
+        setReviewList(reviewDraft);         // cập nhật lại danh sách chính
+        setLastEditTime(new Date());
+        setShowReviewModal(false);
     };
 
     const handleFileUpload = (event) => {
