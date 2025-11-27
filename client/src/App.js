@@ -17,6 +17,7 @@ import TutorReviews from './pages/admin/TutorReviews';
 import ParticipationResults from './pages/admin/ParticipationResults';
 
 // --- 4. Student Features ---
+import GroupRegister from './pages/student/groupRegister';
 import MySession from './pages/student/MySession';
 import SessionDetails from './pages/student/SessionDetails';
 import JoinSession from './pages/student/JoinSession';
@@ -44,7 +45,7 @@ function App() {
         <Route path="/session-details" element={<SessionDetails />} />
         <Route path="join-session" element={<JoinSession />} />
         <Route path="/register-session" element={<GenericPage role="student" title="Đăng ký buổi học" />} />
-        <Route path="/register-group" element={<GenericPage role="student" title="Đăng ký buổi học" />} />
+        <Route path="/register-group" element={<GroupRegister role="student" title="Đăng ký nhóm" />} />
 
         {/* --- TUTOR ROUTES --- */}
         <Route path="/tutor-dashboard" element={<TutorDashboard />} />
