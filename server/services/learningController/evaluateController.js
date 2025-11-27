@@ -31,7 +31,7 @@ const STUDENT_PROGRESS_DB = [
     { stt: 2, name: "Trần Thị B", mssv: "7654322", registered: 10, attended: 10, percent: 100 },
     { stt: 3, name: "Lương Văn D", mssv: "7654325", registered: 6, attended: 6, percent: 100 },
     { stt: 4, name: "Thạch Ngọc E", mssv: "7654327", registered: 3, attended: 2, percent: 67 },
-    { stt: 5, name: "Đỗ Bách K", mssv: "7659994", registered: 15, attended: 15, percent: 100 },
+    { stt: 5, name: "Thái sơn", mssv: "7659994", registered: 15, attended: 15, percent: 100 },
 ];
 
 
@@ -48,9 +48,10 @@ router.get('/search', verifyToken, requireRole('admin'), (req, res) => {
 });
 
 // 2. API: Xem tiến độ/kết quả tham gia
-router.get('/progress', verifyToken, requireRole('admin'), (req, res) => {
+router.get('/progress', verifyToken, requireRole(['admin', 'tutor']), (req, res) => {
     const results = evaluateController.getAllStudentProgress();
     res.json({ success: true, data: results });
+    // console.log("abcdeadaskasjjjjjjjjjjjj");
 });
 
 module.exports = router;
