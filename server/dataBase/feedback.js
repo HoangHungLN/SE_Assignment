@@ -13,11 +13,11 @@ module.exports = [
         "sessionId": 2,
         "studentId": "SV002",
         "criteria1": true,
-        "criteria2": false,
+        "criteria2": true,
         "criteria3": false,
-        "additionalComments": "qlao",
-        "criteriaCount": 1,
-        "lastUpdate": "27-11-2025 19:42"
+        "additionalComments": "2 cái trên check cái dưới không check, and\n",
+        "criteriaCount": 2,
+        "lastUpdate": "28-11-2025 01:31"
     },
     {
         "sessionId": 11,

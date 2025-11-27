@@ -7,7 +7,7 @@ import './JoinSession.css';
 const PAGE_SIZE = 4;
 
 const JoinSession = () => {
-  const studentId = localStorage.getItem('userId') || 'SV001';
+  const studentId = localStorage.getItem('studentId') || '2311327';
 
   const [availableClasses, setAvailableClasses] = useState([]);
   const [joinedClasses, setJoinedClasses] = useState([]);
@@ -320,7 +320,7 @@ const JoinSession = () => {
                               {cls.subject || 'Môn học'}
                             </div>
                             <div className="sj-class-tutor">
-                              Tutor: Đoàn Minh V
+                              <strong>Tutor:</strong> {cls.tutor || 'Chưa cập nhật'}
                             </div>
                           </div>
                           <div className="sj-class-header-right">
