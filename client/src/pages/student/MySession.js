@@ -31,8 +31,12 @@ function MySession() {
     const [selectedSession, setSelectedSession] = useState(null);
     const [showDetail, setShowDetail] = useState(false);
     
-    // Lấy studentId từ localStorage
-    const studentId = localStorage.getItem('studentId') || 'SV001';
+    // Lấy studentId từ localStorage (hỗ trợ nhiều key do tên không đồng nhất)
+    const studentId =
+        localStorage.getItem('studentId') ||
+        localStorage.getItem('userId') ||
+        localStorage.getItem('userID') ||
+        '2311327';
     
     // Get current timestamp
     const getCurrentTimestamp = () => {

@@ -1,9 +1,6 @@
-// server/services/sessionController/session.js
-
-// Dữ liệu buổi học (sessions)
-const sessions = [
-  // Copy NGUYÊN nội dung mảng this.sessions trong constructor ở SessionController
-  // từ { id: 1, studentId: '2311327', ... } đến phần tử cuối cùng
+// server/dataBase/session.js
+// Mock sessions data moved out from sessionController
+sessions = [
     {
         id: 1,
         studentId: '2311327',
@@ -92,9 +89,9 @@ const sessions = [
         attendanceRequested: true,
         isAttended: true
     },
-    // Dữ liệu cho sinh viên SV002
+    // Dữ liệu cho sinh viên SV002 (IDs updated to avoid collision with other students)
     {
-        id: 4,
+        id: 11,
         studentId: 'SV002',
         subject: 'Lập trình hướng đối tượng',
         tutor: 'Trần Thị E',
@@ -108,19 +105,12 @@ const sessions = [
             { name: 'OOP_Inheritance.pdf', url: '/files/oop1.pdf' },
             { name: 'Polymorphism_Examples.pptx', url: '/files/oop2.pptx' }
         ],
-        feedback: {
-            criteria1: true,
-            criteria2: true,
-            criteria3: false,
-            additionalComments: 'Bài giảng rất chi tiết',
-            criteriaCount: 2,
-            lastUpdate: '23-11-2025 14:30'
-        },
+        feedback: null,
         attendanceRequested: true,
         isAttended: true
     },
     {
-        id: 5,
+        id: 12,
         studentId: 'SV002',
         subject: 'Cơ sở dữ liệu',
         tutor: 'Nguyễn Văn F',
@@ -138,7 +128,7 @@ const sessions = [
         isAttended: true
     },
     {
-        id: 6,
+        id: 13,
         studentId: 'SV002',
         subject: 'Hệ điều hành',
         tutor: 'Lê Văn G',
@@ -154,7 +144,7 @@ const sessions = [
         isAttended: false
     },
     {
-        id: 7,
+        id: 14,
         studentId: 'SV002',
         subject: 'Mạng máy tính',
         tutor: 'Phạm Thị H',
@@ -170,7 +160,7 @@ const sessions = [
         isAttended: false
     },
     {
-        id: 8,
+        id: 15,
         studentId: 'SV002',
         subject: 'Trí tuệ nhân tạo',
         tutor: 'Đỗ Văn I',
@@ -186,7 +176,7 @@ const sessions = [
         isAttended: false
     },
     {
-        id: 9,
+        id: 16,
         studentId: 'SV002',
         subject: 'Công nghệ phần mềm',
         tutor: 'Hoàng Văn K',
@@ -202,7 +192,7 @@ const sessions = [
         isAttended: false
     },
     {
-        id: 10,
+        id: 17,
         studentId: 'SV002',
         subject: 'Lập trình hướng đối tượng',
         tutor: 'Trần Thị E',
@@ -314,11 +304,7 @@ const classes = [
     }
 ];
 
-// Nếu muốn khởi tạo enrollments trống
-const enrollments = []; 
-
 module.exports = {
   sessions,
-  classes,
-  enrollments,
+  classes
 };

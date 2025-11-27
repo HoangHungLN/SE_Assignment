@@ -17,12 +17,15 @@ import TutorReviews from './pages/admin/TutorReviews';
 import ParticipationResults from './pages/admin/ParticipationResults';
 
 // --- 4. Student Features ---
+import GroupRegister from './pages/student/groupRegister';
 import MySession from './pages/student/MySession';
 import SessionDetails from './pages/student/SessionDetails';
+import JoinSession from './pages/student/JoinSession';
 
 // --- 5. Tutor Features ---
 import ManageSessions from './pages/tutor/ManageSessions';
 import TutorSessionDetails from './pages/tutor/TutorSessionDetails';
+import RegisterTeaching from './pages/tutor/RegisterTeaching';
 
 // --- 6. Other Features ---
 // ĐÃ XÓA: import RegisterGroup ...
@@ -40,13 +43,15 @@ function App() {
         <Route path="/student-dashboard" element={<StudentDashboard />} />
         <Route path="/my-sessions" element={<MySession />} />
         <Route path="/session-details" element={<SessionDetails />} />
+        <Route path="join-session" element={<JoinSession />} />
         <Route path="/register-session" element={<GenericPage role="student" title="Đăng ký buổi học" />} />
+        <Route path="/register-group" element={<GroupRegister role="student" title="Đăng ký nhóm" />} />
 
         {/* --- TUTOR ROUTES --- */}
         <Route path="/tutor-dashboard" element={<TutorDashboard />} />
         <Route path="/manage-sessions" element={<ManageSessions />} />
         <Route path="/tutor-session-details" element={<TutorSessionDetails />} />
-        <Route path="/register-teaching" element={<GenericPage role="tutor" title="Đăng ký dạy" />} />
+        <Route path="/register-teaching" element={<RegisterTeaching />} />
         <Route path="/accept-group" element={<GenericPage role="tutor" title="Nhận nhóm" />} />
 
         {/* --- ADMIN ROUTES (P.CTSV) --- */}
