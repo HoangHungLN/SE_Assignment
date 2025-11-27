@@ -333,13 +333,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 8px;
-  border-top: 1px solid #e5e7eb;
+  margin-top: 12px;
+  gap: 12px;
 }
 
 .sj-status {
-  font-size: 12px;
-  color: #16a34a;
+  display: inline-block;          /* chỉ rộng bằng nội dung */
+  padding: 2px 10px;              /* cho nó thành pill nhỏ */
+  border-radius: 999px;           /* bo tròn */
+  font-size: 13px;
+  font-weight: 600;
+  color: #15803d;                 /* xanh lá chữ */
+  background-color: #eaf7ea;      /* nền xanh lá nhạt */
+  white-space: nowrap;            /* không xuống dòng */
 }
 
 /* ========== FOOTER & PHÂN TRANG ========== */
