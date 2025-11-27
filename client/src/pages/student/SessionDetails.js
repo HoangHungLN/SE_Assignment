@@ -19,19 +19,48 @@ function SessionDetails() {
         criteria3: false, // Có số vật chất tốt
         additionalComments: ''
     });
+    const [savingFeedback, setSavingFeedback] = useState(false);
 
     const studentId = localStorage.getItem('studentId') || 'SV001';
 
-    // Lấy session từ location state hoặc fetch từ backend
+    // Lấy session từ location state, nhưng luôn fetch lại chi tiết từ backend
+    // để đảm bảo phản hồi (feedback) được cập nhật từ file trên server.
     useEffect(() => {
+        let mounted = true;
+
+        const fetchSessionDetail = async (id) => {
+            try {
+                setLoading(true);
+                const resp = await axios.get(`http://localhost:5000/api/sessions/detail/${id}`);
+                const serverSession = resp.data?.data || resp.data;
+                if (!mounted) return;
+                setSession(serverSession);
+                setError(null);
+            } catch (err) {
+                console.error('Không lấy được chi tiết buổi học từ server:', err);
+                if (!mounted) return;
+                setError('Lỗi khi tải chi tiết buổi học');
+                // Fallback: nếu có state thì vẫn hiển thị state tạm thời
+                if (location.state && location.state.session) {
+                    setSession(location.state.session);
+                } else {
+                    setSessionMock();
+                }
+            } finally {
+                if (mounted) setLoading(false);
+            }
+        };
+
         if (location.state && location.state.session) {
+            // show immediate state, then refresh from server
             setSession(location.state.session);
-            setLoading(false);
+            fetchSessionDetail(location.state.session.id);
         } else {
-            // Nếu không có state, có thể fetch từ backend (khi user refresh page)
-            // Tạm thời set mock data
+            // No state passed — show mock or you could read id from query params
             setSessionMock();
         }
+
+        return () => { mounted = false; };
     }, [location]);
 
     const setSessionMock = () => {
@@ -114,34 +143,54 @@ function SessionDetails() {
             // Calculate criteria count
             const criteriaCount = [feedbackData.criteria1, feedbackData.criteria2, feedbackData.criteria3]
                 .filter(Boolean).length;
-            
+
             const now = new Date();
             const lastUpdate = `${String(now.getDate()).padStart(2, '0')}-${String(now.getMonth() + 1).padStart(2, '0')}-${now.getFullYear()} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
 
-            // Update session with new feedback
+            // Optimistic UI update
+            const newFeedback = {
+                ...feedbackData,
+                criteriaCount,
+                lastUpdate
+            };
+
             setSession(prev => ({
                 ...prev,
-                feedback: {
-                    ...feedbackData,
-                    criteriaCount,
-                    lastUpdate
-                }
+                feedback: newFeedback
             }));
 
-            setShowFeedbackModal(false);
+            setSavingFeedback(true);
 
-            // TODO: Call API to save feedback when backend is ready
-            // const response = await axios.post(
-            //     `http://localhost:5000/api/sessions/feedback/${session.id}`,
-            //     {
-            //         studentId,
-            //         ...feedbackData,
-            //         criteriaCount,
-            //         lastUpdate
-            //     }
-            // );
+            // Persist to backend using the new endpoint
+            const payload = {
+                studentId,
+                ...feedbackData,
+                criteriaCount,
+                lastUpdate
+            };
+            console.log('Saving feedback payload', payload);
+            const response = await axios.put(
+                `http://localhost:5000/api/sessions/${session.id}/feedback`,
+                payload
+            );
+
+            if (response.data && response.data.success) {
+                // Ensure session feedback reflects saved data from server
+                setSession(prev => ({
+                    ...prev,
+                    feedback: response.data.data
+                }));
+            } else {
+                console.warn('Lưu feedback: server trả về không thành công', response.data);
+            }
+
+            setShowFeedbackModal(false);
         } catch (err) {
             console.error('Lỗi khi lưu phản hồi:', err);
+            const serverMsg = err.response?.data?.message || err.message || 'Không thể lưu phản hồi. Vui lòng thử lại.';
+            alert(serverMsg);
+        } finally {
+            setSavingFeedback(false);
         }
     };
 
@@ -326,8 +375,8 @@ function SessionDetails() {
                         </div>
 
                         <div className="modal-footer">
-                            <button className="btn btn-save" onClick={handleSubmitFeedback}>
-                                Lưu thay đổi
+                            <button className="btn btn-save" onClick={handleSubmitFeedback} disabled={savingFeedback}>
+                                {savingFeedback ? 'Đang lưu...' : 'Lưu thay đổi'}
                             </button>
                         </div>
                     </div>
