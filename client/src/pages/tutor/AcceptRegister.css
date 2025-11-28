@@ -21,7 +21,8 @@
 
 body {
   margin: 0;
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif;
   background-color: var(--bg-page);
   color: var(--text-main);
 }
@@ -153,7 +154,6 @@ button {
   margin: 0 auto;
 }
 
-
 .page-title {
   margin: 24px 0 20px;
   font-size: 24px;
@@ -162,28 +162,45 @@ button {
 }
 
 /* BỐ CỤC 2 CỘT */
-/* Dùng chung cho layout cũ (.columns) và layout mới (.accept-group-columns) */
 .columns,
 .accept-group-columns {
   display: grid;
   grid-template-columns: 0.35fr 0.65fr;
+  grid-auto-rows: auto;
   gap: 24px;
   align-items: flex-start;
 }
+
 
 /* PANEL CHUNG */
 .panel {
   border-radius: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 20px 24px 20px;
+  padding: 20px 24px 10px;
 }
 
 .panel--requested {
   background-color: var(--panel-left);
 }
 
+/* Fix chiều cao + ẩn bớt mô tả cho các card trong panel 'Đang chờ hướng dẫn' */
+/* .panel--available .group-card {
+  height: 175px;           
+  display: flex;
+  flex-direction: column;
+} */
+
 .panel--available {
-  background-color: var(--panel-right);
+  background-color: var(--panel-left);
+}
+
+
+/* Panel nhóm đã được tiếp nhận: chiếm full 2 cột */
+.panel--accepted {
+  /* nếu muốn màu nền giống cột phải thì dùng panel-right, 
+     muốn giống cột trái thì dùng panel-left */
+  background-color: var(--panel-left);
+  grid-column: 1 / -1;   /* span từ cột 1 tới hết => full width */
 }
 
 .panel-header {
@@ -225,24 +242,33 @@ button {
 .group-list--single-column {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
-.group-list--grid {
+/* lưới 3 cột cho cột phải, 4 cột cho panel dưới */
+.group-list--grid-3,
+.group-list--grid-4 {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px 24px;
+  gap: 12px 16px;
 }
 
-/* CARD NHÓM */
+.group-list--grid-3 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.group-list--grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* CARD NHÓM – THU GỌN */
 .group-card {
   background-color: #ffffff;
-  border-radius: 20px;
+  border-radius: 16px;
   border: 1px solid var(--border-card);
-  padding: 14px 16px 16px;
+  padding: 10px 12px 12px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   cursor: pointer;
   transition: box-shadow 0.15s ease, transform 0.1s ease;
 }
@@ -251,7 +277,6 @@ button {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   transform: translateY(-1px);
 }
-
 
 .group-card__header {
   display: flex;
@@ -262,21 +287,21 @@ button {
 
 .group-card__subject {
   margin: 0;
-  font-size: 17px;
+  font-size: 15.5px;
   font-weight: 600;
   color: var(--primary);
 }
 
 .group-card__time {
-  font-size: 12.4px;
+  font-size: 11.5px;
   color: var(--text-muted);
 }
 
 .group-card__meta {
   display: flex;
   justify-content: space-between;
-  gap: 8px;
-  font-size: 14px;
+  gap: 6px;
+  font-size: 13px;
 }
 
 .group-card__creator {
@@ -284,25 +309,34 @@ button {
 }
 
 .group-card__student-id {
-  font-size: 12.4px;
+  font-size: 11.5px;
   color: var(--text-muted);
   text-align: right;
 }
 
 .group-card__members {
-  margin: 2px 0 0;
-  font-size: 15px;
+  margin: 0;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .group-card__desc {
-  margin: 4px 0 0;
-  font-size: 15px;
+  flex: 1;
+  margin: 2px 0 0;
+  font-size: 14px;
   color: var(--text-main);
+
+  overflow: hidden;
+
+  /* multi-line truncate */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; /* WebKit */
+  line-clamp: 3;         /* chuẩn */
 }
 
 .group-card__actions {
-  margin-top: 10px;
+  margin-top: 8px;
   display: flex;
   justify-content: flex-end;
   gap: 8px;
@@ -332,19 +366,24 @@ button {
   background-color: #6c757d;
 }
 
-
 .btn:hover {
   filter: brightness(0.95);
 }
 
 /* FOOTER TRONG PANEL */
 .panel-footer {
-  margin-top: 16px;
+  margin-top: 4px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 16px;
+  font-size: 14px;
   color: var(--text-main);
+}
+
+.panel-footer .pagination {
+  margin: 0;
+  padding: 0;
+  margin-top: 4px;    /* hoặc 2px – khoảng cách rất nhỏ với text phía trên */
 }
 
 .panel-footer__info {
@@ -353,30 +392,40 @@ button {
   gap: 2px;
 }
 
+/* PHÂN TRANG */
 .pagination {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
 }
 
 .pagination-box {
   background-color: var(--primary);
   color: #ffffff;
   border-radius: 20px;
-  padding: 5px 18px;
+  padding: 4px 16px;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
 }
 
-.pagination-refresh {
-  border: none;
-  background: none;
-  padding: 0;
-  font-size: 16px;
-  font-weight: 600;
+.pagination-arrow {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  border: 1px solid var(--primary);
+  background-color: #ffffff;
   color: var(--primary);
-  text-decoration: underline;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
   cursor: pointer;
+}
+
+.pagination-arrow:disabled {
+  opacity: 0.4;
+  cursor: default;
 }
 
 /* SUPPORT + COPYRIGHT DƯỚI CÙNG */

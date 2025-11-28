@@ -194,7 +194,7 @@ class GroupDatabase {
                     role: 'Giảng viên'
                 },
                 subject: 'Cấu trúc dữ liệu và giải thuật (CO2015)',
-                description: 'Nhóm ôn sâu cấu trúc dữ liệu cơ bản, luyện tập danh sách liên kết và ngăn xếp.',
+                description: 'Ôn tập kiến thức về Linked List và Stack/Queue, giải các bài tập độ phức tạp O(n) và O(log n).',
                 maxMembers: 4,
                 currentMembers: 3,
                 status: 'waiting',
@@ -225,7 +225,7 @@ class GroupDatabase {
                     role: 'Giảng viên'
                 },
                 subject: 'Thiết kế thuật toán (CO3095)',
-                description: 'Tổng hợp các mẫu thuật toán nâng cao và phân tích độ phức tạp.',
+                description: 'Phân tích thiết kế giải thuật nâng cao: Quy hoạch động (Dynamic Programming) và Đồ thị.',
                 maxMembers: 4,
                 currentMembers: 4,
                 status: 'waiting',
@@ -257,7 +257,7 @@ class GroupDatabase {
                     role: 'Giảng viên'
                 },
                 subject: 'Kỹ thuật lập trình (CO1007)',
-                description: 'Nhóm ôn nâng cao các mẫu thiết kế lập trình và kỹ thuật xử lý con trỏ.',
+                description: 'Rèn luyện kỹ năng quản lý bộ nhớ, con trỏ (Pointers) và thao tác Bitwise.',
                 maxMembers: 3,
                 currentMembers: 2,
                 status: 'waiting',
@@ -286,8 +286,8 @@ class GroupDatabase {
                     degree: 'Tiến sĩ',
                     role: 'Giảng viên'
                 },
-                subject: 'Nhập môn trí tuệ nhân tạo (CO3024)',
-                description: 'Tài liệu hóa kiến thức cơ sở về heuristics và cấu trúc dữ liệu hỗ trợ AI.',
+                subject: 'Nhập môn Trí tuệ nhân tạo (CO3024)',
+                description: 'Nghiên cứu các giải thuật tìm kiếm (A*, Minimax) và logic mệnh đề trong AI.',
                 maxMembers: 4,
                 currentMembers: 3,
                 status: 'waiting',
@@ -318,7 +318,7 @@ class GroupDatabase {
                     role: 'Giảng viên'
                 },
                 subject: 'Lập trình hướng đối tượng (CO2013)',
-                description: 'Thực hành thiết kế mô hình hướng đối tượng và xây dựng project nhỏ.',
+                description: 'Thực hành 4 tính chất OOP, vẽ Class Diagram và Design Patterns cơ bản.',
                 maxMembers: 4,
                 currentMembers: 2,
                 status: 'accepted',
@@ -333,7 +333,7 @@ class GroupDatabase {
                         date: new Date('2025-08-12T07:45:00').toISOString(),
                         duration: 2,
                         location: 'Phòng B3.201',
-                        topic: 'Thiết kế class diagram'
+                        topic: 'Thiết kế Class Diagram cho bài tập lớn'
                     }
                 ]
             },
@@ -355,8 +355,8 @@ class GroupDatabase {
                     degree: 'Tiến sĩ',
                     role: 'Giảng viên'
                 },
-                subject: 'Cơ sở dữ liệu (CO2017)',
-                description: 'Nhóm thực hành thiết kế lược đồ, câu truy vấn SQL và tối ưu.',
+                subject: 'Hệ cơ sở dữ liệu (CO2017)',
+                description: 'Luyện tập truy vấn SQL phức tạp (Join, Subquery) và chuẩn hóa dữ liệu dạng 3NF.',
                 maxMembers: 5,
                 currentMembers: 4,
                 status: 'accepted',
@@ -383,11 +383,11 @@ class GroupDatabase {
                     studentID: '2310611', 
                     name: 'Nguyen Anh AA',
                     email: '2310611@student.hcmut.edu.vn',
-                    faculty: 'Khoa hoc va ky thuat may tinh'
+                    faculty: 'Khoa học và kỹ thuật máy tính'
                 },
                 tutor: null,
-                subject: 'Computer Networks (CO3028)',
-                description: 'Thao luan kien thuc LAP, chia se kinh nghiem cau hinh switch co ban.',
+                subject: 'Mạng máy tính (CO3028)',
+                description: 'Thảo luận kiến thức tầng Transport/Application và cấu hình Packet Tracer cơ bản.',
                 maxMembers: 5,
                 currentMembers: 2,
                 status: 'waiting',
@@ -404,11 +404,11 @@ class GroupDatabase {
                     studentID: '2310588', 
                     name: 'Le Thi AC',
                     email: '2310588@student.hcmut.edu.vn',
-                    faculty: 'Khoa hoc va ky thuat may tinh'
+                    faculty: 'Khoa học và kỹ thuật máy tính'
                 },
                 tutor: null,
-                subject: 'Ngon ngu lap trinh C (CO1008)',
-                description: 'Tu hoc C co ban, tap trung vao con tro va quan ly bo nho.',
+                subject: 'Ngôn ngữ lập trình C (CO1008)',
+                description: 'Nhóm tự học C: Tập trung xử lý chuỗi, mảng 2 chiều và quản lý bộ nhớ.',
                 maxMembers: 4,
                 currentMembers: 1,
                 status: 'waiting',
@@ -424,11 +424,11 @@ class GroupDatabase {
                     studentID: '2310572', 
                     name: 'Pham Quan AD',
                     email: '2310572@student.hcmut.edu.vn',
-                    faculty: 'Khoa hoc va ky thuat may tinh'
+                    faculty: 'Khoa học và kỹ thuật máy tính'
                 },
                 tutor: null,
-                subject: 'Xac suat thong ke (MT2003)',
-                description: 'Phan tich bai tap tong hop va thuc hanh voi Python.',
+                subject: 'Xác suất thống kê (MT2003)',
+                description: 'Giải bài tập thống kê mô tả, kiểm định giả thuyết và thực hành trên R/Python.',
                 maxMembers: 5,
                 currentMembers: 3,
                 status: 'waiting',
@@ -446,11 +446,11 @@ class GroupDatabase {
                     studentID: '2310544', 
                     name: 'Ho Khanh AG',
                     email: '2310544@student.hcmut.edu.vn',
-                    faculty: 'Khoa hoc va ky thuat may tinh'
+                    faculty: 'Khoa học và kỹ thuật máy tính'
                 },
                 tutor: null,
-                subject: 'Phan tich va thiet ke he thong (CO2001)',
-                description: 'Chia se tai lieu SRS va kinh nghiem lap bieu do use case.',
+                subject: 'Phân tích và thiết kế hệ thống (CO2001)',
+                description: 'Hỗ trợ viết tài liệu đặc tả (SRS) và vẽ biểu đồ Use-case/Activity Diagram.',
                 maxMembers: 4,
                 currentMembers: 2,
                 status: 'waiting',
@@ -467,11 +467,11 @@ class GroupDatabase {
                     studentID: '2310521', 
                     name: 'Tran Minh AI',
                     email: '2310521@student.hcmut.edu.vn',
-                    faculty: 'Khoa hoc va ky thuat may tinh'
+                    faculty: 'Khoa học và kỹ thuật máy tính'
                 },
                 tutor: null,
-                subject: 'Co so du lieu (CO2017)',
-                description: 'Cung nhau luyen cau truy van SQL nang cao va toi uu chi muc.',
+                subject: 'Hệ cơ sở dữ liệu (CO2017)',
+                description: 'Ôn thi cuối kỳ: Tối ưu hóa truy vấn (Query Optimization) và đánh chỉ mục (Indexing).',
                 maxMembers: 5,
                 currentMembers: 3,
                 status: 'waiting',
@@ -489,11 +489,11 @@ class GroupDatabase {
                     studentID: '2310510', 
                     name: 'Pham Quoc AL',
                     email: '2310510@student.hcmut.edu.vn',
-                    faculty: 'Khoa hoc va ky thuat may tinh'
+                    faculty: 'Khoa học và kỹ thuật máy tính'
                 },
                 tutor: null,
-                subject: 'He dieu hanh (CO3027)',
-                description: 'On tap dong bo hoa va bai toan deadlock qua vi du thuc te.',
+                subject: 'Hệ điều hành (CO3027)',
+                description: 'Giải quyết bài toán đồng bộ hóa (Synchronization), Deadlock và quản lý bộ nhớ.',
                 maxMembers: 4,
                 currentMembers: 1,
                 status: 'waiting',
@@ -509,11 +509,11 @@ class GroupDatabase {
                     studentID: '2310499', 
                     name: 'Vo Anh AM',
                     email: '2310499@student.hcmut.edu.vn',
-                    faculty: 'Khoa hoc va ky thuat may tinh'
+                    faculty: 'Khoa học và kỹ thuật máy tính'
                 },
                 tutor: null,
-                subject: 'Lap trinh he thong (CO2031)',
-                description: 'Nghien cuu ky thuat socket va chia se project Node.js.',
+                subject: 'Lập trình hệ thống (CO2031)',
+                description: 'Lập trình Socket TCP/IP, xử lý đa tiến trình (Multi-processing) trên Linux.',
                 maxMembers: 4,
                 currentMembers: 2,
                 status: 'waiting',
@@ -530,11 +530,11 @@ class GroupDatabase {
                     studentID: '2310477', 
                     name: 'Tran Thu AO',
                     email: '2310477@student.hcmut.edu.vn',
-                    faculty: 'Khoa hoc va ky thuat may tinh'
+                    faculty: 'Khoa học và kỹ thuật máy tính'
                 },
                 tutor: null,
-                subject: 'Thiet ke giao dien (CO3004)',
-                description: 'Thuc hanh Figma, xay wireframe va chia se kinh nghiem prototype.',
+                subject: 'Thiết kế giao diện người dùng (CO3004)',
+                description: 'Thực hành Figma: Xây dựng Wireframe, Prototype và quy trình User Testing.',
                 maxMembers: 4,
                 currentMembers: 3,
                 status: 'waiting',
@@ -546,6 +546,7 @@ class GroupDatabase {
                 createdDate: new Date('2025-08-07T20:10:00').toISOString(),
                 sessions: []
             }
+
         ];
     }
 
