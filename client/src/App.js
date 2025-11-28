@@ -26,6 +26,7 @@ import JoinSession from './pages/student/JoinSession';
 import ManageSessions from './pages/tutor/ManageSessions';
 import TutorSessionDetails from './pages/tutor/TutorSessionDetails';
 import RegisterTeaching from './pages/tutor/RegisterTeaching';
+import AcceptRegister from './pages/tutor/AcceptRegister';
 
 // --- 6. Other Features ---
 // ĐÃ XÓA: import RegisterGroup ...
@@ -52,7 +53,7 @@ function App() {
         <Route path="/manage-sessions" element={<ManageSessions />} />
         <Route path="/tutor-session-details" element={<TutorSessionDetails />} />
         <Route path="/register-teaching" element={<RegisterTeaching />} />
-        <Route path="/accept-group" element={<GenericPage role="tutor" title="Nhận nhóm" />} />
+        <Route path="/accept-group" element={<AcceptRegister />} />
 
         {/* --- ADMIN ROUTES (P.CTSV) --- */}
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
