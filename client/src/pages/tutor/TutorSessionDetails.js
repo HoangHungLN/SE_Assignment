@@ -28,6 +28,10 @@ function TutorSessionDetails() {
     const [showMaterialsModal, setShowMaterialsModal] = useState(false);
     const [activeMaterialsTab, setActiveMaterialsTab] = useState('upload');
     const [uploadedFiles, setUploadedFiles] = useState([]);
+    const [searchKeyword, setSearchKeyword] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
+    const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+    const [deleteTarget, setDeleteTarget] = useState(null);
     const [attendanceRequested, setAttendanceRequested] = useState(false);
     const [showTimeModal, setShowTimeModal] = useState(false);
     const [attendanceTime, setAttendanceTime] = useState({
@@ -88,6 +92,7 @@ function TutorSessionDetails() {
     // Lấy class từ location state hoặc fetch từ backend
     useEffect(() => {
         if (location.state && location.state.class) {
+            loadMaterialsForSession(location.state.class.id);
             setClassData(location.state.class);
             initializeAttendanceList(location.state.class);
             setLoading(false);
@@ -95,6 +100,20 @@ function TutorSessionDetails() {
             setClassMock();
         }
     }, [location]);
+
+    const loadMaterialsForSession = async (sessionId) => {
+        try {
+            const response = await axios.get(`http://localhost:5000/api/materials/${sessionId}`);
+            if (response.data.success) {
+                setClassData(prev => ({
+                    ...prev,
+                    materials: response.data.data.materials
+                }));
+            }
+        } catch (err) {
+            console.error('Lỗi load materials:', err);
+        }
+    };
 
     const setClassMock = () => {
         const mockClass = {
@@ -116,6 +135,7 @@ function TutorSessionDetails() {
                 { name: 'Bài tập thực hành.zip', url: '/files/bai-tap.zip' }
             ]
         };
+        loadMaterialsForSession(1);
         setClassData(mockClass);
         initializeAttendanceList(mockClass);
         setLoading(false);
@@ -212,20 +232,131 @@ function TutorSessionDetails() {
 
     const handleConfirmUpload = async () => {
         try {
-            // TODO: Call API to upload files to server
-            console.log('Files to upload:', uploadedFiles);
-            // Update classData with new materials
-            setClassData(prev => ({
-                ...prev,
-                materials: [...(prev.materials || []), ...uploadedFiles.map(f => ({
-                    name: f.name,
-                    url: f.url
-                }))]
-            }));
-            setUploadedFiles([]);
-            setShowMaterialsModal(false);
+            // Prepare new materials list
+            const newMaterialsList = [...(classData.materials || []), ...uploadedFiles.map(f => ({
+                name: f.name,
+                url: f.url
+            }))];
+
+            // Call API to upload materials to server
+            const response = await axios.put(
+                `http://localhost:5000/api/materials/${classData.id}`,
+                { materials: newMaterialsList }
+            );
+
+            if (response.data.success) {
+                console.log('Materials uploaded successfully:', response.data);
+                
+                // Update classData with new materials
+                setClassData(prev => ({
+                    ...prev,
+                    materials: newMaterialsList
+                }));
+                
+                setUploadedFiles([]);
+                setShowMaterialsModal(false);
+                // alert('Cập nhật tài liệu thành công!');
+            } else {
+                throw new Error(response.data.message || 'Upload failed');
+            }
         } catch (err) {
             console.error('Lỗi khi upload tài liệu:', err);
+            alert('Lỗi khi upload tài liệu: ' + (err.response?.data?.message || err.message));
+        }
+    };
+
+    const handleSearchMaterials = async (keyword) => {
+        try {
+            setSearchKeyword(keyword);
+            
+            if (!keyword.trim()) {
+                setSearchResults([]);
+                return;
+            }
+
+            const response = await axios.get('http://localhost:5000/api/materials/search', {
+                params: { keyword: keyword.trim() }
+            });
+
+            if (response.data.success) {
+                console.log('Search results:', response.data.data);
+                setSearchResults(response.data.data);
+            }
+        } catch (err) {
+            console.error('Lỗi khi tìm kiếm tài liệu:', err);
+        }
+    };
+
+    const handleAddMaterialToSession = async (material) => {
+        try {
+            const response = await axios.post(
+                `http://localhost:5000/api/materials/${classData.id}/add`,
+                { material }
+            );
+
+            if (response.data.success) {
+                console.log('Material added successfully:', response.data);
+                
+                // Update classData with new material
+                setClassData(prev => ({
+                    ...prev,
+                    materials: response.data.data.materials
+                }));
+                
+                alert('Thêm tài liệu thành công!');
+                // Remove from search results
+                setSearchResults(prev => prev.filter(m => !(m.name === material.name && m.url === material.url)));
+            } else {
+                throw new Error(response.data.message || 'Add failed');
+            }
+        } catch (err) {
+            console.error('Lỗi khi thêm tài liệu:', err);
+            alert('Lỗi: ' + (err.response?.data?.message || err.message));
+        }
+    };
+
+    const isMaterialInSession = (material) => {
+        return classData?.materials?.some(m => m.name === material.name && m.url === material.url);
+    };
+
+    const handleDeleteMaterial = (material) => {
+        setDeleteTarget(material);
+        setShowDeleteConfirm(true);
+    };
+
+    const handleConfirmDelete = async () => {
+        try {
+            if (!deleteTarget) return;
+
+            const materialIndex = classData.materials.findIndex(
+                m => m.name === deleteTarget.name && m.url === deleteTarget.url
+            );
+
+            if (materialIndex === -1) {
+                console.error('Material not found');
+                return;
+            }
+
+            const response = await axios.delete(
+                `http://localhost:5000/api/materials/${classData.id}/${materialIndex}`
+            );
+
+            if (response.data.success) {
+                console.log('Material deleted successfully:', response.data);
+                
+                // Update classData with remaining materials
+                setClassData(prev => ({
+                    ...prev,
+                    materials: response.data.data.materials
+                }));
+                
+                setShowDeleteConfirm(false);
+                setDeleteTarget(null);
+            } else {
+                throw new Error(response.data.message || 'Delete failed');
+            }
+        } catch (err) {
+            console.error('Lỗi khi xóa tài liệu:', err);
         }
     };
 
@@ -330,6 +461,13 @@ function TutorSessionDetails() {
                                         >
                                             {material.name}
                                         </span>
+                                        <button 
+                                            className="material-delete-btn"
+                                            onClick={() => handleDeleteMaterial(material)}
+                                            title="Xóa tài liệu này"
+                                        >
+                                            Xóa
+                                        </button>
                                     </div>
                                 ))
                             ) : (
@@ -572,10 +710,37 @@ function TutorSessionDetails() {
                                             type="text" 
                                             placeholder="Tìm kiếm tài liệu từ HCMUT_LIBRARY..."
                                             className="search-input"
+                                            value={searchKeyword}
+                                            onChange={(e) => handleSearchMaterials(e.target.value)}
                                         />
                                     </div>
                                     <div className="library-items">
-                                        <p className="library-placeholder">Nhập từ khóa để tìm kiếm tài liệu trong thư viện</p>
+                                        {searchKeyword.trim() === '' ? (
+                                            <p className="library-placeholder">Nhập từ khóa để tìm kiếm tài liệu trong thư viện</p>
+                                        ) : searchResults.length === 0 ? (
+                                            <p className="library-placeholder">Không tìm thấy tài liệu phù hợp</p>
+                                        ) : (
+                                            <div className="search-results-list">
+                                                {searchResults.map((material, idx) => {
+                                                    const alreadyInSession = isMaterialInSession(material);
+                                                    return (
+                                                        <div key={idx} className="search-result-item">
+                                                            <div className="result-info">
+                                                                <span className="result-name">{material.name}</span>
+                                                            </div>
+                                                            {!alreadyInSession && (
+                                                                <button 
+                                                                    className="btn btn-add-material"
+                                                                    onClick={() => handleAddMaterialToSession(material)}
+                                                                >
+                                                                    Thêm tài liệu
+                                                                </button>
+                                                            )}
+                                                        </div>
+                                                    );
+                                                })}
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             )}
@@ -633,6 +798,31 @@ function TutorSessionDetails() {
                                 disabled={!attendanceTime.startTime || !attendanceTime.endTime}
                             >
                                 Xác nhận
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Delete Material Confirmation Modal */}
+            {showDeleteConfirm && (
+                <div className="delete-confirm-modal" onClick={() => setShowDeleteConfirm(false)}>
+                    <div className="delete-confirm-content" onClick={(e) => e.stopPropagation()}>
+                        <h3>Xác nhận xóa tài liệu?</h3>
+                        <p>Bạn có chắc chắn muốn xóa tài liệu "<strong>{deleteTarget?.name}</strong>" khỏi buổi học này?</p>
+                        <p className="delete-note">(Tài liệu vẫn sẽ được giữ trong kho tài liệu chung)</p>
+                        <div className="delete-confirm-buttons">
+                            <button 
+                                className="btn-delete-cancel"
+                                onClick={() => setShowDeleteConfirm(false)}
+                            >
+                                Không
+                            </button>
+                            <button 
+                                className="btn-delete-confirm"
+                                onClick={handleConfirmDelete}
+                            >
+                                Xóa
                             </button>
                         </div>
                     </div>
