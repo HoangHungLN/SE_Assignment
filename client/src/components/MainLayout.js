@@ -3,7 +3,6 @@ import Navbar from './Navbar';
 import '../App.css';
 import bgImage from '../assets/bg_hcmut.jpg'; 
 
-// Thêm prop showBackground (mặc định là false)
 const MainLayout = ({ role, children, showBackground = false }) => {
     const user = JSON.parse(localStorage.getItem('user')) || { name: 'User' };
 
@@ -14,12 +13,10 @@ const MainLayout = ({ role, children, showBackground = false }) => {
             <div 
                 className="content-body" 
                 style={{
-                    // Logic: Nếu showBackground=true thì lấy ảnh, ngược lại lấy màu nền xám nhạt
                     backgroundImage: showBackground ? `url(${bgImage})` : 'none',
                     backgroundColor: showBackground ? 'transparent' : '#f0f2f5' 
                 }}
             >
-                {/* Chỉ hiện Hướng dẫn & Thông báo khi ở trang Dashboard chính (có ảnh nền) */}
                 {showBackground && (
                     <>
                         <div className="guide-box">

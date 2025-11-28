@@ -1,7 +1,6 @@
-// Ban đầu hệ thống Tutor chưa có ai cả
-// Chúng ta để rỗng để test tính năng Sync từ DataCore
-const localUsers = [];
+// server/dataBase/users.js
 
-module.exports = localUsers;
+// Mảng này đóng vai trò là Database lưu trữ người dùng của hệ thống Tutor
+const users = [];
 
-// module.exports = users;
+module.exports = users;

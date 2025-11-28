@@ -20,7 +20,6 @@
     gap: 20px;
 }
 
-/* --- SIDEBAR --- */
 .sidebar {
     width: 280px;
     flex-shrink: 0;
@@ -149,7 +148,6 @@
     font-weight: 500;
 }
 
-/* --- MAIN CONTENT --- */
 .main-content {
     flex: 1;
     background-color: white;
@@ -187,7 +185,6 @@
     cursor: pointer;
 }
 
-/* --- GROUP GRID --- */
 .group-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -272,7 +269,7 @@
     font-weight: 500;
     cursor: pointer;
     text-align: center;
-    min-width: 100px; /* Chiều rộng cố định */
+    min-width: 100px;
     white-space: nowrap;
     transition: all 0.3s ease;
 }
@@ -308,7 +305,6 @@
     color: white;
 }
 
-/* --- PAGINATION --- */
 .pagination {
     display: flex;
     justify-content: space-between;
@@ -625,7 +621,6 @@
     flex: 1;
 }
 
-/* --- RESPONSIVE --- */
 @media (max-width: 768px) {
     .group-grid {
         grid-template-columns: 1fr;
@@ -639,8 +634,6 @@
         width: 100%;
     }
 }
-
-/* Thêm các style mới vào file groupRegister.css */
 
 .large-modal {
     max-width: 600px;
@@ -694,7 +687,7 @@
     font-size: 12px;
     font-weight: 500;
     text-align: center;
-    min-width: 100px; /* Chiều rộng cố định bằng với nút */
+    min-width: 100px;
     white-space: nowrap;
     display: inline-block;
 }
@@ -731,7 +724,6 @@
     color: #2563eb;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .large-modal {
         max-width: 95%;
@@ -748,21 +740,16 @@
     }
 }
 
-/* Thêm vào client/src/pages/groupRegister/groupRegister.css */
-
-/* Sidebar rộng hơn */
 .sidebar {
     width: 320px;
     flex-shrink: 0;
 }
 
-/* Main content thu hẹp lại */
 .main-content {
     flex: 1;
-    min-width: 0; /* Để tránh overflow */
+    min-width: 0; 
 }
 
-/* Cấu trúc mới cho card nhóm */
 .card-row {
     display: flex;
     justify-content: space-between;
@@ -782,7 +769,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 100px; /* Chiều rộng cố định bằng với nút tham gia */
+    min-width: 100px;
 }
 
 .card-description {
@@ -795,7 +782,6 @@
     white-space: nowrap;
 }
 
-/* Footer mới */
 .pagination-footer {
     display: flex;
     justify-content: space-between;

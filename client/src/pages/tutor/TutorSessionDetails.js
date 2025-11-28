@@ -49,30 +49,26 @@ function TutorSessionDetails() {
     // const [reviewDraft, setReviewDraft] = useState([]);
     // const [showReviewModal, setShowReviewModal] = useState(false);
 
+    // ... (Các phần code khác giữ nguyên)
+
     const loadReviewListFromServer = async () => {
         try {
-            const token = localStorage.getItem('token');
-
-            const res = await axios.get(
-                'http://localhost:5000/api/learning/evaluate/progress',
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
-
+            // Gọi API lấy danh sách sinh viên (dữ liệu thô)
+            const res = await axios.get('http://localhost:5000/api/learning/evaluate/progress');
             const data = res.data.data;
 
+            // Map dữ liệu để hiển thị lên bảng
             const reviews = data.map((item, idx) => ({
                 id: idx + 1,
                 name: item.name,
                 mssv: item.mssv,
-                passed: item.percent >= 50,  // tạm quy ước: >= 50% là “Đạt”
+                // SỬA Ở ĐÂY: Luôn để false khi mới load (để Tutor tự tích)
+                passed: false, 
                 comment: '',
             }));
 
-            setReviewList(reviews);
+            // Không setReviewList ở đây để tránh render lại giao diện chính khi chưa cần thiết
+            // setReviewList(reviews); <--- Bỏ dòng này nếu không muốn list chính bị reset
 
             return reviews;
         } catch (err) {
@@ -80,6 +76,8 @@ function TutorSessionDetails() {
             return [];
         }
     };
+
+    // ... (Các phần code khác giữ nguyên)
 
     const [reviewDraft, setReviewDraft] = useState([]);
     const [lastEditTime, setLastEditTime] = useState(null);

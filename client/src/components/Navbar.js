@@ -1,12 +1,14 @@
 // client/src/components/Navbar.js
-import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom'; // Thêm useLocation
+import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../App.css';
 import bkLogo from '../assets/Logo.png';
 
 const Navbar = ({ role, userName }) => {
     const navigate = useNavigate();
-    const location = useLocation(); // Lấy đường dẫn hiện tại
+    const location = useLocation();
+    
+    const [showDropdown, setShowDropdown] = useState(false);
 
     const getMenu = () => {
         switch(role) {
@@ -37,17 +39,21 @@ const Navbar = ({ role, userName }) => {
 
     const menuItems = getMenu();
 
+    const handleLogout = (e) => {
+        e.stopPropagation();
+        localStorage.clear();
+        navigate('/');
+    };
+
     return (
         <div className="dashboard-navbar">
             <div className="nav-left">
-                {/* Logo bỏ onClick để không bấm được */}
                 <img src={bkLogo} alt="Logo" className="nav-logo" />
                 
                 <div className="nav-links">
                     {menuItems.map((item, index) => (
                         <div 
                             key={index} 
-                            // Logic Active: Nếu đường dẫn hiện tại khớp với item.path thì thêm class active
                             className={`nav-item ${location.pathname === item.path ? 'active' : ''}`} 
                             onClick={() => navigate(item.path)}
                         >
@@ -62,11 +68,25 @@ const Navbar = ({ role, userName }) => {
                     {role === 'student' ? 'Student' : role === 'tutor' ? 'Tutor' : 'P. CTSV'}
                 </div>
                 <div className="nav-icon">🔔</div>
-                <div className="user-avatar" onClick={() => {
-                    localStorage.removeItem('user');
-                    navigate('/');
-                }}>
+                
+                <div 
+                    className="user-avatar-container" 
+                    onClick={() => setShowDropdown(!showDropdown)}
+                >
                     <div className="avatar-circle">👤</div>
+                    
+                    {showDropdown && (
+                        <div className="avatar-dropdown">
+                            <div className="dropdown-info">
+                                <span className="dropdown-name">{userName || 'Người dùng'}</span>
+                                <span className="dropdown-role">({role})</span>
+                            </div>
+                            <div className="dropdown-divider"></div>
+                            <button className="dropdown-item logout" onClick={handleLogout}>
+                                🚪 Đăng xuất
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
