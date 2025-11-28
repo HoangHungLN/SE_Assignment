@@ -1,0 +1,566 @@
+\section{Project details specification}
+\subsection{Project context}
+Trường Đại học Bách Khoa – ĐHQG TP.Hồ Chí Minh(HCMUT) có triển khai chương trình Tutor/Mentor hỗ trợ sinh viên trong quá trình học tập và rèn luyện nhằm giúp sinh viên nâng cao năng lực và phát triển kỹ năng. Chương trình với sự tham gia của rất nhiều bên liên quan, bao gồm tutor (giảng viên, nghiên cứu sinh, hoặc sinh viên năm trên có thành tích học tập tốt) và các sinh viên có nhu cầu được hỗ trợ, bên cạnh đó còn có các phòng ban quản lý (CTSV,  Đào tạo) và cả bộ phận điều phối của chương trình.
+
+Do quy mô gồm nhiều bên tham gia, việc quản lý và vận hành là rất khó khăn, trong đó phải kể đến các khó khăn trong việc quản lý thông tin, đăng ký, sắp xếp lịch hẹn, theo dõi, đánh giá và phản hồi…
+
+Chính vì vậy, nhà trường muốn xây dựng một hệ thống phần mềm giúp quản lý và điều phối toàn bộ hoạt động của chương trình, bên cạnh đó còn cần liên kết và đồng bộ với các dịch vụ có sẵn tại trường (dịch vụ xác thực tập trung HCMU\_SSO, hệ thống thư viện, dữ liệu của từng tutor/sinh viên sẽ được đồng bộ với hệ thống HCMUT\_DATACORE). Bên cạnh đó chương trình còn cần có thể được mở rộng thêm các tính năng thông minh khác nhằm hỗ trợ tối đa việc học tập cho sinh viên.
+
+\subsection{Project stakeholders}
+
+% ========= BẢNG: STAKEHOLDERS =========
+\begin{longtable}{|p{0.18\textwidth}|p{0.22\textwidth}|p{0.55\textwidth}|}
+\hline
+\textbf{Stakeholder} & \textbf{Role} & \textbf{Expectation} \\ \hline
+
+\textbf{Sinh viên} &
+Người nhận hỗ trợ từ tutor &
+Đăng ký, hủy, theo dõi lịch học dễ dàng; chọn tutor phù hợp; phản hồi sau buổi học; nhận được thông báo khi có thay đổi. \\ \hline
+
+\textbf{Tutor} &
+Người cung cấp hỗ trợ học tập &
+Thiết lập lịch rảnh; mở/hủy các buổi tư vấn; xem danh sách người học; quản lý các buổi họp; đánh giá sinh viên trực tuyến; nhận phản hồi; theo dõi tiến độ người học; nhận được thông báo khi có thay đổi. \\ \hline
+
+\textbf{Khoa/Bộ môn} &
+Quản lý đào tạo chuyên môn trong ngành/môn học &
+Khai thác dữ liệu đánh giá từ hệ thống để nắm tình hình học tập của sinh viên theo từng môn cụ thể, từ đó có cơ sở điều chỉnh hoạt động giảng dạy hoặc tăng cường hỗ trợ; khoa chỉ quản lý cho các môn học/lĩnh vực của khoa. \\ \hline
+
+\textbf{Phòng Đào tạo} & 
+Bộ phận giám sát chương trình, đánh giá hiệu quả để phân bổ nguồn lực &
+Nhận báo cáo tổng quan của chương trình; đọc được phản hồi của người học; sử dụng dữ liệu báo cáo, phản hồi để tối ưu phân bổ nguồn lực cho toàn hệ thống (tăng/giảm số lượng tutor, ưu tiên môn học). \\ \hline
+
+\textbf{Phòng CTSV} &
+Bộ phận theo dõi và đánh giá hoạt động sinh viên &
+Nhận được tiến độ và kết quả tham gia của người học để cộng điểm rèn luyện hoặc xét học bổng cho sinh viên. \\ \hline
+
+\textbf{Điều phối viên} &
+Người quản lý hệ thống &
+Duy trì hệ thống ổn định, hỗ trợ khi hệ thống gặp vấn đề. \\ \hline
+
+\caption{Stakeholder trong hệ thống}
+\label{tab:stakeholders}\\
+\end{longtable}
+
+
+
+\subsection{Objectives and Scopes}
+
+\subsubsection{Objectives}
+
+Hệ thống \textbf{Tutor Support} được phát triển nhằm đạt được các mục tiêu sau: 
+\paragraph{Mục tiêu tổng quát:} Xây dựng một nền tảng phần mềm toàn diện, hiện đại và thân thiện với người dùng để số hóa và tối ưu hóa toàn bộ quy trình vận hành Chương trình tutor/mentor tại HCMUT, từ khâu đăng ký, ghép cặp đến theo dõi, đánh giá và báo cáo.
+\paragraph{Mục tiêu cụ thể:} \begin{itemize} \item \textbf{Đối với quy trình hoạt động:} \begin{itemize} \item \textbf{Tự động hóa và tối ưu hóa:} Giảm thiểu đáng kể các thao tác thủ công, giảm thời gian chờ đợi và sai sót trong các quy trình như đăng ký, sắp xếp lịch hẹn, ghép cặp Tutor--Sinh viên. \item \textbf{Thiết lập kênh trung gian:} Tạo một kênh giao tiếp giữa sinh viên, tutor và các phòng ban (Phòng Đào tạo, Phòng CTSV, khoa/bộ môn), cho phép các bên trao đổi, báo cáo và theo dõi thông tin một cách an toàn, được bảo mật và lưu trữ trên hệ thống. \item \textbf{Nâng cao chất lượng dịch vụ:} Cung cấp công cụ để thu thập phản hồi, đánh giá liên tục, từ đó giúp tất cả các bên tham gia cải thiện chất lượng hoạt động và hiệu quả công việc dựa trên dữ liệu một cách tổng thể. \end{itemize}
+
+\item \textbf{Đối với người dùng:} \begin{itemize} \item \textbf{Sinh viên:} Được cung cấp trải nghiệm đăng ký dễ dàng, chủ động lựa chọn hoặc được đề xuất tutor phù hợp, quản lý lịch học linh hoạt và dễ dàng đưa ra phản hồi. \item \textbf{Tutor:} Được cung cấp công cụ quản lý lịch trình, danh sách học viên, theo dõi tiến độ và ghi chú buổi học một cách hiệu quả, chuyên nghiệp. \item \textbf{Các phòng ban:} (Phòng Đào tạo, CTSV, khoa/bộ môn) được cung cấp góc nhìn tổng quan (dashboard) và các báo cáo chi tiết, dữ liệu phân tích để ra quyết định dựa trên dữ liệu về hiệu quả chương trình và phân bổ nguồn lực. \end{itemize}
+
+\item \textbf{Đối với hệ thống công nghệ:} \begin{itemize} \item \textbf{Tích hợp và đồng bộ:} Đảm bảo tích hợp liền mạch và an toàn với hạ tầng công nghệ hiện có của HCMUT (HCMUT\_SSO, HCMUT\_DATACORE, HCMUT\_LIBRARY), đảm bảo tính nhất quán dữ liệu và bảo mật. \item \textbf{Khả năng mở rộng và bảo trì:} Thiết kế kiến trúc hệ thống module hóa, linh hoạt, dễ dàng mở rộng để triển khai các tính năng nâng cao (như AI Matching, cộng đồng trực tuyến) trong tương lai. \end{itemize} \end{itemize}
+
+\subsubsection{Scopes}
+
+\paragraph*{In-Scope}
+
+Để đảm bảo dự án khả thi và tập trung, phạm vi được xác định rõ ràng cho giai đoạn đầu tiên (MVP -- Minimum Viable Product) như sau:
+
+\begin{itemize}
+  \item \textbf{Quản lý người dùng và phân quyền:}
+    \begin{itemize}
+      \item Hỗ trợ 4 vai trò chính: Sinh viên, tutor, điều phối viên, các phòng ban (Phòng Đào tạo, CTSV, khoa/bộ môn).
+      \item Tích hợp xác thực tập trung HCMUT\_SSO.
+      \item Đồng bộ hóa dữ liệu cá nhân từ HCMUT\_DATACORE.
+      \item Phân quyền tự động dựa trên vai trò từ hệ thống trung tâm.
+    \end{itemize}
+  \item \textbf{Cập nhật nhu cầu:} Sinh viên có thể cập nhật các môn học cần được hỗ trợ.
+  \item \textbf{Đăng ký và ghép cặp:}
+    \begin{itemize}
+      \item Sinh viên đăng ký tham gia chương trình theo nhóm hoặc cá nhân.
+      \item Sinh viên có thể tự do tìm kiếm và chọn tutor liên quan đến môn học cần được hỗ trợ.
+      \item Tutor có thể đăng ký làm người hỗ trợ, đồng ý hoặc từ chối nhóm được yêu cầu.
+    \end{itemize}
+  \item \textbf{Đăng ký buổi học:}
+    \begin{itemize}
+      \item Sinh viên có thể tham gia, hủy tham gia buổi học.
+      \item Tutor có thể mở, huỷ buổi học, điều chỉnh các thông tin của buổi học.
+      \item Hệ thống tự động gửi thông báo và nhắc lịch qua email.
+    \end{itemize}
+  \item \textbf{Theo dõi và đánh giá:}
+    \begin{itemize}
+      \item Sinh viên gửi phản hồi, đánh giá sau mỗi buổi học.
+      \item Tutor theo dõi tiến độ, ghi chú cho từng sinh viên.
+    \end{itemize}
+  \item \textbf{Báo cáo và thống kê:}
+    \begin{itemize}
+      \item Cung cấp báo cáo tổng quan về số lượng buổi học, mức độ hài lòng cho Phòng Đào tạo.
+      \item Cung cấp báo cáo kết quả tham gia cho Phòng CTSV.
+    \end{itemize}
+  \item \textbf{Tích hợp thư viện số:} Cho phép tutor và sinh viên truy cập, liên kết đến tài liệu học tập từ HCMUT\_LIBRARY trong khuôn khổ buổi học.
+\end{itemize}
+
+\vspace{1em}
+\paragraph*{Out-of-Scope}
+
+\begin{itemize}
+  \item \textbf{Tính năng nâng cao và AI:} Các chức năng như AI Matching tự động, gợi ý thông minh dựa trên học máy, phân tích nâng cao hành vi học tập của sinh viên sẽ chưa được triển khai.
+  \item \textbf{Tích hợp ngoài HCMUT:} Các hệ thống bên ngoài HCMUT (như LMS quốc tế, nền tảng MOOC, Zoom/MS Teams nâng cao ngoài hạ tầng trường) không nằm trong phạm vi tích hợp.
+  \item \textbf{Thanh toán và quản lý tài chính:} Hệ thống không xử lý các chức năng liên quan đến phí dịch vụ, quản lý tài chính hay thanh toán trực tuyến.
+  \item \textbf{Quản lý cộng đồng trực tuyến:} Các tính năng diễn đàn, mạng xã hội học tập, chat nhóm mở rộng, chia sẻ tài nguyên ngang hàng chưa được đưa vào.
+  \item \textbf{Chức năng Mobile App:} Chỉ hỗ trợ phiên bản web.
+\end{itemize}
+
+\section{Functional requirements}
+\subsection{Use-case Diagram cho toàn hệ thống:}
+
+\begin{figure}[H]
+  \centering
+  \adjincludegraphics[
+    width=\linewidth,
+    trim={{0\width} {0\height} {0\width} {0\height}},
+    clip
+  ]{graphics/sub1/uc_overview.png} % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{Use-case Diagram cho toàn hệ thống}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \adjincludegraphics[
+    width=\linewidth,
+    trim={{0\width} {0\height} {0\width} {0\height}},
+    clip
+  ]{graphics/sub1/uc_dang_ky_nhom.png} % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{Use-case Đăng ký nhóm}
+\end{figure}
+
+
+\begin{figure}[H]
+  \centering
+  \adjincludegraphics[
+    width=\linewidth,
+    trim={{0\width} {0\height} {0\width} {0\height}},
+    clip
+  ]{graphics/sub1/uc_login.png} % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{Use-case Đăng nhập}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \adjincludegraphics[
+    width=\linewidth,
+    trim={{0\width} {0\height} {0\width} {0\height}},
+    clip
+  ]{graphics/sub1/uc_to_chuc_buoi_hoc.png} % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{Use-case Tổ chức buổi học}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \adjincludegraphics[
+    width=\linewidth,
+    trim={{0\width} {0\height} {0\width} {0\height}},
+    clip
+  ]{graphics/sub1/uc_dang_ky_buoi_hoc.png} % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{Use-case Đăng ký buổi học}
+\end{figure}
+
+
+\begin{longtable}{|p{0.25\textwidth}|p{0.70\textwidth}|}
+\caption{Mô tả sơ bộ các Use-case} \\
+\hline
+\textbf{Tên Use-case} & \textbf{Mô tả sơ bộ} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Tên Use-case} & \textbf{Mô tả sơ bộ} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+% --- Dữ liệu bảng ---
+Đăng nhập & Người dùng (sinh viên, tutor, cán bộ) đăng nhập vào hệ thống bằng tài khoản BKNetID thông qua hệ thống SSO của trường (HCMUT\_SSO). \\
+\hline
+Xác thực tập trung & Hệ thống kết nối với HCMUT\_SSO để thực hiện phân quyền tự động cho người dùng. \\
+\hline
+Đồng bộ dữ liệu & Hệ thống đồng bộ dữ liệu từ HCMUT\_DATACORE để đảm bảo dữ liệu luôn được cập nhật mới nhất và chính xác. \\
+\hline
+Xem đánh giá của giảng viên & Khoa/bộ môn xem lại các nhận xét, kết quả và đánh giá của giảng viên dành cho sinh viên. \\
+\hline
+Xem phản hồi của sinh viên & Khoa/bộ môn và phòng Đào tạo xem lại những phản hồi của sinh viên về công tác giảng dạy, phương pháp giảng dạy, đánh giá giảng viên... \\
+\hline
+Xem báo cáo tổng quan & Phòng Đào tạo, Điều phối viên quản lý mở trang báo cáo để xem số buổi học, mức độ tham gia, tỉ lệ huỷ/đổi lịch, điểm/feedback, và xu hướng theo thời gian. Hệ thống hiển thị biểu đồ/bảng và cho phép lọc theo học kỳ, khoa, môn, tutor, nhóm sinh viên để phục vụ theo dõi và ra quyết định. \\
+\hline
+Xem kết quả tham gia & Phòng Công tác Sinh viên xem tổng hợp quá trình tham gia chương trình tutor: số buổi học, trạng thái hoàn thành, điểm rèn luyện hoặc tiêu chí xét học bổng. Hệ thống hiển thị kết quả theo từng học kỳ và cho phép tải hoặc in báo cáo khi cần. \\
+\hline
+Đăng ký nhóm & Sinh viên đăng ký nhu cầu hỗ trợ theo cơ chế nhóm, hệ thống tạo và thêm yêu cầu vào các kho danh sách yêu cầu. \\
+\hline
+Xem tutor phù hợp & Hiển thị danh sách các tutor phù hợp trong lĩnh vực. \\
+\hline
+Yêu cầu tutor & Sinh viên gửi yêu cầu xin được hướng dẫn nhu cầu hỗ trợ đã đăng ký. \\
+\hline
+Huỷ đăng ký & Sinh viên huỷ tham gia nhóm đã đăng ký. \\
+\hline
+Tham gia nhóm & Khi sinh viên có nhu cầu hướng dẫn theo nhóm, sinh viên đăng ký tham gia nhóm đã được đăng ký thành công. \\
+\hline
+Huỷ nhận nhóm & Người hướng dẫn huỷ hướng dẫn nhóm đã nhận hướng dẫn. \\
+\hline
+Chia sẻ tài liệu & Tutor có thể tải lên và chia sẻ tài liệu học tập hoặc bài tập cho các buổi học. \\
+\hline
+Truy cập tài liệu & Sinh viên và tutor có thể truy cập vào kho tài liệu đã được chia sẻ để phục vụ cho buổi học. \\
+\hline
+Quản lý buổi học & Tutor quản lý nội dung, thời gian, và các hoạt động trong buổi học. Ngoài ra có thể điểm danh và tổng hợp biên bản buổi học. \\
+\hline
+Phản hồi buổi học & Sinh viên có thể gửi phản hồi sau mỗi buổi học về nội dung, cách giảng dạy và mức độ hiệu quả. \\
+\hline
+Đánh giá tiến độ & Tutor có thể đánh giá tiến độ học tập, sự tiến bộ của các sinh viên trong quá trình học tập. \\
+\hline
+Tham gia buổi học & Sinh viên có thể chọn tham gia vào buổi học đã được mở sẵn. \\
+\hline
+Huỷ tham gia buổi học & Sinh viên có thể chọn huỷ tham gia khỏi buổi học mà bản thân đã đăng ký tham gia trước. \\
+\hline
+Mở buổi học & Tutor có thể mở những buổi học phù hợp với lịch trình cá nhân để sinh viên tham gia. \\
+\hline
+Huỷ buổi học & Tutor có thể huỷ các buổi học bản thân đã mở. \\
+\hline
+Điều chỉnh thông tin buổi học & Tutor có thể linh hoạt chỉnh sửa thông tin của buổi học: thời gian, phòng học, các thông báo đến sinh viên. \\
+\hline
+Nhận thông báo & Hệ thống gửi thông báo cho Tutor và Sinh viên khi có sự kiện liên quan đến buổi học (nhắc lịch, thông báo huỷ buổi học). \\
+\hline
+
+\end{longtable}
+
+%============ Use-case Details/scenario: ==================
+\subsection{Use-case Details/scenario:}
+
+
+\subsubsection{Use-case Đăng nhập:}
+\begin{figure}[H]
+  \centering
+  \adjincludegraphics[
+    width=\linewidth,
+    trim={{0\width} {0\height} {0\width} {0\height}},
+    clip
+  ]{graphics/sub1/uc_login.png} % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{Use-case Đăng nhập}
+\end{figure}
+
+\subsubsection{Use-case Đăng ký nhóm hướng dẫn:}
+\begin{figure}[H]
+  \centering
+  \adjincludegraphics[
+    width=\linewidth,
+    trim={{0\width} {0\height} {0\width} {0\height}},
+    clip
+  ]{graphics/sub1/uc_dang_ky_nhom.png} % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{Use-case Đăng ký nhóm hướng dẫn}
+\end{figure}
+
+
+\pagebreak
+% ========= BẢNG: USE CASE "ĐĂNG KÝ NHÓM" =========
+\renewcommand{\arraystretch}{1.5}
+
+\begin{longtable}{|p{4cm}|p{11cm}|}
+\caption{Use-case scenario: Đăng ký nhóm}
+\label{tab:uc-dk-nhom} \\
+\hline
+\textbf{Use-case name} & Đăng ký nhóm \\ \hline
+\textbf{Use-case ID} & DK-01 \\ \hline
+\textbf{Use-case overview} & 
+Sinh viên đăng ký nhu cầu hỗ trợ theo cơ chế tạo nhóm, hệ thống tạo và thêm yêu cầu vào kho danh sách các yêu cầu. \\ \hline
+\textbf{Actors} & Sinh viên \\ \hline
+\textbf{Preconditions} & 
+Người dùng đã đăng nhập thành công vào hệ thống. \\ \hline
+\textbf{Trigger} & 
+Sinh viên đăng ký một nhóm mới. \\ \hline
+\textbf{Normal flow} &
+\begin{enumerate}[leftmargin=*]
+    \item Sinh viên chọn đăng ký nhóm.
+    \item Sinh viên chọn lĩnh vực/môn học cần hỗ trợ, đặt tiêu đề, điền mô tả nội dung cần hỗ trợ, chọn số lượng thành viên và gửi yêu cầu.
+    \item Hệ thống tạo yêu cầu thành công và đặt trạng thái đăng ký là "đang chờ hướng dẫn".
+    \item Hệ thống thêm yêu cầu vào kho danh sách yêu cầu của lĩnh vực.
+    \item Hệ thống thêm yêu cầu vào kho danh sách yêu cầu của sinh viên đăng ký.
+    \item Hệ thống xác nhận tạo yêu cầu thành công và gửi alert.
+\end{enumerate} \\ \hline
+\textbf{Alternative flow} & Không có. \\ \hline
+\textbf{Exception flow} &
+\begin{itemize}[leftmargin=*]
+    \item \textbf{2a.} Sinh viên huỷ yêu cầu → Use-case dừng lại.
+    \item \textbf{4a.} Hệ thống thêm yêu cầu vào kho danh sách không thành công → hiển thị lỗi và Use-case dừng lại.
+\end{itemize} \\ \hline
+\textbf{Post-conditions} &
+\begin{itemize}[leftmargin=*]
+    \item Sinh viên đăng ký nhóm thành công, và yêu cầu được thêm vào kho danh sách các yêu cầu của sinh viên.
+    \item Hệ thống tạo yêu cầu thành công và yêu cầu được thêm vào kho danh sách các yêu cầu của lĩnh vực.
+\end{itemize} \\ \hline
+\end{longtable}
+
+
+
+% ========= BẢNG: USE CASE "XEM TUTOR PHÙ HỢP" =========
+\renewcommand{\arraystretch}{1.5}
+
+\begin{longtable}{|p{4cm}|p{11cm}|}
+\caption{Use-case scenario: Xem tutor phù hợp}
+\label{tab:uc-gn02} \\
+\hline
+\textbf{Use-case name} & Xem tutor phù hợp \\ \hline
+\textbf{Use-case ID} & GN02 \\ \hline
+\textbf{Use-case overview} & 
+Hệ thống hiển thị danh sách các Tutor để Sinh viên lựa chọn đăng ký. \\ \hline
+\textbf{Actors} & Sinh viên \\ \hline
+\textbf{Trigger} &
+Sau khi Sinh viên hoàn thành “Chọn lĩnh vực” (trong luồng Đăng ký nhóm), hệ thống tự động chuyển sang bước hiển thị danh sách Tutor. \\ \hline
+\textbf{Preconditions} &
+\begin{itemize}[leftmargin=*]
+    \item Sinh viên đã đăng nhập thành công vào hệ thống.
+    \item Sinh viên đã hoàn thành use-case “Chọn lĩnh vực”.
+    \item Hệ thống có sẵn thông tin về các Tutor đang hoạt động và lĩnh vực hướng dẫn của họ.
+\end{itemize} \\ \hline
+\textbf{Main flow} &
+\begin{enumerate}[leftmargin=*]
+    \item Hệ thống tiếp nhận tiêu chí mà Sinh viên đã chọn.
+    \item Truy vấn CSDL để tìm tất cả các Tutor có chuyên môn phù hợp.
+    \item Sắp xếp danh sách theo tên (thứ tự alphabet – mặc định).
+    \item Hiển thị danh sách Tutor phù hợp.
+    \item Sinh viên có thể xem thông tin chi tiết của Tutor.
+    \item Sinh viên chọn một Tutor để đăng ký hoặc yêu cầu Tutor phù hợp.
+\end{enumerate} \\ \hline
+\textbf{Alternative flows} &
+\textbf{Không tìm thấy Tutor phù hợp:}
+\begin{itemize}[leftmargin=*]
+    \item Hệ thống hiển thị thông báo "Xin lỗi, hiện không có Tutor nào trong lĩnh vực đã chọn".
+    \item Gợi ý các Tutor ở lĩnh vực tương tự.
+    \item Đưa ra tùy chọn: quay lại chọn lĩnh vực khác, hoặc gửi yêu cầu Tutor phù hợp.
+\end{itemize} \\ \hline
+\textbf{Exception flows} &
+\textbf{Lỗi kết nối CSDL:}
+\begin{itemize}[leftmargin=*]
+    \item Hệ thống không thể truy cập CSDL Tutor tại bước 2.
+    \item Hiển thị thông báo lỗi kỹ thuật, yêu cầu Sinh viên thử lại sau.
+\end{itemize} \\ \hline
+\textbf{Post-conditions} &
+Sinh viên đã xem được danh sách Tutor phù hợp, có thể xem hồ sơ và lựa chọn hành động tiếp theo (chọn Tutor hoặc gửi yêu cầu). \\ \hline
+\end{longtable}
+
+\pagebreak
+% ========= BẢNG: USE CASE "NHẬN / TỪ CHỐI NHÓM ĐƯỢC YÊU CẦU" =========
+\renewcommand{\arraystretch}{1.5}
+
+\begin{longtable}{|p{4cm}|p{11cm}|}
+\caption{Use-case scenario của use-case Nhận/Từ chối nhóm được yêu cầu}
+\label{tab:uc-gn01} \\
+\hline
+\textbf{Use-case name} & Nhận / Từ chối nhóm được yêu cầu \\ \hline
+\textbf{Use-case ID} & GN01 \\ \hline
+\textbf{Use-case overview} & 
+Cho phép Tutor chấp nhận hoặc từ chối yêu cầu hướng dẫn nhóm sinh viên trong lĩnh vực phụ trách. \\ \hline
+\textbf{Actors} & Tutor \\ \hline
+\textbf{Preconditions} &
+\begin{itemize}[leftmargin=*]
+  \item Tutor có lĩnh vực hướng dẫn.
+  \item Có ít nhất một nhóm sinh viên đã đăng ký trong lĩnh vực đó.
+\end{itemize} \\ \hline
+\textbf{Trigger} & 
+Hệ thống phát sinh yêu cầu mới cho Tutor khi có sinh viên đăng ký nhóm trong lĩnh vực mà Tutor hướng dẫn, đồng thời gửi thông báo đến Tutor. \\ \hline
+\textbf{Main flow} &
+\begin{enumerate}[leftmargin=*]
+  \item Tutor nhận thông báo (email/Dashboard).
+  \item Xem thông tin nhóm (thành viên, mô tả, lịch mong muốn).
+  \item Chọn \textbf{Chấp nhận} hoặc \textbf{Từ chối} và (tuỳ chọn) nhập lý do.
+  \item Hệ thống ghi nhận quyết định.
+  \item Cập nhật trạng thái nhóm:
+    \begin{itemize}
+      \item Nếu chấp nhận: trạng thái \textbf{Đã nhận} và gắn nhóm với Tutor.
+      \item Nếu từ chối: trạng thái \textbf{Bị từ chối}, giải phóng nhóm và (nếu bật) gợi ý Tutor khác.
+    \end{itemize}
+  \item Hệ thống xếp hàng gửi thông báo cho sinh viên.
+\end{enumerate} \\ \hline
+\textbf{Alternative flows} &
+Tutor đã đủ số lượng nhóm (vượt quota) $\rightarrow$ Hệ thống chặn lưu, hiển thị cảnh báo và gợi ý chuyển cho Điều phối viên. \\ \hline
+\textbf{Exception flows} &
+Nếu mất kết nối hoặc timeout:
+\begin{itemize}[leftmargin=*]
+  \item Hiển thị lỗi “Không thể lưu quyết định, hãy thử lại trong vài phút”.
+  \item Trạng thái nhóm không đổi (\textbf{Chờ xử lý}).
+\end{itemize} \\ \hline
+\textbf{Post-conditions} &
+\begin{itemize}[leftmargin=*]
+  \item Nếu chấp nhận: trạng thái \textbf{Đã nhận}, gắn Tutor; thông báo đã được xếp hàng gửi; ghi audit log.
+  \item Nếu từ chối: trạng thái \textbf{Bị từ chối}; thông báo đã được xếp hàng gửi; ghi audit log.
+\end{itemize} \\ \hline
+\end{longtable}
+\pagebreak
+
+\subsubsection{Use-case Tổ chức buổi học:}
+\begin{figure}[H]
+  \centering
+  \adjincludegraphics[
+    width=\linewidth,
+    trim={{0\width} {0\height} {0\width} {0\height}},
+    clip
+  ]{graphics/sub1/uc_to_chuc_buoi_hoc.png} % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{Use-case Tổ chức buổi học}
+\end{figure}
+
+
+% ========= BẢNG: USE CASE "TRUY CẬP TÀI LIỆU" =========
+% \renewcommand{\arraystretch}{1.5}
+
+\begin{longtable}{|p{4cm}|p{11cm}|}
+\caption{Use-case scenario: Truy cập tài liệu}
+\label{tab:uc-tc02} \\
+\hline
+\textbf{Use-case name} & Truy cập tài liệu \\ \hline
+\textbf{Use-case ID} & TC02 \\ \hline
+\textbf{Use-case overview} & 
+Sinh viên hoặc Tutor muốn truy cập kho tài liệu học tập để xem hoặc tải về nhằm phục vụ cho buổi học. \\ \hline
+\textbf{Actors} & Sinh viên, Tutor \\ \hline
+\textbf{Trigger} & 
+Người dùng (Sinh viên, Tutor) muốn mở và sử dụng tài liệu liên quan đến buổi học. \\ \hline
+\textbf{Preconditions} &
+\begin{itemize}[leftmargin=*]
+    \item Người dùng đã đăng nhập hệ thống thành công.
+    \item Người dùng có quyền truy cập vào tài liệu của nhóm/buổi học.
+    \item Tài liệu đã được Tutor hoặc thành viên chia sẻ và lưu trữ trong hệ thống.
+\end{itemize} \\ \hline
+\textbf{Main flow} &
+\begin{enumerate}[leftmargin=*]
+    \item Người dùng đăng nhập vào hệ thống.
+    \item Chọn mục “Truy cập tài liệu” trong menu buổi học.
+    \item Hệ thống hiển thị danh sách tài liệu đã được chia sẻ.
+    \item Người dùng chọn tài liệu cần xem hoặc tải về.
+    \item Hệ thống mở tài liệu (nếu xem trực tuyến) hoặc tải file xuống thiết bị.
+    \item Hệ thống ghi nhận người dùng đã truy cập tài liệu.
+\end{enumerate} \\ \hline
+\textbf{Alternative flows} &
+\begin{itemize}[leftmargin=*]
+    \item \textbf{3a. Danh sách trống:}
+    \begin{itemize}
+        \item Hệ thống hiển thị thông báo “Chưa có tài liệu nào được chia sẻ”.
+        \item Use-case kết thúc.
+    \end{itemize}
+    \item \textbf{4a. Tìm kiếm tài liệu theo từ khóa:}
+    \begin{itemize}
+        \item Người dùng nhập từ khóa tìm kiếm.
+        \item Hệ thống lọc và hiển thị kết quả phù hợp.
+        \item Use-case tiếp tục từ bước 5.
+    \end{itemize}
+\end{itemize} \\ \hline
+\textbf{Exception flows} &
+\begin{itemize}[leftmargin=*]
+    \item \textbf{5a. Lỗi kết nối hoặc file không tồn tại:}
+    \begin{itemize}
+        \item Hệ thống hiển thị “Không thể truy cập tài liệu, vui lòng thử lại sau”.
+        \item Use-case kết thúc.
+    \end{itemize}
+    \item \textbf{5b. Không có quyền truy cập:}
+    \begin{itemize}
+        \item Hệ thống hiển thị “Bạn không có quyền xem tài liệu này”.
+        \item Use-case kết thúc.
+    \end{itemize}
+\end{itemize} \\ \hline
+\textbf{Post-conditions} &
+\begin{itemize}[leftmargin=*]
+    \item Người dùng xem hoặc tải về tài liệu thành công.
+    \item Hệ thống ghi nhận hoạt động truy cập.
+\end{itemize} \\ \hline
+\end{longtable}
+
+
+\subsubsection{Use-case Đăng ký buổi học:}
+\begin{figure}[H]
+  \centering
+  \adjincludegraphics[
+    width=\linewidth,
+    trim={{0\width} {0\height} {0\width} {0\height}},
+    clip
+  ]{graphics/sub1/uc_dang_ky_buoi_hoc.png} % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{Use-case Đăng ký buổi học}
+\end{figure}
+
+
+% ================== BẢNG: NHẬN THÔNG BÁO ==================
+% ========= BẢNG: USE CASE "NHẬN THÔNG BÁO" =========
+
+\begin{longtable}{|p{4cm}|p{11cm}|}
+\caption{Use-case scenario: Nhận thông báo} 
+\label{tab:uc-notification} \\
+\hline
+\textbf{Use-case name} & Nhận thông báo \\ \hline
+\textbf{Use-case ID} & DK06 \\ \hline
+\textbf{Use-case overview} & 
+Hệ thống gửi thông báo cho Tutor và Sinh viên khi có sự kiện liên quan đến buổi học (nhắc lịch, thông báo hủy buổi học). \\ \hline
+\textbf{Actors} & Tutor, Sinh viên \\ \hline
+\textbf{Preconditions} & 
+\begin{itemize}[leftmargin=*]
+    \item Hệ thống đã có thông tin về buổi học.
+    \item Người dùng (Tutor/Sinh viên) đã đăng ký tham gia hoặc tạo buổi học.
+    \item Kênh thông báo của hệ thống đang hoạt động.
+\end{itemize} \\ \hline
+\textbf{Trigger} &
+\begin{itemize}[leftmargin=*]
+    \item Tutor mở buổi học mới.
+    \item Sinh viên đăng ký tham gia buổi học.
+    \item Tutor hủy buổi học.
+\end{itemize} \\ \hline
+\textbf{Main flow} &
+\begin{enumerate}[leftmargin=*]
+    \item Hệ thống kiểm tra sự kiện kích hoạt (mở buổi học, tham gia, hủy buổi học).
+    \item Hệ thống xác định danh sách người nhận thông báo:
+    \begin{itemize}
+        \item Khi Tutor mở buổi học $\rightarrow$ Tutor nhận thông báo nhắc lịch dạy.
+        \item Khi Sinh viên tham gia buổi học $\rightarrow$ Sinh viên nhận thông báo nhắc lịch học.
+        \item Khi Tutor hủy buổi học $\rightarrow$ Tất cả sinh viên trong buổi học nhận thông báo hủy.
+    \end{itemize}
+    \item Hệ thống tạo nội dung thông báo (thời gian, địa điểm, trạng thái).
+    \item Hệ thống gửi thông báo qua kênh thông báo của hệ thống.
+    \item Người dùng nhận thông báo.
+\end{enumerate} \\ \hline
+\textbf{Alternative flows} &
+\begin{itemize}[leftmargin=*]
+    \item Tutor thay đổi thông tin buổi học $\rightarrow$ Hệ thống gửi thông báo cập nhật thông tin cho Sinh viên.
+    \item Sinh viên rút khỏi buổi học trước khi Tutor hủy $\rightarrow$ Hệ thống chỉ gửi thông báo đến những Sinh viên còn lại.
+\end{itemize} \\ \hline
+\textbf{Exception flows} &
+\begin{itemize}[leftmargin=*]
+    \item Kết nối Internet của Tutor/Sinh viên bị gián đoạn $\rightarrow$ Thông báo không được nhận.
+    \item Lỗi đồng bộ lịch từ server $\rightarrow$ Thông báo bị trễ hoặc không gửi được.
+\end{itemize} \\ \hline
+\textbf{Post-conditions} &
+Người dùng (Tutor/Sinh viên) nhận được thông báo phù hợp với sự kiện, đúng đối tượng, đúng thời điểm. \\ \hline
+\end{longtable}
+
+\subsection{Non-interactive Functional Requirement}
+\textbf{Non-interactive Functional Requirement} là các chức năng hệ thống tự động thực hiện, không cần người dùng thao tác trực tiếp tại thời điểm đó. Thường là các quy trình ngầm, kích hoạt bởi sự kiện hoặc thời gian. Theo đặc tả của bài tập lớn lần này, nhóm em liệt kê các \textbf{Non-interactive Functional Requirement} sau:
+\begin{itemize}
+  \item Tự động gửi thông báo nhắc lịch đến cho sinh viên và giảng viên.
+  \item Đồng bộ dữ liệu từ HCMUT\_SSO, HCMUT\_DATACORE.
+  \item Phân quyền tự động dựa vào hệ thống của trường.
+  \item Kết nối với HCMUT\_LIBRARY để truy cập và chia sẻ tài liệu.
+  \item Cung cấp công cụ ghi biên bản cuộc họp.
+  \item Cung cấp dụng cụ phản hồi và đánh giá (cho sinh viên và giảng viên).
+  \item Phân công và gợi ý Tutor (cho sinh viên).
+  \item Cung cấp tiến độ của sinh viên (\% bài làm, điểm, điểm danh — để tutor theo dõi và ghi nhận).
+  \item Cung cấp công cụ phân tích và thống kê dựa trên kết quả người học (hỗ trợ PĐT xét học bổng/điểm rèn luyện).
+  \item Hỗ trợ các định dạng tệp phổ biến: \texttt{.doc}, \texttt{.docx}, \texttt{.pdf}.
+\end{itemize}
+
+\section{Non-Fucntional Requirements}
+\subsection{Product Requirements (Yêu cầu Sản phẩm)}
+\begin{itemize}
+    \item Thông báo thay đổi/hủy lịch (Tutor): Sau khi ghi nhận tutor đổi/hủy lịch buổi học, hệ thống phải đảm bảo gửi thông báo đến email sinh viên trong vòng 5 phút.
+    \item Thông báo đặt/đổi/hủy tham gia (Sinh viên): Sau khi ghi nhận sinh viên đặt/đổi/hủy tham gia buổi học, hệ thống gửi thông báo về email của sinh viên trong vòng 5 phút.
+    \item Email nhắc nhở sự kiện: Email nhắc nhở sự kiện phải được gửi chính xác trong khoảng thời gian $\pm$ 5 phút so với mốc 60 phút trước giờ sự kiện bắt đầu.
+    \item Thời gian tải trang (Load Time): Thời gian tải (load time) của các trang chính (Dashboard, Đặt lịch, Hồ sơ) không được vượt quá 3 giây khi có đồng thời 500 người dùng đang hoạt động.
+    \item Đồng bộ dữ liệu HCMUT\_DATACORE: Mỗi lần ghi nhận dữ liệu thay đổi trên HCMUT\_DATACORE, hệ thống phải tự động cập nhật thay đổi trong vòng 2 giờ; các thay đổi được hiển thị cho người dùng ở mỗi phiên đăng nhập mới của người dùng.
+    \item Thời gian hoạt động (Uptime): Hệ thống phải hoạt động tất cả các ngày trong tháng, uptime tối thiểu 99.5\% mỗi tháng (thời gian không hoạt động tương đương 3.5 giờ cho 1 tháng 30 ngày); thời gian bảo trì không được xếp vào khoảng thời gian cao điểm 7h00-19h00.
+    \item Tự động gửi lại Email/Thông báo lỗi: Các email và thông báo nếu gửi lỗi sẽ được hệ thống tự động gửi lại tối đa 5 lần trong 5 phút.
+    \item Chức năng trên Mobile: Hệ thống trên mobile đảm bảo thực hiện 90\% chức năng so với hệ thống dùng trên máy tính; các chức năng quan trọng: gửi yêu cầu hỗ trợ, chọn tutor, quản lý lịch, nộp/ghi báo cáo phải thực hiện được trên mobile.
+\end{itemize}
+
+\subsection{Organisational Requirements (Yêu cầu Tổ chức)}
+\begin{itemize}
+    \item Cơ chế đăng nhập: Tất cả người dùng hệ thống (sinh viên, giảng viên, cán bộ) sử dụng BKNetID và mật khẩu để đăng nhập vào hệ thống.
+    \item Chính sách khóa tài khoản: Hệ thống phải tự động khóa tạm thời tài khoản trong 10 phút nếu có 5 lần đăng nhập thất bại liên tiếp trong vòng 5 phút.
+    \item Đào tạo và sử dụng: Tất cả người dùng được kỳ vọng thông thạo cách sử dụng hệ thống sau tối đa 2 giờ training.
+\end{itemize}

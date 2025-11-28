@@ -1,0 +1,563 @@
+% ================== SUBMISSION 2 ==================
+% ==================================================
+
+
+\section{System Modelling}
+
+% =======================UI design Mockup===========================
+\subsection{UI design Mockup}
+
+\subsubsection{Trang chủ và đăng nhập}
+
+\begin{figure}[H]
+  \centering
+  % Ảnh trên cùng
+  \begin{subfigure}[b]{0.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/Trangchu/login.png}
+    \caption{Trang đăng nhập}
+  \end{subfigure}
+
+  \vspace{0.5em} % khoảng cách giữa hàng trên và hàng dưới
+
+  % Hai ảnh hàng dưới
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/Trangchu/studentHompage.png}
+    \caption{Trang chủ sinh viên}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/Trangchu/tutorHomepage.png}
+    \caption{Trang chủ giảng viên}
+  \end{subfigure}
+
+  \caption{Giao diện trang chủ và đăng nhập: một ảnh ở trên, hai ảnh ở dưới.}
+\end{figure}
+
+
+% ===== Nhóm 1: 2 ảnh =====
+\subsubsection{Sinh viên đăng ký nhóm và tutor nhận/từ chối yêu cầu}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/Group/1tutor_teachingRegister.png}
+    \caption{Tutor tiếp nhận nhóm hướng dẫn}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/Group/1SV_DKGroup_Main.png}
+    \caption{Sinh viên đăng ký nhóm học}
+  \end{subfigure}
+  \caption{Các giao diện của chức năng đăng ký nhóm học.}
+\end{figure}
+
+% ===== Nhóm 2: 3 ảnh =====
+\subsubsection{Thông tin nhóm và thao tác đăng ký nhóm mới}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/Group/2SV_DKGroup_GrDetail.png}
+    \caption{Thông tin chi tiết nhóm}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/Group/2SV_DKGroup_NewReg.png}
+    \caption{Form đăng ký mới}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/Group/3SV_DKGroup_TutorList.png}
+    \caption{Danh sách tutor phù hợp}
+  \end{subfigure}
+  \caption{Các bước thao tác trong quá trình đăng ký nhóm học.}
+\end{figure}
+
+% % ===== Nhóm 3: 2 ảnh =====
+\subsubsection{Thông tin giảng viên và môn học}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/Group/3SV_DKGroup_TutorInfor.png}
+    \caption{Thông tin chi tiết giảng viên}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/Group/3SV_DKGroup_SubjectList.png}
+    \caption{Danh sách môn tutor đăng ký dạy}
+  \end{subfigure}
+  \caption{Các giao diện thông tin của giảng viên.}
+\end{figure}
+
+
+\subsubsection{Tutor quản lý buổi học}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.55\textwidth}
+    \centering
+    % Ảnh lớn bên trái (dọc)
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/buoihoc/Tutor_DkiLop_course.png}
+    \caption{Đăng ký mở buổi học}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    % Hai ảnh nhỏ xếp chồng bên phải
+    \centering
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/buoihoc/Tutor_DkiLop_edit.png}
+    \caption{Chỉnh sửa thông tin buổi học}
+
+    \vspace{0.5em}
+
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/buoihoc/Tutor_DkiLop_main.png}
+    \caption{Giao diện chính quản lý buổi học}
+  \end{minipage}
+
+  \caption{Giao diện quản lý buổi học của giảng viên.}
+\end{figure}
+
+\subsubsection{Sinh viên đăng ký buổi học}
+
+\begin{figure}[H]
+  \centering
+
+  % Hai ảnh phụ
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/buoihoc/Studen_DkiLop_main.png}
+    \caption{Trang danh sách lớp học}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/buoihoc/Student_DkiLop_course.png}
+    \caption{Chi tiết thông tin lớp học}
+  \end{subfigure}
+
+  \caption{Giao diện chức năng đăng ký buổi học của sinh viên.}
+\end{figure}
+
+\subsubsection{Sinh viên truy cập buổi học}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/class/Sv_danhsachbuoihoc.png}
+    \caption{Danh sách buổi học}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/class/Sv_chitietbuoihoc.png}
+    \caption{Chi tiết buổi học}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/class/Sv_PhanHoi.png}
+    \caption{Phản hồi của sinh viên}
+  \end{subfigure}
+  \caption{Các giao diện chức năng của sinh viên.}
+\end{figure}
+
+\subsubsection{Turtor truy cập buổi học}
+\begin{figure}[H]
+  \centering
+  % Ảnh hàng 1
+  \begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/class/Tutor_danhsachbuoihoc.png}
+    \caption{Danh sách buổi học}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/class/Tutor_chitietbuoihoc.png}
+    \caption{Chi tiết buổi học}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/class/Tutor_DanhSachsinhvien.png}
+    \caption{Danh sách sinh viên tham gia}
+  \end{subfigure}
+  \caption{Các giao diện quản lý buổi học của Tutor.}
+\end{figure}
+
+\subsubsection{Tutor tổ chức và đánh giá buổi học}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/class/Tutor_ToChuc_ChiTiet_DiemDanh.png}
+    \caption{Chi tiết điểm danh buổi học}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/class/Tutor_ToChuc_ChiTiet_DanhGia.png}
+    \caption{Chi tiết đánh giá buổi học}
+  \end{subfigure}
+  \caption{Các giao diện tổ chức và đánh giá buổi học.}
+\end{figure}
+
+\subsubsection{Phòng Công tác Sinh viên}
+\begin{figure}[H]
+  \centering
+  % Ảnh trên cùng
+  \begin{subfigure}[b]{0.6\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/Offices/ctsv_xemthamgia.png}
+    \caption{Kết quả tham gia của sinh viên}
+  \end{subfigure}
+
+  \vspace{0.6em}
+
+  % Hai ảnh hàng dưới
+  \begin{subfigure}[b]{0.47\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/Offices/ctsv_xemTutor_00.png}
+    \caption{Các nhóm của tutor}
+  \end{subfigure}\hfill
+  \begin{subfigure}[b]{0.47\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/Offices/ctsv_xemTutor_01.png}
+    \caption{Tutor đánh giá sinh viên}
+  \end{subfigure}
+
+  \caption{Phòng CTSV xem báo cáo.}
+\end{figure}
+
+\subsubsection{Khoa/Bộ môn}
+\begin{figure}[H]
+  \centering
+  % Hàng 1
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/Offices/khoa_xemSinhvien_00.png}
+    \caption{Phản hồi của sinh viên (1)}
+  \end{subfigure}\hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/Offices/khoa_xemSinhvien_01.png}
+    \caption{Phản hồi của sinh viên (2)}
+  \end{subfigure}
+
+  \vspace{0.6em}
+
+  % Hàng 2
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/Offices/khoa_xemTutor_00.png}
+    \caption{Các nhóm của tutor}
+  \end{subfigure}\hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/Offices/khoa_xemTutor_01.png}
+    \caption{Tutor đánh giá sinh viên}
+  \end{subfigure}
+
+  \caption{Khoa/Bộ môn xem báo cáo.}
+\end{figure}
+
+\subsubsection{Phòng Đào tạo \& Điều phối viên}
+\begin{figure}[H]
+  \centering
+  % Hàng 1
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/Offices/pdt_xembaocao.png}
+    \caption{Báo cáo tổng quan (PĐT)}
+  \end{subfigure}\hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/Offices/dieuphoi_xembaocao.png}
+    \caption{Báo cáo tổng quan (Điều phối viên)}
+  \end{subfigure}
+
+  \vspace{0.6em}
+
+  % Hàng 2
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/Offices/pdt_xemSinhvien_00.png}
+    \caption{Phản hồi sinh viên (1)}
+  \end{subfigure}\hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{graphics/sub2/UI_mockup/Offices/pdt_xemSinhvien_01.png}
+    \caption{Phản hồi sinh viên (2)}
+  \end{subfigure}
+
+  \caption{Chức năng xem báo cáo và phản hồi của PĐT \& Điều phối viên.}
+\end{figure}
+
+
+% =======================Sequence diagrams===========================
+\subsection{Sequence diagrams}
+\subsubsection{Sinh viên đăng ký nhóm:}
+\begin{figure}[H]
+  \centering
+  \adjincludegraphics[
+    width=\linewidth,
+    trim={{0\width} {0\height} {0\width} {0\height}},
+    clip
+  ]{graphics/sub2/Sequence/Seq_GrRegister.png} % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{Sequence diagram: Sinh viên đăng ký nhóm}   % ← thay caption của ảnh
+\end{figure}
+\pagebreak
+\textbf{Mô tả sequence diagram: Sinh viên đăng ký nhóm mới} \\
+Diagram gồm 4 lifelines bao gồm Actor là Sinh viên, Boundary là SystemInterface (SI)  
+đóng gói lại hệ thống và cung cấp phương thức cho người dùng tương tác, với bộ phận Control 
+điều khiển logic cho quá trình đăng ký nhóm là GroupController (GC), cuối cùng là hệ thống 
+dữ liệu Entity là GroupDatabase (GD) chịu trách nhiệm lưu trữ dữ liệu của các nhóm được tạo.  \\
+Khi Sinh viên nhấn nút đăng ký nhóm trên giao diện, SI sẽ nhận tín hiệu và hiển thị bảng để
+sinh viên điền thông tin. Trường hợp đầu tiên, sinh viên nhấn gửi thông tin, SI sẽ nhận thông 
+tin đó và yêu cầu GC tạo một đối tượng là nhóm với các thuộc tính được người dùng điền vào và 
+đặt trạng thái cho nhóm vừa tạo là “đang chờ hướng dẫn” sau đó yêu cầu lưu nhóm vừa tạo vào GB. 
+GB nhận yêu cầu và thực hiện lưu nhóm vừa tạo vào cơ sở dữ liệu, nếu xảy ra vấn đề dẫn đến không lưu được, 
+GB sẽ phản hồi lại thông tin cho GC, GC báo cho SI, và SI hiển thị cho người dùng biết là tạo nhóm 
+không thành công. Trường hợp thứ hai là khi Sinh viên đang điền thông tin mà bấm hủy thì SI sẽ nhận 
+yêu cầu hủy và chấm dứt hành động. 
+
+
+\pagebreak
+\subsubsection{Tutor chấp nhận/từ chối nhóm:}
+\begin{figure}[H]
+  \centering
+  \adjincludegraphics[
+    width=\linewidth,
+    trim={{0\width} {0\height} {0\width} {0\height}},
+    clip
+  ]{graphics/sub2/Sequence/Seq_TutorChapNhanTuChoiNhom.png} % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{Sequence diagram: Tutor chấp nhận/từ chối nhóm}   % ← thay caption của ảnh
+\end{figure}
+
+\pagebreak
+\textbf{Mô tả sequence diagram: Tutor chấp nhận/từ chối nhóm} \\
+
+Diagram gồm 5 lifelines bao gồm \textit{Actor} là Tutor, \textit{Boundary} là 
+\textit{SystemInterface} (SI) đóng gói lại hệ thống và cung cấp phương thức cho 
+người dùng tương tác, với bộ phận \textit{Control} điều khiển logic cho quá trình 
+là \textit{GroupController} (GC), và hệ thống dữ liệu \textit{Entity} là 
+\textit{GroupDatabase} (GD) chịu trách nhiệm lưu trữ dữ liệu nhóm.
+
+Khi Tutor truy cập vào danh sách nhóm yêu cầu, SI sẽ gửi yêu cầu đến GC để lấy 
+danh sách. GC sẽ yêu cầu GD trả về danh sách các nhóm có trạng thái ``chờ xử lý''.
+Kết quả trả về sẽ có hai trường hợp:
+
+\begin{itemize}
+    \item \textbf{Trường hợp 1:} Số lượng nhóm $=0$, SI sẽ hiển thị thông báo 
+    ``Không có nhóm yêu cầu mới''.
+
+    \item \textbf{Trường hợp 2:} Số lượng nhóm $>0$, SI sẽ hiển thị danh sách các 
+    yêu cầu chờ xử lý. Tutor có thể chọn một yêu cầu để xem chi tiết thông tin nhóm. 
+    Khi đó, SI sẽ yêu cầu GC lấy thông tin chi tiết của nhóm đó từ GD và hiển thị lên 
+    cho Tutor.
+\end{itemize}
+
+Sau khi xem xét, Tutor có hai lựa chọn:
+
+\begin{itemize}
+    \item \textbf{Chấp nhận:} Tutor chọn ``Chấp nhận''. SI sẽ gửi yêu cầu xử lý 
+    chấp nhận đến GC. GC sẽ cập nhật trạng thái của nhóm trong GD (thành ``Đã chấp nhận''). 
+    Khi các thao tác này hoàn tất, SI sẽ hiển thị thông báo ``Chấp nhận thành công'' cho Tutor.
+
+    \item \textbf{Từ chối:} Tutor chọn ``Từ chối''. SI sẽ gửi yêu cầu xử lý từ chối đến GC. 
+    GC sẽ cập nhật trạng thái nhóm trong GD (thành ``Đã từ chối''). Khi hoàn tất, 
+    SI sẽ hiển thị thông báo ``Từ chối thành công'' cho Tutor.
+\end{itemize}
+
+\pagebreak
+\subsubsection{Tutor mở buổi học:}
+\begin{figure}[H]
+  \centering
+  \adjincludegraphics[
+    width=\linewidth,
+    trim={{0\width} {0\height} {0\width} {0\height}},
+    clip
+  ]{graphics/sub2/Sequence/Seq_tutordangkyday.png} % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{Sequence diagram: Tutor mở buổi học}   % ← thay caption của ảnh
+\end{figure}
+
+\pagebreak
+\textbf{Mô tả sequence diagram: Tutor mở buổi học} \\
+Diagram gồm bốn lifelines: Actor là Tutor; Boundary là SystemInterface (SI) chịu trách nhiệm tiếp nhận thao tác từ tutor và hiển thị giao diện; Control là GroupController (GC) điều khiển toàn bộ logic khi tạo nhóm dạy; cuối cùng là Entity-GroupDatabase (GD) đảm nhiệm việc lưu trữ dữ liệu nhóm vào cơ sở dữ liệu.\\
+Khi Tutor chọn chức năng “Đăng ký dạy”, SI nhận tín hiệu và hiển thị bảng cho tutor nhập thông tin. Nếu tutor nhấn “Đăng ký”, SI tiếp nhận dữ liệu và gửi thông tin sang GC, yêu cầu tạo một nhóm mới. GC tạo đối tượng nhóm dựa trên dữ liệu do tutor cung cấp, đặt trạng thái nhóm là “Có thể đăng ký”, sau đó yêu cầu GD thêm nhóm này vào danh sách nhóm trong cơ sở dữ liệu.\\
+GD tiếp nhận yêu cầu lưu. Nếu xảy ra lỗi làm nhóm không được thêm vào danh sách, GD phản hồi về GC, GC gửi tín hiệu cho SI, và SI thông báo cho tutor rằng đăng ký dạy không thành công. Ngược lại, nếu việc lưu thành công, GC phản hồi ngược về SI và SI hiển thị thông báo đăng ký dạy thành công cho tutor.\\
+Trong trường hợp tutor đang nhập thông tin nhưng chọn “Đặt lại”, SI sẽ nhận yêu cầu hủy thao tác và kết thúc quy trình mà không tạo nhóm.\\
+
+
+\subsubsection{Sinh viên tham gia buổi học:}
+\begin{figure}[H]
+  \centering
+  \adjincludegraphics[
+    width=0.9\linewidth,
+    trim={{0\width} {0\height} {0\width} {0\height}},
+    clip
+  ]{graphics/sub2/Sequence/Seq_SinhvienNhanLop.png} % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{Sequence diagram: Sinh viên tham gia buổi học}   % ← thay caption của ảnh
+\end{figure}
+
+\pagebreak
+\textbf{Mô tả sequence diagram: Sinh viên đăng ký tham gia buổi học} \\
+Sequence diagram gồm 4 lifelines: Actor Sinh viên, người trực tiếp thao tác nhận buổi học trên giao diện. Boundary  SystemInterface (SI) chịu trách nhiệm hiển thị giao diện và cung cấp các chức năng cho sinh viên tương tác. Control  SessionController (SC) đảm nhiệm xử lý logic nghiệp vụ liên quan đến việc lấy danh sách buổi học và đăng ký tham gia. Entity  SessionDatabase (SD) thực hiện truy xuất và lưu trữ dữ liệu thông tin buổi học và thông tin đăng ký của sinh viên. \\
+Sau khi sinh viên đăng nhập vào hệ thống, SI thực hiện hiển thị danh sách các buổi học. Khi sinh viên truy cập trang “Đăng ký học”, SI gửi yêu cầu đến SC để lấy danh sách các buổi học mà sinh viên có thể tham gia. SC tiếp tục yêu cầu SD truy xuất dữ liệu tất cả các buổi học hiện có. Sau khi nhận được dữ liệu phản hồi từ SD, SC xử lý thông tin và trả kết quả về cho SI. Tùy vào trạng thái buổi học thì SC sẽ gửi cho SI các thông báo tương ứng đồng thời SI cũng hiển thị danh sách buổi học và các nút tương ứng. \\
+Khi sinh viên nhấn nút “tham gia” thì SI gửi yêu cầu đăng kí đến SC để SC tiến hành kiểm tra thông tin các buổi học từ SD. Tùy theo tình trạng mà SC xử lý (trùng lịch, đăng kí thành công) thì sẽ hiển thị thông báo tương ứng ở SI và nếu đăng kí thành công thì SD sẽ lưu thông tin vào hệ thống. \\
+
+
+
+\subsubsection{Sinh viên truy cập tài liệu:}
+\begin{figure}[H]
+  \centering
+  \adjincludegraphics[
+    width=0.75\linewidth,
+    trim={{0\width} {0\height} {0\width} {0\height}},
+    clip
+  ]{graphics/sub2/Sequence/Seq_truycaptailieu.png} % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{Sequence diagram: Truy cập tài liệu}   % ← thay caption của ảnh
+\end{figure}
+
+\pagebreak
+\textbf{Mô tả sequence diagram: Sinh viên truy cập tài liệu} \\
+Sequence diagram “Truy cập tài liệu” mô tả chi tiết cách các thành phần trong hệ thống khi người dùng thực hiện truy cập tài liệu. Đầu tiên, User gửi yêu cầu truy cập bằng cách chọn chức năng “Truy cập tài liệu” trên giao diện. SystemInterface (SI) tiếp nhận và chuyển tiếp yêu cầu lấy danh sách tài liệu cho LearningController (LC). LC truy vấn LearningDatabase (DB), nhận về danh sách tài liệu rồi trả lại cho SI. Nếu danh sách không rỗng, SI hiển thị cho người dùng; nếu rỗng, hệ thống chỉ đơn giản thông báo danh sách trống. \\
+Khi người dùng chọn một tài liệu cụ thể cùng chế độ thao tác (xem hoặc tải xuống), SI gửi yêu cầu mở tài liệu đến LC. LC tiếp tục truy vấn DB để lấy thông tin meta của tài liệu, bao gồm tồn tại và quyền truy cập. Nếu tài liệu khả dụng, với chế độ View, LC yêu cầu DB stream nội dung và chuyển luồng dữ liệu ngược lại cho người dùng xem trực tiếp. Với chế độ Download, LC lấy thông tin cho phép tải file và kích hoạt tiến trình tải xuống trên SI. Song song đó, LC ghi nhận log truy cập (user, tài liệu, thời điểm) xuống DB ở dạng bất đồng bộ. Ngược lại, nếu tài liệu không khả dụng, LC báo truy cập thất bại để SI hiển thị thông báo lỗi “Tài liệu không tồn tại” cho người dùng.\\ 
+
+
+
+% =======================Activity diagrams===========================
+
+\subsection{Activity diagrams}
+\subsubsection{Sinh viên đăng ký nhóm:}
+\begin{figure}[H]
+  \centering
+  \adjincludegraphics[
+    width=\linewidth,
+    trim={{0\width} {0\height} {0\width} {0\height}},
+    clip
+  ]{graphics/sub2/activity/Ac_GrRegister.png} % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{Activity diagram: Sinh viên đăng ký nhóm}   % ← thay caption của ảnh
+\end{figure}
+
+
+\textbf{Mô tả Activity diagram: Sinh viên đăng ký nhóm} \\
+Diagram mô tả các hành động mà sinh viên và hệ thống thực hiện trong quá trình Sinh viên đăng ký nhóm mới. Để đăng ký nhóm, sinh viên sẽ chọn nút “Đăng ký nhóm” sau đó sinh viên điền thông tin, nếu đổi ý thông tin có thể nhấn “Hủy” và kết thúc hành động, hoặc nếu sinh viên quyết định sẽ tạo nhóm thì sẽ nhấn “Gửi. Sau khi hệ thống nhận được thông tin, hệ thống sẽ kiểm tra nếu thông tin, nếu thông tin không đầy đủ, hệ thống sẽ yêu cầu sinh viên điền lại. Nếu thông tin đã đầy đủ, hệ thống thực hiện hành động và tạo ra đối tượng là “Nhóm” rồi đặt trạng thái cho nhóm vừa tạo là “Đang chờ hướng dẫn”. Sau khi tạo đối tượng “Nhóm”, hệ thống tiếp tục lưu vào danh sách nhóm trong cơ sở dữ liệu. Lưu dữ liệu xong nếu thành công hoặc không thành công hệ thống đề thông báo cho người dùng tùy trường hợp rồi kết thúc hành động.
+
+\subsubsection{Tutor chấp nhận/từ chối nhóm yêu cầu:}
+\begin{figure}[H]
+  \centering
+  \adjincludegraphics[
+    width=\linewidth,
+    trim={{0\width} {0\height} {0\width} {0\height}},
+    clip
+  ]{graphics/sub2/activity/Ac_TutorChapNhanTuChoiNhom.png} % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{Activity diagram: Tutor chấp nhận/từ chối nhóm yêu cầu}   % ← thay caption của ảnh
+\end{figure}
+
+\textbf{Mô tả Activity diagram: Tutor chấp nhận/từ chối nhóm yêu cầu:} \\
+Diagram mô tả các hành động mà Tutor và hệ thống thực hiện trong quá trình xử lý
+yêu cầu đăng ký nhóm với 2 swimlane: Tutor và hệ thống. Để bắt đầu, Tutor sẽ chọn
+chức năng ``Xem danh sách nhóm yêu cầu''. Hệ thống sau đó sẽ kiểm tra và lấy danh
+sách các nhóm đang chờ phê duyệt.
+
+\begin{itemize}
+    \item Nếu không có nhóm nào (Số lượng = 0), hệ thống sẽ hiển thị thông báo 
+    ``Không có nhóm yêu cầu mới'' và kết thúc luồng xử lý.
+
+    \item Nếu có ít nhất một nhóm (Số lượng > 0), hệ thống sẽ hiển thị danh sách 
+    các yêu cầu này. Tutor có thể chọn một yêu cầu để ``Xem thông tin nhóm chi tiết''. 
+    Sau khi xem xét, Tutor sẽ đưa ra quyết định.
+\end{itemize}
+
+Tutor có hai lựa chọn:
+
+\begin{itemize}
+    \item \textbf{Chấp nhận:} Tutor chọn ``Chấp nhận''. Hệ thống sẽ thực hiện chuỗi 
+    hành động: cập nhật trạng thái nhóm thành ``Đã chấp nhận''. Cuối cùng, hệ thống 
+    hiển thị kết quả ``Xác nhận chấp nhận thành công'' cho Tutor.
+
+    \item \textbf{Từ chối:} Tutor chọn ``Từ chối''. Hệ thống sẽ thực hiện chuỗi 
+    hành động: cập nhật trạng thái nhóm thành ``Đã từ chối''. Cuối cùng, hệ thống 
+    hiển thị thông báo ``Từ chối thành công'' cho Tutor.
+\end{itemize}
+
+Sau khi mọi hành động được hoàn tất, quy trình sẽ kết thúc.
+
+
+
+\subsubsection{Tutor mở buổi học:}
+\begin{figure}[H]
+  \centering
+  \adjincludegraphics[
+    width=\linewidth,
+    trim={{0\width} {0\height} {0\width} {0\height}},
+    clip
+  ]{graphics/sub2/activity/Ac_tutordangkyday.png} % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{Activity diagram: Tutor mở buổi học}   % ← thay caption của ảnh
+\end{figure}
+
+\textbf{Mô tả Activity diagram: Tutor đăng ký buổi dạy mới} \\
+Tutor chọn chức năng “Đăng ký dạy” và nhập thông tin buổi dạy. Nếu muốn chỉnh lại dữ liệu, tutor có thể nhấn “Đặt lại” để quay về bước nhập thông tin. Nếu muốn gửi yêu cầu, tutor nhấn “Đăng ký”. \\
+Hệ thống nhận thông tin và kiểm tra. Nếu thông tin chưa đầy đủ, hệ thống yêu cầu tutor điền lại. Nếu hợp lệ, hệ thống tạo đối tượng “Nhóm”, đặt trạng thái “Có thể đăng ký”, rồi lưu nhóm vào danh sách nhóm có thể đăng ký và danh sách nhóm của tutor. \\
+Cuối cùng, hệ thống thông báo kết quả tùy theo việc lưu dữ liệu thành công hoặc thất bại, rồi kết thúc quy trình. \\
+
+
+\pagebreak
+\subsubsection{Sinh viên tham gia buổi học:}
+\begin{figure}[H]
+  \centering
+  \adjincludegraphics[
+    width=\linewidth,
+    trim={{0\width} {0\height} {0\width} {0\height}},
+    clip
+  ]{graphics/sub2/activity/Ac_SinhvienNhanLop.png} % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{Activity diagram: Sinh viên tham gia buổi học}   % ← thay caption của ảnh
+\end{figure}
+
+\textbf{Mô tả Activity diagram: Sinh viên tham gia buổi học} \\
+
+Activity diagram mô tả chuỗi hoạt động giữa sinh viên và hệ thống trong quá trình sinh viên xem danh sách và đăng ký một buổi học. Ban đầu, sinh viên truy cập vào trang đăng ký học. Hệ thống tiếp nhận yêu cầu và tiến hành truy vấn cơ sở dữ liệu để lấy thông tin các buổi học hiện có, sau đó trả kết quả về cho giao diện để hiển thị theo từng trạng thái như: buổi học đã đăng ký, buổi học chưa đăng ký hoặc buổi học bị trùng lịch.\\
+Khi đã xem danh sách, sinh viên có thể lựa chọn một buổi học để đăng ký. Nếu không chọn buổi học nào, tiến trình kết thúc ngay tại giao diện. Trường hợp sinh viên chọn buổi học để đăng ký, hệ thống sẽ gửi yêu cầu kiểm tra thông tin đăng ký. Nếu bị trùng lịch với buổi đăng kí trước đó thì hệ thống sẽ xử lý và trả về “không thể đăng kí do trùng lịch”, sau đó giao diện hiển thị lỗi và kết thúc hành động. Ngược lại nếu không trùng lịch thì hệ thống gửi yêu cầu đăng ký vào hệ cơ sở dữ liệu, sau khi lưu thành công, hệ thống phải hồi lại và giao diện cập nhập trạng thái buổi học và gửi thông báo “Đăng ký thành công” cho sinh viên. \\
+
+
+\pagebreak
+\subsubsection{Sinh viên truy cập tài liệu:}
+\begin{figure}[H]
+  \centering
+  \adjincludegraphics[
+    width=0.8\linewidth,
+    trim={{0\width} {0\height} {0\width} {0\height}},
+    clip
+  ]{graphics/sub2/activity/Ac_truycaptailieu.png} % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{Activity diagram: Truy cập tài liệu}   % ← thay caption của ảnh
+\end{figure}
+
+\pagebreak
+\textbf{Mô tả Activity diagram: Truy cập tài liệu} \\
+Activity diagram mô tả quy trình người dùng truy cập và xem tài liệu trong hệ thống. Quy trình bắt đầu khi người dùng chọn chức năng “Xem danh sách tài liệu”. Hệ thống tiếp nhận yêu cầu và thực hiện bước lấy danh sách tài liệu từ kho dữ liệu. Tại đây, hệ thống kiểm tra xem danh sách có trống hay không. Nếu không có tài liệu, hệ thống hiển thị thông báo danh sách rỗng và kết thúc quy trình. Nếu có dữ liệu, hệ thống hiển thị danh sách tài liệu cho người dùng.\\
+Người dùng sau đó chọn một tài liệu cụ thể để truy cập, người dùng chọn xem hoặc tải tài liệu. Yêu cầu này được gửi đến hệ thống, hệ thống tiến hành kiểm tra tính khả dụng của tài liệu. Trong trường hợp tài liệu không khả dụng (ví dụ: bị xóa, hết quyền truy cập, lỗi lưu trữ), hệ thống hiển thị thông báo lỗi “Tài liệu không khả dụng” và kết thúc tiến trình. Nếu tài liệu khả dụng, hệ thống cho phép người dùng tiếp tục. Nếu người dùng chọn xem, hệ thống thực hiện stream tài liệu và hiển thị nội dung. Nếu người dùng chọn tải xuống, hệ thống kích hoạt chức năng tải file về thiết bị. Sau khi hoàn tất việc xem hoặc tải, hệ thống tiến hành bước cuối cùng là ghi nhận lại lịch sử truy cập, bao gồm thông tin về loại thao tác và thời điểm truy cập.\\
+
+% =======================State-chart diagrams===========================
+\pagebreak
+\subsection{State-chart diagrams }
+\subsubsection*{State-chart diagram của đối tượng buổi học:}
+\begin{figure}[H]
+  \centering
+  \adjincludegraphics[
+    width=\linewidth,
+    trim={{0\width} {0\height} {0\width} {0\height}},
+    clip
+  ]{graphics/sub2/state_diagram.png}     % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{State diagram của đối tượng buổi học}   % ← thay caption của ảnh
+\end{figure}
+\pagebreak
+\textbf{Mô tả  state diagram của đối tượng buổi học} \\
+State chart mô tả toàn bộ vòng đời của một buổi học, từ khi được tạo ra cho đến khi hoàn thành. Buổi học bắt đầu ở trạng thái Khởi tạo, nơi tutor tạo buổi học, thiết lập các thông tin cơ bản như tiêu đề, thời gian, mô tả, số lượng sinh viên tối đa và có thể cập nhật lại các thông tin sau đó. \\
+Khi tutor mở đăng ký, buổi học chuyển sang trạng thái Mở đăng ký. Ở trạng thái này, buổi học được hiển thị công khai, cho phép sinh viên xem buổi học và đăng ký tham gia. Hệ thống theo dõi số lượng sinh viên tham gia và phản ánh lên giao diện. Sinh viên có thể đăng ký hoặc hủy đăng ký trong thời gian này. \\
+Khi đủ số lượng, hết hạn đăng ký hoặc tutor chủ động đóng, buổi học chuyển sang Đóng đăng ký. Lúc này, hệ thống khóa form đăng ký và cập nhật danh sách sinh viên chính thức.\\
+
+Khi tutor đóng đăng ký, hết thời hạn đăng ký hoặc đủ số lượng sinh viên, buổi học chuyển sang Đóng đăng ký. Tại đây hệ thống khóa đăng ký tham gia nhưng vẫn cho phép sinh viên hủy đăng ký. Gần thời gian bắt đầu, hệ thống chốt danh sách và chuyển buổi học sang trạng thái Chờ diễn ra, nơi hệ thống gửi thông báo cho các sinh viên đã đăng ký.\\
+Đến thời điểm bắt đầu, tutor khởi động buổi học và trạng thái chuyển sang Đang diễn ra, bao gồm điểm danh và theo dõi quá trình học. Khi buổi học kết thúc, hệ thống chuyển sang Hoàn thành, nơi ghi nhận phản hồi, đánh giá và lưu trữ kết quả. Trong toàn bộ quá trình, tutor có thể hủy buổi học ở nhiều thời điểm, dẫn đến trạng thái kết thúc sớm.\\
+
+
+
+
