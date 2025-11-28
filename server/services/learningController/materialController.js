@@ -1,4 +1,4 @@
-// server/services/groupController/materialController.js
+// server/services/learningController/materialController.js
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
@@ -35,7 +35,7 @@ function writeMaterialToFile(arr) {
 
 /**
  * Upload materials to a session
- * PUT /api/materials/:sessionId
+ * PUT /api/learning/materials/:sessionId
  */
 router.put('/:sessionId', (req, res) => {
     try {
@@ -94,7 +94,7 @@ router.put('/:sessionId', (req, res) => {
 
 /**
  * Search materials by keyword
- * GET /api/materials/search?keyword=xyz
+ * GET /api/learning/materials/search?keyword=xyz
  */
 router.get('/search', (req, res) => {
     try {
@@ -150,7 +150,7 @@ router.get('/search', (req, res) => {
 
 /**
  * Get materials of a session
- * GET /api/materials/:sessionId
+ * GET /api/learning/materials/:sessionId
  */
 router.get('/:sessionId', (req, res) => {
     try {
@@ -192,7 +192,7 @@ router.get('/:sessionId', (req, res) => {
 
 /**
  * Add a material from library to a session
- * POST /api/materials/:sessionId/add
+ * POST /api/learning/materials/:sessionId/add
  */
 router.post('/:sessionId/add', (req, res) => {
     try {
@@ -265,7 +265,7 @@ router.post('/:sessionId/add', (req, res) => {
 
 /**
  * Delete a material from session
- * DELETE /api/materials/:sessionId/:materialIndex
+ * DELETE /api/learning/materials/:sessionId/:materialIndex
  */
 router.delete('/:sessionId/:materialIndex', (req, res) => {
     try {
@@ -321,4 +321,3 @@ router.delete('/:sessionId/:materialIndex', (req, res) => {
 });
 
 module.exports = router;
-

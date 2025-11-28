@@ -11,15 +11,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const loginRoutes = require('./services/loginController/loginController'); 
 const evaluateRoutes = require('./services/learningController/evaluateController');
+const materialRoutes = require('./services/learningController/materialController');
 const sessionRoutes = require('./services/sessionController/sessionController');
 const groupRoutes = require('./services/groupController/groupController');
-const materialRoutes = require('./services/groupController/materialController');
 
 app.use('/api/auth', loginRoutes);
 app.use('/api/learning/evaluate', evaluateRoutes);
+app.use('/api/learning/materials', materialRoutes);
 app.use('/api/sessions', sessionRoutes);
 app.use('/api/groups', groupRoutes);
-app.use('/api/materials', materialRoutes);
 
 
 app.get('/', (req, res) => {

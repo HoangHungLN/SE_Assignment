@@ -103,7 +103,7 @@ function TutorSessionDetails() {
 
     const loadMaterialsForSession = async (sessionId) => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/materials/${sessionId}`);
+            const response = await axios.get(`http://localhost:5000/api/learning/materials/${sessionId}`);
             if (response.data.success) {
                 setClassData(prev => ({
                     ...prev,
@@ -240,7 +240,7 @@ function TutorSessionDetails() {
 
             // Call API to upload materials to server
             const response = await axios.put(
-                `http://localhost:5000/api/materials/${classData.id}`,
+                `http://localhost:5000/api/learning/materials/${classData.id}`,
                 { materials: newMaterialsList }
             );
 
@@ -274,7 +274,7 @@ function TutorSessionDetails() {
                 return;
             }
 
-            const response = await axios.get('http://localhost:5000/api/materials/search', {
+            const response = await axios.get('http://localhost:5000/api/learning/materials/search', {
                 params: { keyword: keyword.trim() }
             });
 
@@ -290,7 +290,7 @@ function TutorSessionDetails() {
     const handleAddMaterialToSession = async (material) => {
         try {
             const response = await axios.post(
-                `http://localhost:5000/api/materials/${classData.id}/add`,
+                `http://localhost:5000/api/learning/materials/${classData.id}/add`,
                 { material }
             );
 
@@ -338,7 +338,7 @@ function TutorSessionDetails() {
             }
 
             const response = await axios.delete(
-                `http://localhost:5000/api/materials/${classData.id}/${materialIndex}`
+                `http://localhost:5000/api/learning/materials/${classData.id}/${materialIndex}`
             );
 
             if (response.data.success) {
