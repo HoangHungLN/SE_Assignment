@@ -35,26 +35,26 @@ function writeFeedbackToFile(arr) {
 }
 
 /**
- * Save (upsert) feedback record and persist to file
- * @param {Object} record - { sessionId, studentId, criteria1, criteria2, criteria3, additionalComments, criteriaCount, lastUpdate }
- * @returns {Object} saved record
+ * Save (upsert) feedback feedback and persist to file
+ * @param {Object} feedback - { sessionId, studentId, criteria1, criteria2, criteria3, additionalComments, criteriaCount, lastUpdate }
+ * @returns {Object} saved feedback
  */
-function saveFeedback(record) {
-    if (!record || !record.sessionId || !record.studentId) {
+function saveFeedback(feedback) {
+    if (!feedback || !feedback.sessionId || !feedback.studentId) {
         throw new Error('Thiếu sessionId hoặc studentId');
     }
 
     const arr = loadFeedbackFromFile();
 
-    const idx = arr.findIndex(f => f.sessionId === record.sessionId && f.studentId === record.studentId);
+    const idx = arr.findIndex(f => f.sessionId === feedback.sessionId && f.studentId === feedback.studentId);
     if (idx !== -1) {
-        arr[idx] = record;
+        arr[idx] = feedback;
     } else {
-        arr.push(record);
+        arr.push(feedback);
     }
 
     writeFeedbackToFile(arr);
-    return record;
+    return feedback;
 }
 
 module.exports = {

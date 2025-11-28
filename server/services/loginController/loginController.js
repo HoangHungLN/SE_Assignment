@@ -2,91 +2,103 @@
 const express = require('express');
 const router = express.Router();
 
-// Import Adapter
 const SSO_Adapter = require('../../integration/hcmutSSO');
-const DataCore_Adapter = require('../../integration/hcmutDATACORE');
-// Import Database để thực hiện thao tác lưu (sync)
-const UserDatabase = require('../../dataBase/users'); 
+const DataCore_Adapter = require('../../integration/hcmutDatacore');
+
+const localUsersDB = require('../../dataBase/users'); 
 
 class LoginController {
     
-    // [Theo Class Diagram - Ảnh 4]
-    // - synsUserData(userID: string): void
-    // Hàm này kiểm tra user có trong DB chưa, nếu chưa thì tạo mới từ DataCore
-    synsUserData(userID) {
-        console.log(`[Sync] Đang đồng bộ dữ liệu cho ID: ${userID}`);
+    syncUserData(userID) {
+        console.log(`[Sync Process] Bắt đầu đồng bộ cho User ID: ${userID}`);
         
-        // 1. Kiểm tra trong DB nội bộ (UserDatabase)
-        const localUser = UserDatabase.find(u => u.id === userID);
-
-        if (localUser) {
-            console.log("-> User đã tồn tại, cập nhật thời gian đăng nhập...");
-            // Thực tế: Update last_login vào DB
-            return localUser;
-        } else {
-            console.log("-> User mới, lấy từ DataCore...");
-            // 2. Nếu chưa có, gọi DataCore lấy thông tin
-            const dataCoreProfile = DataCore_Adapter.getUserProfile(userID);
-            
-            if (dataCoreProfile) {
-                // 3. Lưu vào DB nội bộ (Mock: push vào mảng)
-                UserDatabase.push(dataCoreProfile);
-                console.log("-> Đã thêm user mới vào hệ thống.");
-                return dataCoreProfile;
-            }
+        const dataCoreProfile = DataCore_Adapter.getUserProfile(userID);
+        
+        if (!dataCoreProfile) {
+            console.error(`[Sync Error] Không tìm thấy thông tin user ${userID} bên DataCore.`);
+            return null;
         }
-        return null;
+
+        // Bước 2: Kiểm tra xem user này đã có trong database local (users.js) chưa
+        const existingUserIndex = localUsersDB.findIndex(u => u.id === userID);
+
+        if (existingUserIndex !== -1) {
+            //User ĐÃ tồn tại -> CẬP NHẬT (Update)
+            console.log(`-> User cũ. Đang cập nhật thông tin mới nhất...`);
+            
+            localUsersDB[existingUserIndex] = {
+                ...localUsersDB[existingUserIndex], // Giữ lại data cũ
+                ...dataCoreProfile,                 // Ghi đè data mới từ trường
+                lastLogin: new Date().toISOString() // Cập nhật thời gian đăng nhập
+            };
+            
+            return localUsersDB[existingUserIndex];
+
+        } else {
+            //User CHƯA tồn tại -> THÊM MỚI (Insert)
+            console.log(`-> User mới. Đang thêm vào Database...`);
+            
+            const newUser = {
+                ...dataCoreProfile,
+                firstLogin: new Date().toISOString(),
+                lastLogin: new Date().toISOString()
+            };
+
+            localUsersDB.push(newUser);
+            
+            return newUser;
+        }
     }
 
-    // [Theo Class Diagram - Ảnh 2]
-    // + handleSSOCallback(token: string): bool
-    // Hàm này điều phối logic chính
     handleSSOCallback(token) {
-        if (!token) return false;
+        if (!token) return { success: false, message: "Token không tồn tại" };
 
-        // 1. Từ token lấy UserID (Gọi SSO)
         const userID = SSO_Adapter.getUserID(token);
-        if (!userID) return false;
+        if (!userID) {
+            return { success: false, message: "Token không hợp lệ hoặc hết hạn" };
+        }
 
-        // 2. Đồng bộ dữ liệu (Gọi hàm private synsUserData)
-        const userProfile = this.synsUserData(userID);
+        const userProfile = this.syncUserData(userID);
 
-        // 3. Trả về kết quả (Thay vì lưu vào biến #currUser như diagram, ta trả về object để API dùng)
         if (userProfile) {
             return { success: true, user: userProfile };
+        } else {
+            return { success: false, message: "Không thể đồng bộ dữ liệu từ DataCore" };
         }
-        return false;
     }
 }
 
-// Khởi tạo instance của Controller
 const loginControllerInstance = new LoginController();
 
-// --- ĐỊNH NGHĨA API ROUTE (Lớp giao tiếp HTTP) ---
+// --- API ROUTES ---
 
 router.post('/sso-callback', (req, res) => {
     const { username, password } = req.body;
 
-    // Bước 1: Giả lập việc người dùng nhập User/Pass để lấy Token 
-    // (Hàm authenticateUser của HCMUT_SSO)
+    console.log(`\n--- YÊU CẦU ĐĂNG NHẬP: ${username} ---`);
+
     const token = SSO_Adapter.authenticateUser(username, password);
 
     if (!token) {
-        return res.status(401).json({ success: false, message: "Sai thông tin đăng nhập" });
+        console.log(`[Auth Fail] Sai mật khẩu hoặc username.`);
+        return res.status(401).json({ success: false, message: "Tên đăng nhập hoặc mật khẩu không đúng." });
     }
 
-    // Bước 2: Gọi vào Controller chính theo thiết kế
     const result = loginControllerInstance.handleSSOCallback(token);
 
-    if (result && result.success) {
+    if (result.success) {
+        console.log(`[Auth Success] Đăng nhập thành công cho: ${result.user.name}`);
+        console.log(`[DB Status] Tổng số user trong hệ thống hiện tại: ${localUsersDB.length}`);
+        
         return res.json({
             success: true,
             message: "Đăng nhập thành công",
-            user: result.user,
-            token: token
+            token: token,       // Trả token về cho Client lưu vào localStorage
+            user: result.user   // Trả thông tin user về cho Client hiển thị
         });
     } else {
-        return res.status(404).json({ success: false, message: "Lỗi đồng bộ dữ liệu người dùng" });
+        console.log(`[Auth Fail] Lỗi hệ thống: ${result.message}`);
+        return res.status(404).json({ success: false, message: result.message });
     }
 });
 

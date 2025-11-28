@@ -1,6 +1,8 @@
 // server/services/sessionController/sessionController.js
 const express = require('express');
 const router = express.Router();
+const fs = require('fs');
+const path = require('path');
 
 // Feedback mock DB + controller
 const feedbackDB = require('../../dataBase/feedback');
@@ -11,6 +13,22 @@ const {
   sessions: initialSessions,
   classes: initialClasses,
 } = require('../../dataBase/session');
+
+// Helper: load materials from database file
+function loadMaterialsFromFile() {
+  try {
+    const materialFilePath = path.join(__dirname, '..', '..', 'dataBase', 'material.js');
+    const raw = fs.readFileSync(materialFilePath, 'utf8');
+    const idx = raw.indexOf('=');
+    if (idx === -1) return [];
+    const jsonPart = raw.slice(idx + 1).trim();
+    const cleaned = jsonPart.endsWith(';') ? jsonPart.slice(0, -1) : jsonPart;
+    return JSON.parse(cleaned);
+  } catch (err) {
+    console.error('[SessionController] Lỗi load file material:', err.message);
+    return [];
+  }
+}
 
 // ========== Helpers ==========
 
@@ -65,6 +83,15 @@ class SessionController {
     // clone để nếu có create/delete thì chỉ thay đổi in-memory
     this.sessions = [...initialSessions];
     this.classes = [...initialClasses];
+
+    // Load materials from file and merge with sessions
+    const materialsDB = loadMaterialsFromFile();
+    this.sessions.forEach(session => {
+      const materialRecord = materialsDB.find(m => m.sessionId === session.id);
+      if (materialRecord) {
+        session.materials = materialRecord.materials;
+      }
+    });
 
     // enroll theo session (MySession cũ – nếu cần)
     this.enrollments = [];
@@ -1045,4 +1072,6 @@ router.post('/join', (req, res) => {
   }
 });
 
+// Export both router and sessionController
 module.exports = router;
+module.exports.sessionController = sessionController;

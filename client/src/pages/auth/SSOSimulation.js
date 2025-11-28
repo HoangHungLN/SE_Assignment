@@ -23,15 +23,13 @@ const SSOSimulation = () => {
             if (response.data.success) {
                 const userData = response.data.user;
     
-                // Lưu thông tin
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('user', JSON.stringify(userData));
                 localStorage.setItem('studentId', userData.id);
                 localStorage.setItem('userId', userData.id);
                 localStorage.setItem('userRole', userData.role);
                 
-                // --- PHÂN QUYỀN ĐIỀU HƯỚNG ---
-                // Kiểm tra role trả về từ Server (khớp với file dataBase/users.js)
+                // Kiểm tra role trả về từ Server
                 switch(userData.role) {
                     case 'student':
                         navigate('/student-dashboard');
@@ -43,7 +41,6 @@ const SSOSimulation = () => {
                         navigate('/admin-dashboard');
                         break;
                     default:
-                        // Trường hợp role lạ hoặc chưa quy định
                         alert("Vai trò không hợp lệ!");
                         navigate('/'); 
                 }
@@ -113,11 +110,9 @@ const SSOSimulation = () => {
 
                     <div className="sso-right-col">
                         <div className="info-title">Languages</div>
-                        {/* --- ĐÃ SỬA ĐOẠN NÀY --- */}
                         <div>
                             <button className="mock-link" style={{color: 'blue'}}>Vietnamese</button> | <button className="mock-link" style={{color: 'blue'}}>English</button>
                         </div>
-                        {/* ----------------------- */}
 
                         <div className="info-title">Please note</div>
                         <p>
@@ -137,7 +132,6 @@ const SSOSimulation = () => {
 
                         <div className="info-title">Technical support</div>
                         <div>
-                            {/* Link mailto là hợp lệ nên giữ nguyên thẻ a được, nhưng đổi style cho đẹp */}
                             E-mail: <a href="mailto:support@hcmut.edu.vn" style={{color: 'blue', textDecoration: 'underline'}}>support@hcmut.edu.vn</a>
                             <span style={{marginLeft: '15px'}}>Tel: (84-8) 3864xxxx - xxxx</span>
                         </div>
@@ -146,9 +140,7 @@ const SSOSimulation = () => {
 
                 <footer className="sso-footer">
                     <div>Copyright © 2011 - 2012 Ho Chi Minh University of Technology. All rights reserved.</div>
-                    {/* --- ĐÃ SỬA ĐOẠN NÀY --- */}
                     <div>Powered by <button className="mock-link" style={{color: '#800080'}}>Jasig CAS 3.5.1</button></div>
-                    {/* ----------------------- */}
                 </footer>
             </div>
         </div>

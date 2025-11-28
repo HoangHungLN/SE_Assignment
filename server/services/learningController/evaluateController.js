@@ -1,57 +1,89 @@
-// server/services/LearningController/evaluateController.js
-
+// server/services/learningController/evaluateController.js
 const express = require('express');
 const router = express.Router();
-const { verifyToken, requireRole } = require('../../middleware/authMiddleware');
 
-// Import database giả lập từ folder "database"
-const { EVALUATIONS_DB } = require('../../dataBase/evaluate');
+const participationResults = require('../../dataBase/participationResult');
+let { EVALUATIONS_DB } = require('../../dataBase/evaluate'); 
 
 class EvaluateController {
-    // [Method in Class Diagram]: + searchEvaluation(key: map): List<Evaluation>
-    // Dùng để phục vụ tính năng "Xem đánh giá của Tutor"
-    searchEvaluation(filters) {
-        console.log("[EvaluateController] Searching evaluations with filter:", filters);
-        // Logic lọc dữ liệu (Ở đây trả về hết cho MVP)
+    
+    searchEvaluation() {
         return EVALUATIONS_DB;
     }
 
-    // [Logic derived from EvaluateDatabase]: + getStudentProgress(studentID)
-    // Dùng để phục vụ tính năng "Xem kết quả tham gia"
+    getEvaluationBySession(sessionId) {
+        const record = EVALUATIONS_DB.find(e => e.id == sessionId);
+        if (record) {
+            return record.details;
+        }
+        return participationResults.map((s, index) => ({
+            stt: index + 1,
+            studentId: s.mssv,
+            name: s.name,
+            mssv: s.mssv,
+            passed: false,
+            comment: ""
+        }));
+    }
+
+    saveEvaluation(sessionId, details) {
+        const index = EVALUATIONS_DB.findIndex(e => e.id == sessionId);
+        
+        if (index !== -1) {
+            EVALUATIONS_DB[index].details = details;
+            const passedCount = details.filter(d => d.passed).length;
+            EVALUATIONS_DB[index].attendance = Math.round((passedCount / details.length) * 100); 
+        } else {
+            const passedCount = details.filter(d => d.passed).length;
+            const newRecord = {
+                id: parseInt(sessionId),
+                tutorName: "Giảng viên (Current)",
+                subject: "Môn học (Current)",
+                date: new Date().toLocaleDateString('vi-VN'),
+                time: "Current",
+                attendance: Math.round((passedCount / details.length) * 100),
+                status: "Đạt",
+                details: details
+            };
+            EVALUATIONS_DB.push(newRecord);
+        }
+        return true;
+    }
+
     getAllStudentProgress() {
-        console.log("[EvaluateController] Getting all student progress");
-        return STUDENT_PROGRESS_DB;
+        return participationResults;
     }
 }
 
-// ... phần router.get('/search' ...) và router.get('/progress' ...) giữ nguyên ...
-
-const STUDENT_PROGRESS_DB = [
-    { stt: 1, name: "Nguyễn Anh A", mssv: "7654321", registered: 10, attended: 1, percent: 10 },
-    { stt: 2, name: "Trần Thị B", mssv: "7654322", registered: 10, attended: 10, percent: 100 },
-    { stt: 3, name: "Lương Văn D", mssv: "7654325", registered: 6, attended: 6, percent: 100 },
-    { stt: 4, name: "Thạch Ngọc E", mssv: "7654327", registered: 3, attended: 2, percent: 67 },
-    { stt: 5, name: "Thái sơn", mssv: "7659994", registered: 15, attended: 15, percent: 100 },
-];
-
-
-// Khởi tạo Instance
 const evaluateController = new EvaluateController();
 
 // --- API ROUTES ---
 
-// 1. API: Tìm kiếm đánh giá (Mapping với searchEvaluation)
-router.get('/search', verifyToken, requireRole('admin'), (req, res) => {
-    const filters = req.query; // Lấy tham số từ URL (?subject=..., ?tutor=...)
+router.get('/search', (req, res) => {
+    const filters = req.query;
     const results = evaluateController.searchEvaluation(filters);
     res.json({ success: true, data: results });
 });
 
-// 2. API: Xem tiến độ/kết quả tham gia
-router.get('/progress', verifyToken, requireRole(['admin', 'tutor']), (req, res) => {
-    const results = evaluateController.getAllStudentProgress();
-    res.json({ success: true, data: results });
-    // console.log("abcdeadaskasjjjjjjjjjjjj");
+router.get('/progress', (req, res) => {
+    try {
+        const results = evaluateController.getAllStudentProgress();
+        res.json({ success: true, data: results });
+    } catch (error) {
+        res.status(500).json({ success: false, message: "Lỗi server" });
+    }
+});
+
+router.get('/session/:sessionId', (req, res) => {
+    const { sessionId } = req.params;
+    const data = evaluateController.getEvaluationBySession(sessionId);
+    res.json({ success: true, data: data });
+});
+
+router.post('/save', (req, res) => {
+    const { sessionId, details } = req.body;
+    evaluateController.saveEvaluation(sessionId, details);
+    res.json({ success: true, message: "Lưu thành công" });
 });
 
 module.exports = router;

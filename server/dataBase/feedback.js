@@ -37,7 +37,7 @@ module.exports = [
         "criteria3": true,
         "additionalComments": "Đạt cả 3",
         "criteriaCount": 3,
-        "lastUpdate": "27-11-2025 19:55"
+        "lastUpdate": "28-11-2025 12:23"
     },
     {
         "sessionId": 2,
@@ -47,7 +47,7 @@ module.exports = [
         "criteria3": false,
         "additionalComments": "2 cái trên check cái dưới không check\n",
         "criteriaCount": 2,
-        "lastUpdate": "27-11-2025 19:55"
+        "lastUpdate": "28-11-2025 12:23"
     },
     {
         "sessionId": 12,

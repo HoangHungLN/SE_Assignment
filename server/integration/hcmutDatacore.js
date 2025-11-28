@@ -10,10 +10,10 @@ const DATACORE_USERS = [
         role: "student",
         faculty: "Khoa học và Kỹ thuật Máy tính",
         avatar: "https://via.placeholder.com/150",
-        gpa: 3.8 // Dữ liệu mà chỉ trường mới có
+        gpa: 3.8
     },
     {
-        id: "SV002",
+        id: "2311746",
         name: "Nguyễn Thái Sơn",
         email: "hohoho@hcmut.edu.vn",
         role: "student",
@@ -29,7 +29,17 @@ const DATACORE_USERS = [
         faculty: "Khoa học và Kỹ thuật Máy tính",
         major: "Khoa học máy tính",
         avatar: "https://via.placeholder.com/150",
-        degree: "PhD" // Dữ liệu riêng của giảng viên
+        degree: "PhD"
+    },
+    {
+        id: "GV002", 
+        name: "Trần Tốt Ngiệp",
+        email: "tot.nghiep@hcmut.edu.vn",
+        role: "tutor",
+        faculty: "Khoa học và Kỹ thuật Máy tính",
+        major: "Kỹ thuật máy tính",
+        avatar: "https://via.placeholder.com/150",
+        degree: "PhD"
     },
     {
         id: "ADMIN01",
@@ -42,11 +52,9 @@ const DATACORE_USERS = [
 ];
 
 class HCMUT_DATACORE {
-    // Hàm này đóng vai trò là API gọi sang hệ thống trường
     getUserProfile(userID) {
         console.log(`[DataCore External] Đang nhận yêu cầu lấy tin cho ID: ${userID}`);
         
-        // Tìm trong dữ liệu riêng của DataCore
         const user = DATACORE_USERS.find(u => u.id === userID);
         
         if (user) {

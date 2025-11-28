@@ -28,10 +28,7 @@ import TutorSessionDetails from './pages/tutor/TutorSessionDetails';
 import RegisterTeaching from './pages/tutor/RegisterTeaching';
 import AcceptRegister from './pages/tutor/AcceptRegister';
 
-// --- 6. Other Features ---
-// ĐÃ XÓA: import RegisterGroup ...
-import GenericPage from './pages/dashboard/GenericPage'; // Trang mẫu cho các tính năng đang phát triển
-
+import GenericPage from './pages/dashboard/GenericPage';
 function App() {
   return (
     <Router>
