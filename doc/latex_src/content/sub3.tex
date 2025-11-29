@@ -156,39 +156,21 @@
 & + role: string
 & Vai trò của người dùng (student, tutor). \\ \cline{2-3}
 & + faculty: string
-& Khoa, bộ môn của người dùng. \\ \cline{2-3}
-& + major: string
-& Chuyên ngành của người dùng. \\ \hline
+& Khoa, bộ môn của người dùng. \\ \hline
 
 % ========== Student ==========
 \multicolumn{3}{|c|}{\textbf{Student}} \\ \hline
 \multirow{6}{*}{Student}
 & - studentID: string
 & Mã số sinh viên. \\ \cline{2-3}
-& - studentName: string
-& Họ tên của sinh viên. \\ \cline{2-3}
-& - academicYear: int
-& Năm học của sinh viên (ví dụ: 1, 2, 3, 4). \\ \cline{2-3}
-& - email: string
-& Địa chỉ email của sinh viên (có thể trùng với email trong User). \\ \cline{2-3}
-& - faculty: string
-& Khoa mà sinh viên theo học. \\ \cline{2-3}
-& - major: string
-& Chuyên ngành cụ thể của sinh viên. \\ \hline
+& - GPA: float
+& điểm GPA của sinh viên. \\ \hline
 
 % ========== Tutor ==========
 \multicolumn{3}{|c|}{\textbf{Tutor}} \\ \hline
 \multirow{7}{*}{Tutor}
 & - tutorID: string
 & Mã định danh của tutor. \\ \cline{2-3}
-& - tutorName: string
-& Họ tên của tutor. \\ \cline{2-3}
-& - age: int
-& Tuổi của tutor. \\ \cline{2-3}
-& - email: string
-& Địa chỉ email của tutor. \\ \cline{2-3}
-& - faculty: string
-& Khoa mà tutor trực thuộc. \\ \cline{2-3}
 & - major: string
 & Chuyên ngành giảng dạy chính của tutor. \\ \cline{2-3}
 & - degree: string
@@ -219,6 +201,8 @@
 & Ngày tạo nhóm \\ \cline{2-3}
 & - sessions: List<Session>
 & Danh sách các buổi học của nhóm \\ \cline{2-3}
+& -expectedTutor: Tutor
+& Tutor được đề nghị nhận nhóm \\ \cline{2-3}
 & + addMember(student: Student): void
 & Nhận đối tượng Student, thêm sinh viên vào nhóm hiện tại. \\ \cline{2-3}
 & + removeMember(student: Student): void
@@ -309,22 +293,28 @@
 \multirow{9}{*}{Evaluation}
 & - evaluationID: string
 & Mã định danh của đánh giá \\ \cline{2-3}
-& - student: Student
-& Sinh viên được đánh giá \\ \cline{2-3}
-& - tutor: Tutor
-& Tutor thực hiện đánh giá \\ \cline{2-3}
-& - session: Session
-& Buổi học được đánh giá \\ \cline{2-3}
-& - progressScore: double
-& Điểm tiến độ \\ \cline{2-3}
-& - comments: String
-& Nhận xét \\ \cline{2-3}
+& - tutorName: string
+& tên tutor thực hiện đánh giá \\ \cline{2-3}
+& - sessionID: strinh
+& Mã định danh của buổi học được đánh giá \\ \cline{2-3}
 & - evaluationDate: Date
 & Ngày đánh giá \\ \cline{2-3}
-& + updateScore(progressScore: double, comments: string): void
-& Nhận progressScore (double) và comments (string), cập nhật điểm và nhận xét. \\ \cline{2-3}
-& + getEvaluation(): void
-& Hiển thị đánh giá của tutor cho sinh viên. \\ \hline
+& - detail: List<EvaluationDetail>
+& Danh sách đánh giá chi tiết của từng sinh viên\\ \cline{2-3}
+& + getDetails(): List<EvaluationDetail>
+& Lấy về danh sách đánh chi tiết của từng sinh viên. \\ \hline
+
+% ========== EvaluationDetail ==========
+\multicolumn{3}{|c|}{\textbf{Evaluation}} \\ \hline
+\multirow{9}{*}{Evaluation}
+& # studentID: string
+& Mã định danh của sinh viên được đánh giá. \\ \cline{2-3}
+& # studentName: string
+& tên sinh viên được đánh giá. \\ \cline{2-3}
+& # passed: boolean
+& Đại diện cho việc sinh viên có hoàn thành buổi học hay không. \\ \cline{2-3}
+& # comment: string
+& Lời đánh giá của tutor dành cho sinh viên đó.\\ \\ \hline
 
 % ========== Feedback ==========
 \multicolumn{3}{|c|}{\textbf{Feedback}} \\ \hline
@@ -433,9 +423,11 @@
 % ========== EvaluateController ==========
 \multicolumn{3}{|c|}{\textbf{EvaluateController}} \\ \hline
 \multirow{2}{*}{\makecell{Evaluate \\Controller}}
-& + evaluateProgress(evaluation: evaluation, tutorID: string, studentID: string, sessionID: string): bool
-& Nhận vào đối tượng evalution, tutorID, studentID, sessionID, tutor đánh giá tiến độ của học viên và trả về bool (True/False). \\ \cline{2-3}
-& + searchEvaluation(key: map): List<Evaluation>
+& + getEvaluationBySession(sessionId: string): List<EvaluationDetail>
+& Kiểm tra xem buổi học với sessionId được truyền vào đã có đánh giá chưa. Nếu có, trả về object Evaluation từ Database. \\ \cline{2-3}
+& + saveEvaluation(sessionID: string, details: List<EvaluationDetail>): bool
+& Cập nhật đáng giá mới của tutor và trả về kết quả thành công / thất bại. \\ \cline{2-3}
+& + searchEvaluation(filters: map): List<Evaluation>
 & Nhận vào các khoá, tìm kiếm đánh giá theo tiêu chí và trả về danh sách đánh giá. \\ \hline
 
 % ========== FeedbackController ==========
@@ -446,15 +438,15 @@
 & + searchFeedback(key: map): List<Feedback>
 & Nhận vào các khoá, tìm kiếm phản hồi theo tiêu chí và trả danh sách phản hồi. \\ \hline
 
+% ========== LoginController ==========
 \multicolumn{3}{|c|}{\textbf{LoginController}} \\ \hline
-\multirow{3}{*}{LoginController}
-& \#  currUser: User
-&  Đối tượng đại diện cho user hiện tại đang dùng hệ thống \\ \cline{2-3}
+\multirow{7}{*}{LoginController}
 & + handleSSOCallback(token: string): bool
-&  Nhận vào token là tín hiệu trả về khi hệ thống SSO xác thực thành công và gọi synsUserData(userID: string) để thêm User vào DB (nếu chưa có) và cập nhật currUser và trả về kết quả bool.\\ \cline{2-3}
+&  Nhận vào token và kiểm tra token trả về từ hệ thống SSO có hợp lệ không và gọi synsUserData(userID: string) để thêm User vào DB (nếu chưa có)  kết quả bool.\\ \cline{2-3}
 & - synsUserData(userID: string): void
 &  Nhận vào UserID và kiểm tra người dùng đã có trong DB chưa, nếu chưa có thì tạo đối tượng mới lưu vào DB dựa trên dữ liệu nhận được từ DATACORE, nếu đã có thì cập nhật lại dữ liệu của đối tượng. \\ \hline
 
+% ========== GroupController ==========
 \multicolumn{3}{|c|}{\textbf{GroupController}} \\ \hline
 \multirow{9}{*}{GroupController}
 & + studentCreateGroup(group: Group): bool
@@ -477,16 +469,16 @@
 &  Nhận vào giá trị khóa key và trả về danh sách các group tương ứng với khóa đó.\\ \hline
 
 \multicolumn{3}{|c|}{\textbf{HCMUT\_SSO}} \\ \hline
-\multirow{2}{*}{HCMUT\_SSO}
+\multirow{7}{*}{HCMUT\_SSO}
 & + getUserID(token: string): userID: string 
 &  Nhận vào giá trị token và trả về userID tương ứng của token đó\\ \cline{2-3}
-& + authenticateUser(userID: string, password: string): token: string
-&  Nhận vào ID và password lấy từ UI và xác thực người dùng, nếu xác thực đúng thì trả về token.\\ \hline
+& + authenticateUser(username: string, password: string): token: string
+&  Nhận vào username và password lấy từ UI và xác thực người dùng từ dữ liệu trong datacore, nếu xác thực đúng thì trả về token.\\ \hline
 
 \multicolumn{3}{|c|}{\textbf{HCMUT\_DATACORE}} \\ \hline
-\multirow{1}{*}{\makecell{HCMUT\\ \_DATACORE} }
-& + getUserProfile(token): User
-&  Nhận vào token, một user được khởi tạo bên trong hàm với các thông tin lấy từ datacore và trả về đối tượng user đó.\\ \hline
+\multirow{7}{*}{\makecell{HCMUT\\ \_DATACORE} }
+& + getUserProfile(userID: string): User
+&  Nhận vào userID, một user được khởi tạo bên trong hàm với các thông tin lấy từ datacore và trả về đối tượng user đó.\\ \hline
 
 \multicolumn{3}{|c|}{\textbf{HCMUT\_LIBRARY}} \\ \hline
 \multirow{1}{*}{\makecell{HCMUT\\
@@ -595,15 +587,15 @@
 \multicolumn{3}{|c|}{\textbf{EvaluateDatabase}} \\ \hline
 \multirow{6}{*}{EvaluateDatabase}
 & + storeEvaluation(evaluation: Evaluation): bool
-& Nhận giá trị là một đối tượng Evaluation, lưu đánh giá và trả về bool (True/False). \\ \cline{2-3}
-& + getStudentProgress(studentID: string): int
-& Nhận giá trị studentID, trả về tiến độ của sinh viên (int). \\ \cline{2-3}
-& + getEvaluationByTutor(TutorID: string): List<Evaluation>
-& Nhận giá trị TutorID, trả về danh sách đánh giá (List<Evaluation>) của Tutor. \\ \cline{2-3}
-& + getEvaluationByStudent(StudentID: string): List<Evaluation>
-& Nhận giá trị StudentID, trả về danh sách đánh giá (List<Evaluation>) của học sinh. \\ \cline{2-3}
+& Lưu một bản ghi đánh giá mới hoặc cập nhật bản ghi cũ và trả về kết quả thành công hay thất bại.\\ \cline{2-3}
+& + getAllEvaluations(): List<Evaluation>
+& Trả về danh sách toàn bộ các đánh giá. \\ \cline{2-3}
+& + getEvaluationBySessionID(evaluationID: string): Evaluation
+& Nhận giá trị ID của bản đánh giá, trả về bài đánh giá của tutor cho buổi học đó. \\ \cline{2-3}
 & + updateEvaluation(evaluationID: string, updates: map): bool
 & Nhận giá trị evaluationID và map updates, cập nhật đánh giá và trả về bool (True/False). \\ \cline{2-3}
+& + getEvaluationByTutor(tutorName: string): List<Evaluation>
+& Nhận giá trị tên của tutor, trả về tất cả các bài đánh giá của tutor. \\ \cline{2-3}
 & + deleteEvaluation(evaluationID: string): bool
 & Nhận giá trị evaluationID, xóa đánh giá và trả về bool (True/False). \\ \hline
 
