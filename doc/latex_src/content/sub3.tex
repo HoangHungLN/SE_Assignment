@@ -260,6 +260,7 @@
 & + sumarizeMinutes(): string
 & Tạo và trả về chuỗi tóm tắt biên bản buổi học. \\ \hline
 
+
 % ========== Material ==========
 \multicolumn{3}{|c|}{\textbf{Material}} \\ \hline
 \multirow{7}{*}{Material}
@@ -307,13 +308,13 @@
 % ========== EvaluationDetail ==========
 \multicolumn{3}{|c|}{\textbf{Evaluation}} \\ \hline
 \multirow{9}{*}{Evaluation}
-& # studentID: string
+& \# studentID: string
 & Mã định danh của sinh viên được đánh giá. \\ \cline{2-3}
-& # studentName: string
+& \# studentName: string
 & tên sinh viên được đánh giá. \\ \cline{2-3}
-& # passed: boolean
+& \# passed: boolean
 & Đại diện cho việc sinh viên có hoàn thành buổi học hay không. \\ \cline{2-3}
-& # comment: string
+& \# comment: string
 & Lời đánh giá của tutor dành cho sinh viên đó.\\ \\ \hline
 
 % ========== Feedback ==========
@@ -378,31 +379,11 @@
 
 % ========== SessionController ==========
 \multicolumn{3}{|c|}{\textbf{SessionController}} \\ \hline
-\multirow{3}{*}{\makecell{Session \\ Controller}}
-& + tutorCreateSession(session: Session): bool
-& Nhận vào đối tượng session, tạo một buổi học mới (yêu cầu từ Tutor) và trả về bool (True/False). \\ \cline{2-3}
-& + tutorUpdateSession(sessionID: string, updates: map): bool
-& Nhận vào sessionID và các thông tin cập nhật, cập nhật thông tin buổi học (yêu cầu từ Tutor) và trả về bool (True/False). \\ \cline{2-3}
-& + tutorCancelSession(sessionID: string): bool
-& Nhận vào sessionID, hủy một buổi học (yêu cầu từ Tutor) và trả về bool (True/False). \\ \cline{2-3}
-& + studentJoinSession(sessionID: string, studentID: string): void
-& Nhận vào sessionID và studentID. Thêm học viên vào buổi học (yêu cầu từ sinh viên) và trả về bool (True/False). \\ \cline{2-3}
-& + studentLeaveSession(sessionID: string, studentID: string): void
-& Nhận vào sessionID và studentID. Xoá học viên khỏi buổi học (yêu cầu từ sinh viên) và trả về bool (True/False). \\ \cline{2-3}
-& + manageAttendance(sessionID): void
-& Nhận vào sessionID, quản lý việc điểm danh cho buổi học. \\ \cline{2-3}
-& + searchSession(key: map): List<Session>
-& Nhận vào các khoá, tìm kiếm buổi học theo tiêu chí (ví dụ: môn học, ngày) và trả về danh sách session. \\ \cline{2-3}
-& + notifySessionCreated(sessionID: string): bool
-& Nhận vào sessionID, gửi thông báo khi một buổi học được tạo thành công và trả về bool (True/False). \\ \cline{2-3}
-& + notifySessionCancelled(sessionID: string): bool
-& Nhận vào sessionID, gửi thông báo khi một buổi học bị hủy và trả về bool (True/False). \\ \cline{2-3}
-& + notifySessionUpdated(sessionID: string): bool
-& Nhận vào sessionID, gửi thông báo khi thông tin buổi học được cập nhật và trả về bool (True/False). \\ \cline{2-3}
-& + remindSession(sessionID: string, time: date, minuteBefore: int): bool
-& Nhận vào sessionID, thời gian buổi học, thời gian trước buổi học. Đặt lịch nhắc nhở buổi học trước một khoảng thời gian nhất định và trả về bool (True/False). \\ \cline{2-3}
-& + saveNotification(sessionID: string, time: date, status: string): bool
-& Nhận vào sessionID, thời gian buổi học, trạng thái buổi học. Lưu thông báo về buổi học . \\ \hline
+\multirow{2}{*}{\makecell{Session \\Controller}}
+& + joinSession(studentID: string, sessionID: int): bool
+& Nhận studentID và sessionID, thêm sinh viên vào buổi học và trả về True/False. \\ \cline{2-3}
+& + createSession(sessionData: SessionCreateData): Session
+& Nhận sessionData, tạo buổi học mới và trả về đối tượng Session. \\ \hline
 
 % ========== LearningController ==========
 \multicolumn{3}{|c|}{\textbf{LearningController}} \\ \hline
@@ -412,13 +393,18 @@
 
 % ========== MaterialController ==========
 \multicolumn{3}{|c|}{\textbf{MaterialController}} \\ \hline
-\multirow{3}{*}{\makecell{Material \\Controller}}
-& + accessLearningMaterial(materialID: string): bool
-& Nhận vào materialID, truy cập tài liệu học tập của buổi học và trả về bool (True/False). \\ \cline{2-3}
-& + shareLearningMaterial(material: Material, sessionID: string): bool
-& Nhận vào đối tượn material, sessionID. Chia sẻ tài liệu học tập vào một buổi học, và trả về bool (True/False) \\ \cline{2-3}
-& + searchMaterial(key: map): List<Material>
-& Nhận vào các khoá, tìm kiếm tài liệu học tập theo tiêu chí và trả về danh sách phản hồi. \\ \hline
+\multirow{5}{*}{\makecell{Material \\Controller}}
+& + searchMaterialBySession(sessionID: string): List<Material>
+& Nhận vào sessionID, tìm tất cả tài liệu của buổi học và trả về danh sách Material. \\ \cline{2-3}
+& + searchMaterialByID(materialID: string): List<Material>
+& Nhận vào materialID, tìm tài liệu tương ứng và trả về danh sách Material \\ \cline{2-3}
+& + searchMaterialByTitle(title: string): List<Material>
+& Nhận vào title, tìm các tài liệu có tên phù hợp và trả về danh sách Material. \\ \cline{2-3}
+& + addMaterial(sessionID: string, material: Material): bool
+& Nhận sessionID và material, thêm tài liệu vào buổi học và trả về True/False. \\ \cline{2-3}
+& + deleteMaterial(sessionID: string, materialID: string): bool
+& Nhận sessionID và materialID, xoá tài liệu của buổi học và trả về True/False. \\ \hline
+
 
 % ========== EvaluateController ==========
 \multicolumn{3}{|c|}{\textbf{EvaluateController}} \\ \hline
@@ -427,16 +413,23 @@
 & Kiểm tra xem buổi học với sessionId được truyền vào đã có đánh giá chưa. Nếu có, trả về object Evaluation từ Database. \\ \cline{2-3}
 & + saveEvaluation(sessionID: string, details: List<EvaluationDetail>): bool
 & Cập nhật đáng giá mới của tutor và trả về kết quả thành công / thất bại. \\ \cline{2-3}
-& + searchEvaluation(filters: map): List<Evaluation>
+& + searchEvaluation(key: map): List<Evaluation>
 & Nhận vào các khoá, tìm kiếm đánh giá theo tiêu chí và trả về danh sách đánh giá. \\ \hline
 
 % ========== FeedbackController ==========
 \multicolumn{3}{|c|}{\textbf{FeedbackController}} \\ \hline
-\multirow{2}{*}{\makecell{Feedback \\Controller}}
-& + submitFeedback(feedback: Feedback, studentID: \newline tutorID: string, sessionID: string): bool
-& Nhận vào đối tượng feedback, studentID, tutorID, sessionID, gửi phản hồi về buổi học và trả về bool (True/False). \\ \cline{2-3}
-& + searchFeedback(key: map): List<Feedback>
-& Nhận vào các khoá, tìm kiếm phản hồi theo tiêu chí và trả danh sách phản hồi. \\ \hline
+\multirow{5}{*}{\makecell{Feedback \\Controller}}
+& + submitFeedback(sessionID: string, studentID: string, feedback: Feedback): bool
+& Nhận sessionID, studentID và feedback; gửi phản hồi và trả về True/False. \\ \cline{2-3}
+& + getMyFeedback(sessionID: string, studentID: string): Feedback
+& Nhận sessionID và studentID; lấy phản hồi của sinh viên trong buổi học. \\ \cline{2-3}
+& + viewFeedbackBySession(sessionID: string): List<Feedback>
+& Nhận sessionID; xem tất cả phản hồi của buổi học. \\ \cline{2-3}
+& + viewFeedbackByTutor(tutorID: string): List<Feedback>
+& Nhận tutorID; xem các phản hồi liên quan đến tutor. \\ \cline{2-3}
+& + viewFeedbackByStudent(studentID: string): List<Feedback>
+& Nhận studentID; xem tất cả phản hồi của sinh viên. \\ \hline
+
 
 % ========== LoginController ==========
 \multicolumn{3}{|c|}{\textbf{LoginController}} \\ \hline
