@@ -5,7 +5,6 @@ let EVALUATIONS_DB = [
         subject: "Kiến trúc Máy Tính",
         date: "06-10-2025",
         time: "6-8",
-        attendance: 87,
         status: "Đã đánh giá",
         details: [
             { stt: 1, studentId: "SV001", name: "Nguyễn Anh A", mssv: "7654321", passed: false, comment: "Cần cố gắng hơn" },

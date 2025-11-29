@@ -19,7 +19,7 @@ class LoginController {
             return null;
         }
 
-        // Bước 2: Kiểm tra xem user này đã có trong database local (users.js) chưa
+        // Kiểm tra xem user này đã có trong database local (users.js) chưa
         const existingUserIndex = localUsersDB.findIndex(u => u.id === userID);
 
         if (existingUserIndex !== -1) {
