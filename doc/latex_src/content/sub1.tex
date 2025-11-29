@@ -275,7 +275,7 @@ Sinh viên đăng ký một nhóm mới. \\ \hline
 \textbf{Normal flow} &
 \begin{enumerate}[leftmargin=*]
     \item Sinh viên chọn đăng ký nhóm.
-    \item Sinh viên chọn lĩnh vực/môn học cần hỗ trợ, đặt tiêu đề, điền mô tả nội dung cần hỗ trợ, chọn số lượng thành viên và gửi yêu cầu.
+    \item Sinh viên điền môn học cần hỗ trợ theo đúng định dạng, điền mô tả nội dung cần hỗ trợ, chọn số lượng thành viên và nhấn "Tạo nhóm".
     \item Hệ thống tạo yêu cầu thành công và đặt trạng thái đăng ký là "đang chờ hướng dẫn".
     \item Hệ thống thêm yêu cầu vào kho danh sách yêu cầu của lĩnh vực.
     \item Hệ thống thêm yêu cầu vào kho danh sách yêu cầu của sinh viên đăng ký.
@@ -290,56 +290,8 @@ Sinh viên đăng ký một nhóm mới. \\ \hline
 \textbf{Post-conditions} &
 \begin{itemize}[leftmargin=*]
     \item Sinh viên đăng ký nhóm thành công, và yêu cầu được thêm vào kho danh sách các yêu cầu của sinh viên.
-    \item Hệ thống tạo yêu cầu thành công và yêu cầu được thêm vào kho danh sách các yêu cầu của lĩnh vực.
+    \item Hệ thống tạo yêu cầu thành công và yêu cầu được thêm vào kho danh sách các yêu cầu của môn học.
 \end{itemize} \\ \hline
-\end{longtable}
-
-
-
-% ========= BẢNG: USE CASE "XEM TUTOR PHÙ HỢP" =========
-\renewcommand{\arraystretch}{1.5}
-
-\begin{longtable}{|p{4cm}|p{11cm}|}
-\caption{Use-case scenario: Xem tutor phù hợp}
-\label{tab:uc-gn02} \\
-\hline
-\textbf{Use-case name} & Xem tutor phù hợp \\ \hline
-\textbf{Use-case ID} & GN02 \\ \hline
-\textbf{Use-case overview} & 
-Hệ thống hiển thị danh sách các Tutor để Sinh viên lựa chọn đăng ký. \\ \hline
-\textbf{Actors} & Sinh viên \\ \hline
-\textbf{Trigger} &
-Sau khi Sinh viên hoàn thành “Chọn lĩnh vực” (trong luồng Đăng ký nhóm), hệ thống tự động chuyển sang bước hiển thị danh sách Tutor. \\ \hline
-\textbf{Preconditions} &
-\begin{itemize}[leftmargin=*]
-    \item Sinh viên đã đăng nhập thành công vào hệ thống.
-    \item Sinh viên đã hoàn thành use-case “Chọn lĩnh vực”.
-    \item Hệ thống có sẵn thông tin về các Tutor đang hoạt động và lĩnh vực hướng dẫn của họ.
-\end{itemize} \\ \hline
-\textbf{Main flow} &
-\begin{enumerate}[leftmargin=*]
-    \item Hệ thống tiếp nhận tiêu chí mà Sinh viên đã chọn.
-    \item Truy vấn CSDL để tìm tất cả các Tutor có chuyên môn phù hợp.
-    \item Sắp xếp danh sách theo tên (thứ tự alphabet – mặc định).
-    \item Hiển thị danh sách Tutor phù hợp.
-    \item Sinh viên có thể xem thông tin chi tiết của Tutor.
-    \item Sinh viên chọn một Tutor để đăng ký hoặc yêu cầu Tutor phù hợp.
-\end{enumerate} \\ \hline
-\textbf{Alternative flows} &
-\textbf{Không tìm thấy Tutor phù hợp:}
-\begin{itemize}[leftmargin=*]
-    \item Hệ thống hiển thị thông báo "Xin lỗi, hiện không có Tutor nào trong lĩnh vực đã chọn".
-    \item Gợi ý các Tutor ở lĩnh vực tương tự.
-    \item Đưa ra tùy chọn: quay lại chọn lĩnh vực khác, hoặc gửi yêu cầu Tutor phù hợp.
-\end{itemize} \\ \hline
-\textbf{Exception flows} &
-\textbf{Lỗi kết nối CSDL:}
-\begin{itemize}[leftmargin=*]
-    \item Hệ thống không thể truy cập CSDL Tutor tại bước 2.
-    \item Hiển thị thông báo lỗi kỹ thuật, yêu cầu Sinh viên thử lại sau.
-\end{itemize} \\ \hline
-\textbf{Post-conditions} &
-Sinh viên đã xem được danh sách Tutor phù hợp, có thể xem hồ sơ và lựa chọn hành động tiếp theo (chọn Tutor hoặc gửi yêu cầu). \\ \hline
 \end{longtable}
 
 \pagebreak
