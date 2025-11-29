@@ -1,27 +1,20 @@
 \babel@toc {vietnamese}{}\relax 
-\contentsline {section}{\numberline {1}System Modelling}{6}{section.1}%
-\contentsline {subsection}{\numberline {1.1}UI design Mockup}{6}{subsection.1.1}%
-\contentsline {subsubsection}{\numberline {1.1.1}Trang chủ và đăng nhập}{6}{subsubsection.1.1.1}%
-\contentsline {subsubsection}{\numberline {1.1.2}Sinh viên đăng ký nhóm và tutor nhận/từ chối yêu cầu}{7}{subsubsection.1.1.2}%
-\contentsline {subsubsection}{\numberline {1.1.3}Thông tin nhóm và thao tác đăng ký nhóm mới}{7}{subsubsection.1.1.3}%
-\contentsline {subsubsection}{\numberline {1.1.4}Thông tin giảng viên và môn học}{8}{subsubsection.1.1.4}%
-\contentsline {subsubsection}{\numberline {1.1.5}Tutor quản lý buổi học}{9}{subsubsection.1.1.5}%
-\contentsline {subsubsection}{\numberline {1.1.6}Sinh viên đăng ký buổi học}{10}{subsubsection.1.1.6}%
-\contentsline {subsubsection}{\numberline {1.1.7}Sinh viên - Buổi học của tôi}{11}{subsubsection.1.1.7}%
-\contentsline {subsubsection}{\numberline {1.1.8}Tutor - Quản lý buổi học}{12}{subsubsection.1.1.8}%
-\contentsline {subsubsection}{\numberline {1.1.9}Phòng Công tác Sinh viên}{15}{subsubsection.1.1.9}%
-\contentsline {subsubsection}{\numberline {1.1.10}Khoa/Bộ môn}{16}{subsubsection.1.1.10}%
-\contentsline {subsubsection}{\numberline {1.1.11}Phòng Đào tạo \& Điều phối viên}{17}{subsubsection.1.1.11}%
-\contentsline {subsection}{\numberline {1.2}Sequence diagrams}{18}{subsection.1.2}%
-\contentsline {subsubsection}{\numberline {1.2.1}Sinh viên đăng ký nhóm:}{18}{subsubsection.1.2.1}%
-\contentsline {subsubsection}{\numberline {1.2.2}Tutor chấp nhận/từ chối nhóm:}{20}{subsubsection.1.2.2}%
-\contentsline {subsubsection}{\numberline {1.2.3}Tutor mở buổi học:}{22}{subsubsection.1.2.3}%
-\contentsline {subsubsection}{\numberline {1.2.4}Sinh viên tham gia buổi học:}{24}{subsubsection.1.2.4}%
-\contentsline {subsubsection}{\numberline {1.2.5}Sinh viên truy cập tài liệu:}{26}{subsubsection.1.2.5}%
-\contentsline {subsection}{\numberline {1.3}Activity diagrams}{28}{subsection.1.3}%
-\contentsline {subsubsection}{\numberline {1.3.1}Sinh viên đăng ký nhóm:}{28}{subsubsection.1.3.1}%
-\contentsline {subsubsection}{\numberline {1.3.2}Tutor chấp nhận/từ chối nhóm yêu cầu:}{29}{subsubsection.1.3.2}%
-\contentsline {subsubsection}{\numberline {1.3.3}Tutor mở buổi học:}{31}{subsubsection.1.3.3}%
-\contentsline {subsubsection}{\numberline {1.3.4}Sinh viên tham gia buổi học:}{32}{subsubsection.1.3.4}%
-\contentsline {subsubsection}{\numberline {1.3.5}Sinh viên truy cập tài liệu:}{34}{subsubsection.1.3.5}%
-\contentsline {subsection}{\numberline {1.4}State-chart diagrams }{36}{subsection.1.4}%
+\contentsline {section}{\numberline {1}Project details specification}{6}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Project context}{6}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Project stakeholders}{6}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Objectives and Scopes}{7}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Objectives}{7}{subsubsection.1.3.1}%
+\contentsline {paragraph}{Mục tiêu tổng quát:}{7}{section*.6}%
+\contentsline {paragraph}{Mục tiêu cụ thể:}{7}{section*.7}%
+\contentsline {subsubsection}{\numberline {1.3.2}Scopes}{8}{subsubsection.1.3.2}%
+\contentsline {section}{\numberline {2}Functional requirements}{11}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Use-case Diagram cho toàn hệ thống:}{11}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Use-case Details/scenario:}{16}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Use-case Đăng nhập:}{16}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Use-case Đăng ký nhóm hướng dẫn:}{16}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Use-case Tổ chức buổi học:}{22}{subsubsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.4}Use-case Đăng ký buổi học:}{24}{subsubsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.3}Non-interactive Functional Requirement}{27}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Non-Fucntional Requirements}{27}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Product Requirements (Yêu cầu Sản phẩm)}{27}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Organisational Requirements (Yêu cầu Tổ chức)}{28}{subsection.3.2}%

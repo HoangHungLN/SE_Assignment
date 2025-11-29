@@ -387,9 +387,9 @@ INPUT c:/texlive/2025/texmf-dist/tex/latex/tools/xspace.sty
 INPUT build/report.aux
 INPUT build/report.aux
 INPUT build/report.aux
-INPUT build/content/sub2.aux
-INPUT build/content/sub2.aux
-INPUT build/content/sub2.aux
+INPUT build/content/sub1.aux
+INPUT build/content/sub1.aux
+INPUT build/content/sub1.aux
 OUTPUT build/report.aux
 INPUT c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -484,307 +484,104 @@ OUTPUT build/report.toc
 INPUT build/report.lof
 INPUT build/report.lof
 INPUT build/report.lof
-INPUT ./graphics/hcmut.png
-INPUT ./graphics/hcmut.png
-INPUT ./graphics/hcmut.png
-INPUT ./graphics/hcmut.png
 OUTPUT build/report.lof
 INPUT build/report.lot
 INPUT build/report.lot
 INPUT build/report.lot
+INPUT ./graphics/hcmut.png
+INPUT ./graphics/hcmut.png
+INPUT ./graphics/hcmut.png
+INPUT ./graphics/hcmut.png
 OUTPUT build/report.lot
 INPUT build/report.lol
 INPUT build/report.lol
 INPUT build/report.lol
 OUTPUT build/report.lol
-INPUT ./content/sub2.tex
+INPUT ./content/sub1.tex
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/hcmut.png
-OUTPUT build/content/sub2.aux
+OUTPUT build/content/sub1.aux
 INPUT ./graphics/hcmut.png
-INPUT ./content/sub2.tex
-INPUT ./content/sub2.tex
-INPUT content/sub2.tex
+INPUT ./content/sub1.tex
+INPUT ./content/sub1.tex
+INPUT content/sub1.tex
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/vntex/vnr/vnr12.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/vntex/vnr/vnbx12.tfm
-INPUT ./graphics/sub2/UI_mockup/Trangchu/login.png
-INPUT ./graphics/sub2/UI_mockup/Trangchu/login.png
-INPUT ./graphics/sub2/UI_mockup/Trangchu/login.png
-INPUT ./graphics/sub2/UI_mockup/Trangchu/login.png
-INPUT ./graphics/sub2/UI_mockup/Trangchu/login.png
-INPUT c:/texlive/2025/texmf-dist/fonts/tfm/vntex/vnr/vnr10.tfm
-INPUT ./graphics/sub2/UI_mockup/Trangchu/studentHompage.png
-INPUT ./graphics/sub2/UI_mockup/Trangchu/studentHompage.png
-INPUT ./graphics/sub2/UI_mockup/Trangchu/studentHompage.png
-INPUT ./graphics/sub2/UI_mockup/Trangchu/studentHompage.png
-INPUT ./graphics/sub2/UI_mockup/Trangchu/studentHompage.png
-INPUT ./graphics/sub2/UI_mockup/Trangchu/tutorHomepage.png
-INPUT ./graphics/sub2/UI_mockup/Trangchu/tutorHomepage.png
-INPUT ./graphics/sub2/UI_mockup/Trangchu/tutorHomepage.png
-INPUT ./graphics/sub2/UI_mockup/Trangchu/tutorHomepage.png
-INPUT ./graphics/sub2/UI_mockup/Trangchu/tutorHomepage.png
-INPUT ./graphics/sub2/UI_mockup/Group/1tutor_teachingRegister.png
-INPUT ./graphics/sub2/UI_mockup/Group/1tutor_teachingRegister.png
-INPUT ./graphics/sub2/UI_mockup/Group/1tutor_teachingRegister.png
-INPUT ./graphics/sub2/UI_mockup/Group/1tutor_teachingRegister.png
-INPUT ./graphics/sub2/UI_mockup/Group/1tutor_teachingRegister.png
-INPUT ./graphics/sub2/UI_mockup/Group/1SV_DKGroup_Main.png
-INPUT ./graphics/sub2/UI_mockup/Group/1SV_DKGroup_Main.png
-INPUT ./graphics/sub2/UI_mockup/Group/1SV_DKGroup_Main.png
-INPUT ./graphics/sub2/UI_mockup/Group/1SV_DKGroup_Main.png
-INPUT ./graphics/sub2/UI_mockup/Group/1SV_DKGroup_Main.png
 INPUT ./graphics/hcmut.png
-INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_GrDetail.png
-INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_GrDetail.png
-INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_GrDetail.png
-INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_GrDetail.png
-INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_GrDetail.png
-INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_NewReg.png
-INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_NewReg.png
-INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_NewReg.png
-INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_NewReg.png
-INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_NewReg.png
-INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_TutorList.png
-INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_TutorList.png
-INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_TutorList.png
-INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_TutorList.png
-INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_TutorList.png
-INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_TutorInfor.png
-INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_TutorInfor.png
-INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_TutorInfor.png
-INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_TutorInfor.png
-INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_TutorInfor.png
-INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_SubjectList.png
-INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_SubjectList.png
-INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_SubjectList.png
-INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_SubjectList.png
-INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_SubjectList.png
-INPUT ./graphics/hcmut.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Tutor_DkiLop_course.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Tutor_DkiLop_course.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Tutor_DkiLop_course.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Tutor_DkiLop_course.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Tutor_DkiLop_course.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Tutor_DkiLop_edit.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Tutor_DkiLop_edit.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Tutor_DkiLop_edit.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Tutor_DkiLop_edit.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Tutor_DkiLop_edit.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Tutor_DkiLop_main.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Tutor_DkiLop_main.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Tutor_DkiLop_main.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Tutor_DkiLop_main.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Tutor_DkiLop_main.png
-INPUT ./graphics/hcmut.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Studen_DkiLop_main.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Studen_DkiLop_main.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Studen_DkiLop_main.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Studen_DkiLop_main.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Studen_DkiLop_main.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Student_DkiLop_course.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Student_DkiLop_course.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Student_DkiLop_course.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Student_DkiLop_course.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Student_DkiLop_course.png
-INPUT ./graphics/hcmut.png
-INPUT ./graphics/sub2/UI_mockup/Student-Buoi hoc cua toi/01.Student-BuoihocCuaToi.jpeg
-INPUT ./graphics/sub2/UI_mockup/Student-Buoi hoc cua toi/01.Student-BuoihocCuaToi.jpeg
-INPUT ./graphics/sub2/UI_mockup/Student-Buoi hoc cua toi/01.Student-BuoihocCuaToi.jpeg
-INPUT ./graphics/sub2/UI_mockup/Student-Buoi hoc cua toi/01.Student-BuoihocCuaToi.jpeg
-INPUT ./graphics/sub2/UI_mockup/Student-Buoi hoc cua toi/01.Student-BuoihocCuaToi.jpeg
-INPUT ./graphics/sub2/UI_mockup/Student-Buoi hoc cua toi/02.Student-ChiTietTungBuoi.png
-INPUT ./graphics/sub2/UI_mockup/Student-Buoi hoc cua toi/02.Student-ChiTietTungBuoi.png
-INPUT ./graphics/sub2/UI_mockup/Student-Buoi hoc cua toi/02.Student-ChiTietTungBuoi.png
-INPUT ./graphics/sub2/UI_mockup/Student-Buoi hoc cua toi/02.Student-ChiTietTungBuoi.png
-INPUT ./graphics/sub2/UI_mockup/Student-Buoi hoc cua toi/02.Student-ChiTietTungBuoi.png
-INPUT ./graphics/sub2/UI_mockup/Student-Buoi hoc cua toi/03.Student-PhanHoiBuoiHoc.png
-INPUT ./graphics/sub2/UI_mockup/Student-Buoi hoc cua toi/03.Student-PhanHoiBuoiHoc.png
-INPUT ./graphics/sub2/UI_mockup/Student-Buoi hoc cua toi/03.Student-PhanHoiBuoiHoc.png
-INPUT ./graphics/sub2/UI_mockup/Student-Buoi hoc cua toi/03.Student-PhanHoiBuoiHoc.png
-INPUT ./graphics/sub2/UI_mockup/Student-Buoi hoc cua toi/03.Student-PhanHoiBuoiHoc.png
-INPUT ./graphics/hcmut.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/01.Tutor-QuanLyBuoiHoc.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/01.Tutor-QuanLyBuoiHoc.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/01.Tutor-QuanLyBuoiHoc.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/01.Tutor-QuanLyBuoiHoc.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/01.Tutor-QuanLyBuoiHoc.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/02.Tutor-ChiTietTungBuoi.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/02.Tutor-ChiTietTungBuoi.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/02.Tutor-ChiTietTungBuoi.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/02.Tutor-ChiTietTungBuoi.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/02.Tutor-ChiTietTungBuoi.png
-INPUT ./graphics/hcmut.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/03.Tutor-QuanLyTaiLieu.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/03.Tutor-QuanLyTaiLieu.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/03.Tutor-QuanLyTaiLieu.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/03.Tutor-QuanLyTaiLieu.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/03.Tutor-QuanLyTaiLieu.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/04.Tutor-DongBoTaiLieu.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/04.Tutor-DongBoTaiLieu.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/04.Tutor-DongBoTaiLieu.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/04.Tutor-DongBoTaiLieu.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/04.Tutor-DongBoTaiLieu.png
-INPUT ./graphics/hcmut.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/05.Tutor-DanhGiaTienDoSinhVien.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/05.Tutor-DanhGiaTienDoSinhVien.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/05.Tutor-DanhGiaTienDoSinhVien.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/05.Tutor-DanhGiaTienDoSinhVien.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/05.Tutor-DanhGiaTienDoSinhVien.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/06.Tutor-DiemDanhSinhVien.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/06.Tutor-DiemDanhSinhVien.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/06.Tutor-DiemDanhSinhVien.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/06.Tutor-DiemDanhSinhVien.png
-INPUT ./graphics/sub2/UI_mockup/Tutor-Quan ly buoi hoc/06.Tutor-DiemDanhSinhVien.png
-INPUT ./graphics/hcmut.png
-INPUT ./graphics/sub2/UI_mockup/Offices/ctsv_xemthamgia.png
-INPUT ./graphics/sub2/UI_mockup/Offices/ctsv_xemthamgia.png
-INPUT ./graphics/sub2/UI_mockup/Offices/ctsv_xemthamgia.png
-INPUT ./graphics/sub2/UI_mockup/Offices/ctsv_xemthamgia.png
-INPUT ./graphics/sub2/UI_mockup/Offices/ctsv_xemthamgia.png
-INPUT ./graphics/sub2/UI_mockup/Offices/ctsv_xemTutor_00.png
-INPUT ./graphics/sub2/UI_mockup/Offices/ctsv_xemTutor_00.png
-INPUT ./graphics/sub2/UI_mockup/Offices/ctsv_xemTutor_00.png
-INPUT ./graphics/sub2/UI_mockup/Offices/ctsv_xemTutor_00.png
-INPUT ./graphics/sub2/UI_mockup/Offices/ctsv_xemTutor_00.png
-INPUT ./graphics/sub2/UI_mockup/Offices/ctsv_xemTutor_01.png
-INPUT ./graphics/sub2/UI_mockup/Offices/ctsv_xemTutor_01.png
-INPUT ./graphics/sub2/UI_mockup/Offices/ctsv_xemTutor_01.png
-INPUT ./graphics/sub2/UI_mockup/Offices/ctsv_xemTutor_01.png
-INPUT ./graphics/sub2/UI_mockup/Offices/ctsv_xemTutor_01.png
-INPUT ./graphics/hcmut.png
-INPUT ./graphics/sub2/UI_mockup/Offices/khoa_xemSinhvien_00.png
-INPUT ./graphics/sub2/UI_mockup/Offices/khoa_xemSinhvien_00.png
-INPUT ./graphics/sub2/UI_mockup/Offices/khoa_xemSinhvien_00.png
-INPUT ./graphics/sub2/UI_mockup/Offices/khoa_xemSinhvien_00.png
-INPUT ./graphics/sub2/UI_mockup/Offices/khoa_xemSinhvien_00.png
-INPUT ./graphics/sub2/UI_mockup/Offices/khoa_xemSinhvien_01.png
-INPUT ./graphics/sub2/UI_mockup/Offices/khoa_xemSinhvien_01.png
-INPUT ./graphics/sub2/UI_mockup/Offices/khoa_xemSinhvien_01.png
-INPUT ./graphics/sub2/UI_mockup/Offices/khoa_xemSinhvien_01.png
-INPUT ./graphics/sub2/UI_mockup/Offices/khoa_xemSinhvien_01.png
-INPUT ./graphics/sub2/UI_mockup/Offices/khoa_xemTutor_00.png
-INPUT ./graphics/sub2/UI_mockup/Offices/khoa_xemTutor_00.png
-INPUT ./graphics/sub2/UI_mockup/Offices/khoa_xemTutor_00.png
-INPUT ./graphics/sub2/UI_mockup/Offices/khoa_xemTutor_00.png
-INPUT ./graphics/sub2/UI_mockup/Offices/khoa_xemTutor_00.png
-INPUT ./graphics/sub2/UI_mockup/Offices/khoa_xemTutor_01.png
-INPUT ./graphics/sub2/UI_mockup/Offices/khoa_xemTutor_01.png
-INPUT ./graphics/sub2/UI_mockup/Offices/khoa_xemTutor_01.png
-INPUT ./graphics/sub2/UI_mockup/Offices/khoa_xemTutor_01.png
-INPUT ./graphics/sub2/UI_mockup/Offices/khoa_xemTutor_01.png
-INPUT ./graphics/hcmut.png
-INPUT ./graphics/sub2/UI_mockup/Offices/pdt_xembaocao.png
-INPUT ./graphics/sub2/UI_mockup/Offices/pdt_xembaocao.png
-INPUT ./graphics/sub2/UI_mockup/Offices/pdt_xembaocao.png
-INPUT ./graphics/sub2/UI_mockup/Offices/pdt_xembaocao.png
-INPUT ./graphics/sub2/UI_mockup/Offices/pdt_xembaocao.png
-INPUT ./graphics/sub2/UI_mockup/Offices/dieuphoi_xembaocao.png
-INPUT ./graphics/sub2/UI_mockup/Offices/dieuphoi_xembaocao.png
-INPUT ./graphics/sub2/UI_mockup/Offices/dieuphoi_xembaocao.png
-INPUT ./graphics/sub2/UI_mockup/Offices/dieuphoi_xembaocao.png
-INPUT ./graphics/sub2/UI_mockup/Offices/dieuphoi_xembaocao.png
-INPUT ./graphics/sub2/UI_mockup/Offices/pdt_xemSinhvien_00.png
-INPUT ./graphics/sub2/UI_mockup/Offices/pdt_xemSinhvien_00.png
-INPUT ./graphics/sub2/UI_mockup/Offices/pdt_xemSinhvien_00.png
-INPUT ./graphics/sub2/UI_mockup/Offices/pdt_xemSinhvien_00.png
-INPUT ./graphics/sub2/UI_mockup/Offices/pdt_xemSinhvien_00.png
-INPUT ./graphics/sub2/UI_mockup/Offices/pdt_xemSinhvien_01.png
-INPUT ./graphics/sub2/UI_mockup/Offices/pdt_xemSinhvien_01.png
-INPUT ./graphics/sub2/UI_mockup/Offices/pdt_xemSinhvien_01.png
-INPUT ./graphics/sub2/UI_mockup/Offices/pdt_xemSinhvien_01.png
-INPUT ./graphics/sub2/UI_mockup/Offices/pdt_xemSinhvien_01.png
-INPUT ./graphics/hcmut.png
-INPUT ./graphics/sub2/Sequence/Seq_GrRegister.png
-INPUT ./graphics/sub2/Sequence/Seq_GrRegister.png
-INPUT ./graphics/sub2/Sequence/Seq_GrRegister.png
-INPUT ./graphics/sub2/Sequence/Seq_GrRegister.png
-INPUT ./graphics/sub2/Sequence/Seq_GrRegister.png
-INPUT ./graphics/hcmut.png
-INPUT ./graphics/hcmut.png
-INPUT ./graphics/hcmut.png
-INPUT ./graphics/sub2/Sequence/Seq_TutorChapNhanTuChoiNhom.png
-INPUT ./graphics/sub2/Sequence/Seq_TutorChapNhanTuChoiNhom.png
-INPUT ./graphics/sub2/Sequence/Seq_TutorChapNhanTuChoiNhom.png
-INPUT ./graphics/sub2/Sequence/Seq_TutorChapNhanTuChoiNhom.png
-INPUT ./graphics/sub2/Sequence/Seq_TutorChapNhanTuChoiNhom.png
-INPUT ./graphics/hcmut.png
-INPUT c:/texlive/2025/texmf-dist/fonts/tfm/vntex/vnr/vnti12.tfm
 INPUT ./graphics/hcmut.png
 INPUT c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
-INPUT ./graphics/sub2/Sequence/Seq_tutordangkyday.png
-INPUT ./graphics/sub2/Sequence/Seq_tutordangkyday.png
-INPUT ./graphics/sub2/Sequence/Seq_tutordangkyday.png
-INPUT ./graphics/sub2/Sequence/Seq_tutordangkyday.png
-INPUT ./graphics/sub2/Sequence/Seq_tutordangkyday.png
-INPUT ./graphics/hcmut.png
-INPUT ./graphics/sub2/Sequence/Seq_SinhvienNhanLop.png
-INPUT ./graphics/sub2/Sequence/Seq_SinhvienNhanLop.png
-INPUT ./graphics/sub2/Sequence/Seq_SinhvienNhanLop.png
-INPUT ./graphics/sub2/Sequence/Seq_SinhvienNhanLop.png
-INPUT ./graphics/sub2/Sequence/Seq_SinhvienNhanLop.png
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/hcmut.png
-INPUT ./graphics/sub2/Sequence/seq_truycaptailieu.png
-INPUT ./graphics/sub2/Sequence/seq_truycaptailieu.png
-INPUT ./graphics/sub2/Sequence/seq_truycaptailieu.png
-INPUT ./graphics/sub2/Sequence/seq_truycaptailieu.png
-INPUT ./graphics/sub2/Sequence/seq_truycaptailieu.png
+INPUT ./graphics/sub1/uc_overview.png
+INPUT ./graphics/sub1/uc_overview.png
+INPUT ./graphics/sub1/uc_overview.png
+INPUT ./graphics/sub1/uc_overview.png
+INPUT ./graphics/sub1/uc_overview.png
+INPUT ./graphics/hcmut.png
+INPUT ./graphics/sub1/uc_dang_ky_nhom.png
+INPUT ./graphics/sub1/uc_dang_ky_nhom.png
+INPUT ./graphics/sub1/uc_dang_ky_nhom.png
+INPUT ./graphics/sub1/uc_dang_ky_nhom.png
+INPUT ./graphics/sub1/uc_dang_ky_nhom.png
+INPUT ./graphics/hcmut.png
+INPUT ./graphics/sub1/uc_login.png
+INPUT ./graphics/sub1/uc_login.png
+INPUT ./graphics/sub1/uc_login.png
+INPUT ./graphics/sub1/uc_login.png
+INPUT ./graphics/sub1/uc_login.png
+INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc.png
+INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc.png
+INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc.png
+INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc.png
+INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc.png
+INPUT ./graphics/hcmut.png
+INPUT ./graphics/sub1/uc_dang_ky_buoi_hoc.png
+INPUT ./graphics/sub1/uc_dang_ky_buoi_hoc.png
+INPUT ./graphics/sub1/uc_dang_ky_buoi_hoc.png
+INPUT ./graphics/sub1/uc_dang_ky_buoi_hoc.png
+INPUT ./graphics/sub1/uc_dang_ky_buoi_hoc.png
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/hcmut.png
-INPUT ./graphics/sub2/activity/Ac_GrRegister.png
-INPUT ./graphics/sub2/activity/Ac_GrRegister.png
-INPUT ./graphics/sub2/activity/Ac_GrRegister.png
-INPUT ./graphics/sub2/activity/Ac_GrRegister.png
-INPUT ./graphics/sub2/activity/Ac_GrRegister.png
+INPUT ./graphics/sub1/uc_login.png
+INPUT ./graphics/sub1/uc_login.png
+INPUT ./graphics/sub1/uc_login.png
+INPUT ./graphics/sub1/uc_login.png
+INPUT ./graphics/hcmut.png
+INPUT ./graphics/sub1/uc_dang_ky_nhom.png
+INPUT ./graphics/sub1/uc_dang_ky_nhom.png
+INPUT ./graphics/sub1/uc_dang_ky_nhom.png
+INPUT ./graphics/sub1/uc_dang_ky_nhom.png
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/hcmut.png
-INPUT ./graphics/sub2/activity/Ac_TutorChapNhanTuChoiNhom.png
-INPUT ./graphics/sub2/activity/Ac_TutorChapNhanTuChoiNhom.png
-INPUT ./graphics/sub2/activity/Ac_TutorChapNhanTuChoiNhom.png
-INPUT ./graphics/sub2/activity/Ac_TutorChapNhanTuChoiNhom.png
-INPUT ./graphics/sub2/activity/Ac_TutorChapNhanTuChoiNhom.png
-INPUT ./graphics/hcmut.png
-INPUT ./graphics/sub2/activity/Ac_tutordangkyday.png
-INPUT ./graphics/sub2/activity/Ac_tutordangkyday.png
-INPUT ./graphics/sub2/activity/Ac_tutordangkyday.png
-INPUT ./graphics/sub2/activity/Ac_tutordangkyday.png
-INPUT ./graphics/sub2/activity/Ac_tutordangkyday.png
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/hcmut.png
-INPUT ./graphics/sub2/activity/Ac_SinhvienNhanLop.png
-INPUT ./graphics/sub2/activity/Ac_SinhvienNhanLop.png
-INPUT ./graphics/sub2/activity/Ac_SinhvienNhanLop.png
-INPUT ./graphics/sub2/activity/Ac_SinhvienNhanLop.png
-INPUT ./graphics/sub2/activity/Ac_SinhvienNhanLop.png
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/hcmut.png
-INPUT ./graphics/sub2/activity/Ac_truycaptailieu.png
-INPUT ./graphics/sub2/activity/Ac_truycaptailieu.png
-INPUT ./graphics/sub2/activity/Ac_truycaptailieu.png
-INPUT ./graphics/sub2/activity/Ac_truycaptailieu.png
-INPUT ./graphics/sub2/activity/Ac_truycaptailieu.png
+INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc.png
+INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc.png
+INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc.png
+INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc.png
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/hcmut.png
-INPUT ./graphics/sub2/state_diagram.png
-INPUT ./graphics/sub2/state_diagram.png
-INPUT ./graphics/sub2/state_diagram.png
-INPUT ./graphics/sub2/state_diagram.png
-INPUT ./graphics/sub2/state_diagram.png
+INPUT ./graphics/sub1/uc_dang_ky_buoi_hoc.png
+INPUT ./graphics/sub1/uc_dang_ky_buoi_hoc.png
+INPUT ./graphics/sub1/uc_dang_ky_buoi_hoc.png
+INPUT ./graphics/sub1/uc_dang_ky_buoi_hoc.png
+INPUT ./graphics/hcmut.png
+INPUT ./graphics/hcmut.png
+INPUT ./graphics/hcmut.png
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/hcmut.png
 INPUT build/report.aux
-INPUT build/content/sub2.aux
-INPUT build/content/sub2.aux
-INPUT build/content/sub2.aux
+INPUT build/content/sub1.aux
+INPUT build/content/sub1.aux
+INPUT build/content/sub1.aux
 INPUT build/report.out
 INPUT build/report.out
-INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
-INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
+INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/vntex/vnr/vnbx12.pfb
-INPUT c:/texlive/2025/texmf-dist/fonts/type1/vntex/vnr/vnr10.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/vntex/vnr/vnr12.pfb
-INPUT c:/texlive/2025/texmf-dist/fonts/type1/vntex/vnr/vnti12.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/vntex/vnr/vntt12.pfb
