@@ -363,49 +363,38 @@ Nếu mất kết nối hoặc timeout:
 \textbf{Use-case name} & Truy cập tài liệu \\ \hline
 \textbf{Use-case ID} & TC02 \\ \hline
 \textbf{Use-case overview} & 
-Sinh viên hoặc Tutor muốn truy cập kho tài liệu học tập để xem hoặc tải về nhằm phục vụ cho buổi học. \\ \hline
+Sinh viên hoặc Tutor muốn truy cập kho tài liệu học tập để tải về nhằm phục vụ cho buổi học. \\ \hline
 \textbf{Actors} & Sinh viên, Tutor \\ \hline
 \textbf{Trigger} & 
-Người dùng (Sinh viên, Tutor) muốn mở và sử dụng tài liệu liên quan đến buổi học. \\ \hline
+Người dùng (Sinh viên, Tutor) muốn sử dụng tài liệu liên quan đến buổi học. \\ \hline
 \textbf{Preconditions} &
 \begin{itemize}[leftmargin=*]
     \item Người dùng đã đăng nhập hệ thống thành công.
-    \item Người dùng có quyền truy cập vào tài liệu của nhóm/buổi học.
-    \item Tài liệu đã được Tutor hoặc thành viên chia sẻ và lưu trữ trong hệ thống.
+    \item Người dùng được cấp quyền truy cập vào tài liệu của nhóm/buổi học.
+    \item Tài liệu đã được Tutor chia sẻ hoặc được lưu trữ trong hệ thống.
 \end{itemize} \\ \hline
 \textbf{Main flow} &
 \begin{enumerate}[leftmargin=*]
     \item Người dùng đăng nhập vào hệ thống.
-    \item Chọn mục “Truy cập tài liệu” trong menu buổi học.
+    \item Vào mục “Tài liệu” trong menu buổi học.
     \item Hệ thống hiển thị danh sách tài liệu đã được chia sẻ.
-    \item Người dùng chọn tài liệu cần xem hoặc tải về.
-    \item Hệ thống mở tài liệu (nếu xem trực tuyến) hoặc tải file xuống thiết bị.
+    \item Người dùng chọn tài liệu cần tải về.
+    \item Hệ thống tải file xuống thiết bị.
     \item Hệ thống ghi nhận người dùng đã truy cập tài liệu.
 \end{enumerate} \\ \hline
 \textbf{Alternative flows} &
 \begin{itemize}[leftmargin=*]
     \item \textbf{3a. Danh sách trống:}
     \begin{itemize}
-        \item Hệ thống hiển thị thông báo “Chưa có tài liệu nào được chia sẻ”.
+        \item Hệ thống hiển thị thông báo: “Không có tài liệu cho buổi học này”.
         \item Use-case kết thúc.
-    \end{itemize}
-    \item \textbf{4a. Tìm kiếm tài liệu theo từ khóa:}
-    \begin{itemize}
-        \item Người dùng nhập từ khóa tìm kiếm.
-        \item Hệ thống lọc và hiển thị kết quả phù hợp.
-        \item Use-case tiếp tục từ bước 5.
     \end{itemize}
 \end{itemize} \\ \hline
 \textbf{Exception flows} &
 \begin{itemize}[leftmargin=*]
     \item \textbf{5a. Lỗi kết nối hoặc file không tồn tại:}
     \begin{itemize}
-        \item Hệ thống hiển thị “Không thể truy cập tài liệu, vui lòng thử lại sau”.
-        \item Use-case kết thúc.
-    \end{itemize}
-    \item \textbf{5b. Không có quyền truy cập:}
-    \begin{itemize}
-        \item Hệ thống hiển thị “Bạn không có quyền xem tài liệu này”.
+        \item Hệ thống hiển thị “Không thể tải về tài liệu, vui lòng thử lại sau”.
         \item Use-case kết thúc.
     \end{itemize}
 \end{itemize} \\ \hline
