@@ -17,6 +17,10 @@ module.exports = [
             {
                 "name": "Slide bài giảng",
                 "url": "/files/cau-truc-du-lieu-slide.pdf"
+            },
+            {
+                "name": "os__LamiaAtrium.pdf",
+                "url": "blob:http://localhost:3000/8191fdf1-3307-4aaa-80c7-f1ebef4109d5"
             }
         ]
     },

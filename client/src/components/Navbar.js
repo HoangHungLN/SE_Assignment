@@ -22,7 +22,7 @@ const Navbar = ({ role, userName }) => {
             case 'tutor':
                 return [
                     { name: 'Trang chủ', path: '/tutor-dashboard' },
-                    { name: 'Quản lý buổi học', path: '/manage-sessions' },
+                    { name: 'Quản lý buổi dạy', path: '/manage-sessions' },
                     { name: 'Đăng ký dạy', path: '/register-teaching' },
                     { name: 'Nhận nhóm', path: '/accept-group' }
                 ];

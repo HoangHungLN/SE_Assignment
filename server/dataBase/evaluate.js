@@ -7,8 +7,8 @@ let EVALUATIONS_DB = [
         time: "6-8",
         status: "Đã đánh giá",
         details: [
-            { stt: 1, studentId: "SV001", name: "Nguyễn Anh A", mssv: "7654321", passed: false, comment: "Cần cố gắng hơn" },
-            { stt: 2, studentId: "SV002", name: "Trần Thị B", mssv: "7654322", passed: false, comment: "" },
+            { stt: 1, studentId: "SV001", name: "Nguyễn Anh A", mssv: "7654321", passed: true, comment: "Tốt" },
+            { stt: 2, studentId: "SV002", name: "Trần Thị B", mssv: "7654322", passed: true, comment: "" },
             { stt: 3, studentId: "SV003", name: "Lương Văn D", mssv: "7654325", passed: false, comment: "" },
             { stt: 4, studentId: "SV004", name: "Thạch Ngọc E", mssv: "7654327", passed: false, comment: "" },
             { stt: 5, studentId: "SV005", name: "Đỗ Bách K", mssv: "7659994", passed: false, comment: "" },

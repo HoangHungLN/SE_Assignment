@@ -231,10 +231,10 @@ const JoinSession = () => {
               </div>
             </div>
 
-            {/* Danh sách nhóm đã tham gia */}
+            {/* Danh sách buổi học đã tham gia */}
             <div className="sj-card">
               <div className="sj-card-header small">
-                <h4>Danh sách nhóm đã tham gia</h4>
+                <h4>Danh sách buổi học đã tham gia</h4>
               </div>
               <div className="sj-card-body">
                 {joinedClasses.length === 0 ? (
