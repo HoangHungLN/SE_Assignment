@@ -1,8 +1,8 @@
-PWD c:/Users/DELL/Documents/.HCMUT_HK251/04.Cong_nghe_phan_mem_CNPM_CO3001/main_assignment_repo/SE_Assignment/doc/latex_src
+PWD c:/My_data/Work_spaces/251/SE/SE_Assignment/doc/latex_src
 INPUT c:/texlive/2025/texmf.cnf
 INPUT c:/texlive/2025/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT c:/Users/DELL/Documents/.HCMUT_HK251/04.Cong_nghe_phan_mem_CNPM_CO3001/main_assignment_repo/SE_Assignment/doc/latex_src/report.tex
+INPUT c:/My_data/Work_spaces/251/SE/SE_Assignment/doc/latex_src/report.tex
 OUTPUT build/report.log
 INPUT ./hcmut-report.cls
 INPUT hcmut-report.cls
@@ -125,15 +125,9 @@ INPUT c:/texlive/2025/texmf-dist/tex/generic/bitset/bitset.sty
 INPUT c:/texlive/2025/texmf-dist/tex/generic/bitset/bitset.sty
 INPUT c:/texlive/2025/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 INPUT c:/texlive/2025/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
-INPUT c:/texlive/2025/texmf-dist/tex/generic/atbegshi/atbegshi.sty
-INPUT c:/texlive/2025/texmf-dist/tex/latex/base/atbegshi-ltx.sty
-INPUT c:/texlive/2025/texmf-dist/tex/latex/base/atbegshi-ltx.sty
 INPUT c:/texlive/2025/texmf-dist/tex/latex/hyperref/hpdftex.def
 INPUT c:/texlive/2025/texmf-dist/tex/latex/hyperref/hpdftex.def
 INPUT c:/texlive/2025/texmf-dist/tex/latex/hyperref/hpdftex.def
-INPUT c:/texlive/2025/texmf-dist/tex/latex/atveryend/atveryend.sty
-INPUT c:/texlive/2025/texmf-dist/tex/latex/base/atveryend-ltx.sty
-INPUT c:/texlive/2025/texmf-dist/tex/latex/base/atveryend-ltx.sty
 INPUT c:/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 INPUT c:/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 INPUT c:/texlive/2025/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
@@ -143,20 +137,20 @@ INPUT c:/texlive/2025/texmf-dist/tex/latex/natbib/natbib.sty
 INPUT c:/texlive/2025/texmf-dist/tex/generic/babel/babel.sty
 INPUT c:/texlive/2025/texmf-dist/tex/generic/babel/babel.sty
 INPUT c:/texlive/2025/texmf-dist/tex/generic/babel/txtbabel.def
-INPUT c:/texlive/2025/texmf-dist/tex/generic/babel-english/english.ldf
-INPUT c:/texlive/2025/texmf-dist/tex/generic/babel-english/english.ldf
-INPUT c:/texlive/2025/texmf-dist/tex/generic/babel-english/english.ldf
 INPUT c:/texlive/2025/texmf-dist/tex/generic/babel/locale/en/babel-english.tex
 INPUT c:/texlive/2025/texmf-dist/tex/generic/babel/locale/en/babel-english.tex
 INPUT c:/texlive/2025/texmf-dist/tex/generic/babel/locale/en/babel-english.tex
+INPUT c:/texlive/2025/texmf-dist/tex/generic/babel/locale/vi/babel-vietnamese.tex
+INPUT c:/texlive/2025/texmf-dist/tex/generic/babel/locale/vi/babel-vietnamese.tex
+INPUT c:/texlive/2025/texmf-dist/tex/generic/babel/locale/vi/babel-vietnamese.tex
 INPUT c:/texlive/2025/texmf-dist/tex/generic/babel/locale/en/babel-en.ini
-INPUT c:/texlive/2025/texmf-dist/tex/generic/babel-vietnamese/vietnamese.ldf
-INPUT c:/texlive/2025/texmf-dist/tex/generic/babel-vietnamese/vietnamese.ldf
-INPUT c:/texlive/2025/texmf-dist/tex/generic/babel-vietnamese/vietnamese.ldf
-INPUT c:/texlive/2025/texmf-dist/tex/generic/babel/locale/vi/babel-vietnamese.tex
-INPUT c:/texlive/2025/texmf-dist/tex/generic/babel/locale/vi/babel-vietnamese.tex
-INPUT c:/texlive/2025/texmf-dist/tex/generic/babel/locale/vi/babel-vietnamese.tex
+INPUT c:/texlive/2025/texmf-dist/tex/generic/babel-english/english.ldf
+INPUT c:/texlive/2025/texmf-dist/tex/generic/babel-english/english.ldf
+INPUT c:/texlive/2025/texmf-dist/tex/generic/babel-english/english.ldf
 INPUT c:/texlive/2025/texmf-dist/tex/generic/babel/locale/vi/babel-vi.ini
+INPUT c:/texlive/2025/texmf-dist/tex/generic/babel-vietnamese/vietnamese.ldf
+INPUT c:/texlive/2025/texmf-dist/tex/generic/babel-vietnamese/vietnamese.ldf
+INPUT c:/texlive/2025/texmf-dist/tex/generic/babel-vietnamese/vietnamese.ldf
 INPUT c:/texlive/2025/texmf-dist/tex/latex/vntex/t5enc.def
 INPUT ./codespace.sty
 INPUT codespace.sty
@@ -396,6 +390,9 @@ INPUT build/content/sub2.aux
 INPUT build/content/sub3.aux
 INPUT build/content/sub3.aux
 INPUT build/content/sub3.aux
+INPUT build/content/sub4.aux
+INPUT build/content/sub4.aux
+INPUT build/content/sub4.aux
 OUTPUT build/report.aux
 INPUT c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -502,6 +499,10 @@ OUTPUT build/report.lof
 INPUT build/report.lot
 INPUT build/report.lot
 INPUT build/report.lot
+INPUT ./graphics/hcmut.png
+INPUT ./graphics/hcmut.png
+INPUT ./graphics/hcmut.png
+INPUT ./graphics/hcmut.png
 OUTPUT build/report.lot
 INPUT ./content/sub1.tex
 INPUT ./graphics/hcmut.png
@@ -664,11 +665,6 @@ INPUT ./graphics/sub2/UI_mockup/buoihoc/Studen_DkiLop_main.png
 INPUT ./graphics/sub2/UI_mockup/buoihoc/Studen_DkiLop_main.png
 INPUT ./graphics/sub2/UI_mockup/buoihoc/Studen_DkiLop_main.png
 INPUT ./graphics/sub2/UI_mockup/buoihoc/Studen_DkiLop_main.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Student_DkiLop_course.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Student_DkiLop_course.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Student_DkiLop_course.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Student_DkiLop_course.png
-INPUT ./graphics/sub2/UI_mockup/buoihoc/Student_DkiLop_course.png
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/sub2/UI_mockup/Student-Buoi hoc cua toi/01.Student-BuoihocCuaToi.jpeg
 INPUT ./graphics/sub2/UI_mockup/Student-Buoi hoc cua toi/01.Student-BuoihocCuaToi.jpeg
@@ -872,6 +868,8 @@ INPUT ./graphics/sub3/PkgDiagram.png
 INPUT ./graphics/sub3/PkgDiagram.png
 INPUT ./graphics/sub3/PkgDiagram.png
 INPUT ./graphics/hcmut.png
+INPUT ./graphics/hcmut.png
+INPUT ./graphics/hcmut.png
 INPUT ./graphics/sub3/Class diagram.png
 INPUT ./graphics/sub3/Class diagram.png
 INPUT ./graphics/sub3/Class diagram.png
@@ -900,6 +898,13 @@ INPUT ./graphics/hcmut.png
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/hcmut.png
+INPUT ./graphics/hcmut.png
+INPUT ./graphics/hcmut.png
+INPUT ./content/sub4.tex
+OUTPUT build/content/sub4.aux
+INPUT ./content/sub4.tex
+INPUT ./content/sub4.tex
+INPUT content/sub4.tex
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/hcmut.png
 INPUT build/report.aux
@@ -912,6 +917,9 @@ INPUT build/content/sub2.aux
 INPUT build/content/sub3.aux
 INPUT build/content/sub3.aux
 INPUT build/content/sub3.aux
+INPUT build/content/sub4.aux
+INPUT build/content/sub4.aux
+INPUT build/content/sub4.aux
 INPUT build/report.out
 INPUT build/report.out
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
