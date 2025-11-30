@@ -1,0 +1,136 @@
+\documentclass[twoside,final]{hcmut-report}
+\usepackage{codespace}
+
+% Draft watermark
+% https://github.com/callegar/LaTeX-draftwatermark
+
+% Encodings
+\usepackage{gensymb,textcomp}
+
+% Better tables
+% Wide tables go to https://tex.stackexchange.com/q/332902
+\usepackage{array,longtable,multicol,multirow,siunitx,tabularx}
+% \usepackage{booktabs}
+\usepackage{chngcntr}
+% \usepackage{listings}
+\usepackage{makecell}
+
+% Better enum
+\usepackage{enumitem}
+
+% Graphics
+\usepackage{caption,float}
+\usepackage{subcaption}
+
+% Add options for figures, like max width, framing, etc.
+\usepackage[export]{adjustbox}
+
+% References
+% Use \Cref{} instead of \ref{}
+\usepackage[nameinlink]{cleveref}
+
+% FOR DEMONSTRATION PURPOSES, REMOVE IN PRODUCTION
+\usepackage{mwe}
+% \usepackage{xcolor}
+
+\usepackage{longtable}    % <- dùng longtable
+
+\geometry{
+    left=2cm,
+    right=2cm,
+    top=2cm,
+    bottom=2cm,
+    headheight=44pt
+}
+
+\renewcommand{\arraystretch}{1.15}
+\setlength{\tabcolsep}{4pt}
+
+% cột p canh trái
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+% % \usepackage[utf8]{vietnam} % nếu lỗi, đổi: \usepackage[utf8]{inputenc}\usepackage[vietnam]{babel}
+% % --- Tiếng Việt chuẩn cho pdfLaTeX ---
+% \usepackage[utf8]{inputenc}      % mã UTF-8
+% \usepackage[T5]{fontenc}         % font T5 cho tiếng Việt
+% \usepackage[vietnamese]{babel}   % chia âm tiết, cách ngắt dòng tiếng Việt
+
+\usepackage{graphicx}
+\usepackage{indentfirst}
+
+% Sub-preambles
+% https://github.com/MartinScharrer/standalone
+
+% Configurations
+\coursename{Công nghệ phần mềm - CO3001}
+\reporttype{Báo cáo bài tập lớn }
+\title{Hệ thống hỗ trợ Tutor tại Trường Đại học Bách Khoa – ĐHQG TP.HCM}
+\advisor{
+    & Nguyễn Thành Công & \\
+    & Lê Đình Thuận & \\
+    & Mai Đức Trung & \\
+    & Bùi Công Tuấn & \\
+}
+\stuname{%
+  & Trương Thiên Ân & 2310190 \\
+  & Nguyễn Huỳnh Thiên Hậu & 2310930 \\
+  & Lại Nguyễn Hoàng Hưng & 2311327 \\
+  & Bùi Ngọc Phúc & 2312665 \\
+  & Nguyễn Thái Sơn & 2312968 \\
+}
+
+% Allow page breaks inside align* environment
+\allowdisplaybreaks{}
+
+% Makes a lot of things blue, avoid at all costs
+\everymath{\color{blue}}
+
+% Set depth of numbering for counters
+\AtBeginDocument{\counterwithin{lstlisting}{section}}
+
+% Rename some sections
+\AtBeginDocument{\renewcommand*{\contentsname}{Contents}}
+\AtBeginDocument{\renewcommand*{\refname}{References}}
+\AtBeginDocument{\renewcommand*{\bibname}{References}}
+
+% Custom commands
+\newcommand*\mean[1]{\bar{#1}}
+
+\begin{document}
+\coverpage
+
+\section*{Danh sách thành viên \& Khối lượng công việc}
+\newcounter{memberrowno}
+\setcounter{memberrowno}{0}
+\begin{center}
+ \begin{tabular}{>{\stepcounter{memberrowno}\thememberrowno}llcc}
+   \toprule
+   \multicolumn{1}{c}{\textbf{STT}} & \textbf{Họ và tên} & \textbf{MSSV} & \textbf{Phần trăm công việc} \\
+   \midrule
+                                    & Trương Thiên Ân        & 2310190 & 100\% \\
+                                    & Nguyễn Huỳnh Thiên Hậu & 2310930 & 100\% \\
+                                    & Lại Nguyễn Hoàng Hưng & 2311327 & 100\% \\
+                                    & Bùi Ngọc Phúc          & 2312665 & 100\% \\
+                                    & Nguyễn Thái Sơn        & 2312968 & 100\% \\
+                                   
+   \bottomrule
+ \end{tabular}
+\end{center}
+\clearpage
+
+
+\tableofcontents
+\listoffigures
+\listoftables
+\lstlistoflistings{}
+
+\include{content/sub1.tex}
+\include{content/sub2.tex}
+\include{content/sub3.tex}
+
+
+% \bibliographystyle{plain}
+% \bibliography{refs/example.bib}
+% \nocite{*}
+
+\end{document}

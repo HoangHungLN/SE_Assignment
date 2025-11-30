@@ -1,0 +1,778 @@
+
+
+
+% ======================================================================
+% ======================= SUBMISSION 3 =================================
+\section{Deloyment view}
+
+\begin{figure}[H]
+  \centering
+  \adjincludegraphics[
+    width=0.7\linewidth,
+    trim={{0\width} {0\height} {0\width} {0\height}},
+    clip
+  ]{graphics/sub3/Deployment_view_v2.png}     % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{Deloyment view}   % ← thay caption của ảnh
+\end{figure}
+
+
+\section{Development/Implementation view}
+
+\begin{figure}[H]
+  \centering
+  \adjincludegraphics[
+    width=\linewidth,
+    trim={{0\width} {0\height} {0\width} {0\height}},
+    clip
+  ]{graphics/sub3/PkgDiagram.png}     % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{Development/Implementation view}   % ← thay caption của ảnh
+\end{figure}
+
+\section{Class diagram and  Method descriptions}
+\subsection{Class diagram}
+\begin{figure}[H]
+  \centering
+  \adjincludegraphics[
+    width=\linewidth,
+    trim={{0\width} {0\height} {0\width} {0\height}},
+    clip
+  ]{graphics/sub3/Class diagram.png}     % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{Class diagram}   % ← thay caption của ảnh
+\end{figure}
+
+\pagebreak
+
+\subsection{Method descriptions}
+
+
+% \begin{center}
+%     {\Large \textbf{Class – Attribute/Method – Mô tả}}
+% \end{center}
+
+\vspace{0.3cm}
+
+\setlength{\LTleft}{0pt}   % longtable sát lề trái
+\setlength{\LTright}{0pt}  % longtable sát lề phải
+
+% cột 1: 2.8cm (Class)
+% cột 2: 7.0cm (Attribute/Method)  -> RỘNG HƠN
+% cột 3: 6.0cm (Mô tả)
+\begin{longtable}{|P{3.2cm}|P{7.1cm}|P{5.5cm}|}
+\hline
+\textbf{Class} & \textbf{Attribute/Method} & \textbf{Mô tả} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Class} & \textbf{Attribute/Method} & \textbf{Mô tả} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+% ========== User ==========
+\multicolumn{3}{|c|}{\textbf{Session}} \\ \hline
+
+\multirow{15}{*}{Session}
+& - sessionID: string
+& Mã định danh buổi học. \\ \cline{2-3}
+
+& - group: Group
+& Nhóm học mà buổi học thuộc về. \\ \cline{2-3}
+
+& - tutor: Tutor
+& Tutor phụ trách buổi học. \\ \cline{2-3}
+
+& - subject: string
+& Môn học hoặc chủ đề của buổi học. \\ \cline{2-3}
+
+& - schedule: date
+& Ngày và giờ diễn ra buổi học. \\ \cline{2-3}
+
+& - duration: int
+& Thời lượng buổi học. \\ \cline{2-3}
+
+& - format: string
+& Hình thức học: \textit{"on site"} hoặc \textit{"off site"}. \\ \cline{2-3}
+
+& - status: string
+& Trạng thái buổi học (đang mở đăng ký, đã đóng đăng ký, đã kết thúc...). \\ \cline{2-3}
+
+& - location: string
+& Địa điểm diễn ra buổi học. \\ \cline{2-3}
+
+& - materials: List<Material>
+& Danh sách tài liệu chia sẻ trong buổi học. \\ \cline{2-3}
+
+& - evaluations: List<Evaluation>
+& Danh sách các đánh giá của tutor cho sinh viên. \\ \cline{2-3}
+
+& - feedback: List<Feedback>
+& Danh sách phản hồi của sinh viên. \\ \cline{2-3}
+
+& - attendanceList: Map<Student, bool>
+& Danh sách điểm danh: mỗi sinh viên kèm theo trạng thái có mặt. \\ \cline{2-3}
+
+& - participants: List<Student>
+& Danh sách sinh viên tham gia buổi học. \\ \cline{2-3}
+
+% ===== METHODS =====
+
+& + registerStudent(student: Student): void
+& Đăng ký sinh viên vào buổi học. \\ \cline{2-3}
+
+& + cancleRegistration(student: Student): void
+& Hủy đăng ký của một sinh viên. \\ \cline{2-3}
+
+& + updateInfo(subject, schedule, location, format, maxParticipant): void
+& Cập nhật thông tin buổi học. \\ \cline{2-3}
+
+& + addMaterial(material: Material): void
+& Thêm tài liệu mới cho buổi học. \\ \cline{2-3}
+
+& + markAttendance(student: Student, present: bool): void
+& Đánh dấu điểm danh cho sinh viên. \\ \cline{2-3}
+
+& + getAttendanceRate(): double
+& Tính và trả về tỉ lệ tham dự buổi học. \\ \cline{2-3}
+
+& + summarizeMinutes(): string
+& Tổng hợp nội dung buổi học dưới dạng văn bản. \\ \hline
+
+
+% ========== User ==========
+\multicolumn{3}{|c|}{\textbf{User}} \\ \hline
+\multirow{4}{*}{User}
+& + userID: string
+& Mã định danh của mỗi người dùng. \\ \cline{2-3}
+& + userName: string
+& Tên của người dùng. \\ \cline{2-3}
+& + email: string
+& Địa chỉ email của người dùng. \\ \cline{2-3}
+& + role: string
+& Vai trò của người dùng (student, tutor). \\ \cline{2-3}
+& + faculty: string
+& Khoa, bộ môn của người dùng. \\ \hline
+
+% ========== Student ==========
+\multicolumn{3}{|c|}{\textbf{Student}} \\ \hline
+\multirow{6}{*}{Student}
+& - studentID: string
+& Mã số sinh viên. \\ \cline{2-3}
+& - GPA: float
+& điểm GPA của sinh viên. \\ \hline
+
+% ========== Tutor ==========
+\multicolumn{3}{|c|}{\textbf{Tutor}} \\ \hline
+\multirow{7}{*}{Tutor}
+& - tutorID: string
+& Mã định danh của tutor. \\ \cline{2-3}
+& - major: string
+& Chuyên ngành giảng dạy chính của tutor. \\ \cline{2-3}
+& - degree: string
+& Bằng cấp cao nhất của tutor (Cử nhân, Thạc sĩ, Tiến sĩ, ...). \\ \hline
+
+% ========== Group ==========
+\multicolumn{3}{|c|}{\textbf{Group}} \\ \hline
+\multirow{16}{*}{Group}
+& - groupID: string
+& Mã định danh của nhóm \\ \cline{2-3}
+& - createStudent: Student
+& Sinh viên tạo nhóm \\ \cline{2-3}
+& - tutor: Tutor
+& Tutor của nhóm \\ \cline{2-3}
+& - subject: string
+& Môn học của nhóm \\ \cline{2-3}
+& - description: string
+& Mô tả về nhóm \\ \cline{2-3}
+& - maxMembers: int
+& Số lượng thành viên tối đa \\ \cline{2-3}
+& - currentMembers: int
+& Số lượng thành viên hiện tại \\ \cline{2-3}
+& - status: string
+& Trạng thái của nhóm \\ \cline{2-3}
+& - member: List<Student>
+& Danh sách các sinh viên trong nhóm \\ \cline{2-3}
+& - createdDate: date
+& Ngày tạo nhóm \\ \cline{2-3}
+& - sessions: List<Session>
+& Danh sách các buổi học của nhóm \\ \cline{2-3}
+& -expectedTutor: Tutor
+& Tutor được đề nghị nhận nhóm \\ \cline{2-3}
+& + addMember(student: Student): void
+& Nhận đối tượng Student, thêm sinh viên vào nhóm hiện tại. \\ \cline{2-3}
+& + removeMember(student: Student): void
+& Nhận đối tượng Student, xóa sinh viên khỏi nhóm hiện tại. \\ \cline{2-3}
+& + changeStatus(status: string): void
+& Nhận string thể hiện trạng thái mới, thay đổi trạng thái của nhóm hiện tại. \\ \cline{2-3}
+& + assignTutor(tutor: Tutor): void
+& Nhận đối tượng Tutor, giao nhóm hiện tại cho Tutor. \\ \cline{2-3}
+& + isFull(): bool
+& Kiểm tra nhóm đã đạt sĩ số tối đa hay chưa, trả về True nếu nhóm đầy, False nếu nhóm còn chỗ. \\ \hline
+
+% ========== Session ==========
+\multicolumn{3}{|c|}{\textbf{Session}} \\ \hline
+\multirow{20}{*}{Session}
+& - sessionID: string
+& Mã định danh của buổi học \\ \cline{2-3}
+& - group: Group
+& Nhóm của buổi học \\ \cline{2-3}
+& - tutor: Tutor
+& Tutor của buổi học \\ \cline{2-3}
+& - subject: string
+& Môn học \\ \cline{2-3}
+& - schedule: date
+& Lịch học \\ \cline{2-3}
+& - duration: int
+& Thời lượng buổi học \\ \cline{2-3}
+& - format: string
+& Hình thức ("on site"; "off site") \\ \cline{2-3}
+& - status: string
+& Trạng thái của buổi học \\ \cline{2-3}
+& - location: string
+& Địa điểm học \\ \cline{2-3}
+& - materials: List<Material>
+& Danh sách tài liệu \\ \cline{2-3}
+& - evaluations: List<Evaluation>
+& Danh sách đánh giá \\ \cline{2-3}
+& - feedback: List<Feedback>
+& Danh sách phản hồi \\ \cline{2-3}
+& - attendanceList: Map<Student, bool>
+& Danh sách điểm danh \\ \cline{2-3}
+& - paticipants: List<Student>
+& Danh sách người tham gia \\ \cline{2-3}
+& + registerStudent(student: Student): void
+& Nhận đối tượng Student, giúp sinh viên đăng ký buổi học mới. \\ \cline{2-3}
+& + cancleRegistration(student: Student): void
+& Nhận đối tượng Student, hủy đăng ký của sinh viên. \\ \cline{2-3}
+& + updateInfo(subject, schedule, location, format, maxParticipant): void
+& Nhận môn học subject, thời gian schedule, địa điểm location, hình thức học format (trực tiếp, trực tuyến, kết hợp), sĩ số tối đa maxParticipant, cập nhật các thông tin cho buổi học. \\ \cline{2-3}
+& + addMaterial(materials: Material): void
+& Nhận tài liệu cần thêm Material, thêm tài liệu cho buổi học. \\ \cline{2-3}
+& + markAttendance(student: Student, present: bool): void
+& Nhận đối tượng Student, trạng thái có mặt present, giúp sinh viên điểm danh (present == True tức là có mặt, ngược lại tức là vắng). \\ \cline{2-3}
+& + getAttendanceRate(): double
+& Trả về số thực biểu thị tỷ lệ phần trăm sinh viên có mặt. \\ \cline{2-3}
+& + sumarizeMinutes(): string
+& Tạo và trả về chuỗi tóm tắt biên bản buổi học. \\ \hline
+
+
+% ========== Material ==========
+\multicolumn{3}{|c|}{\textbf{Material}} \\ \hline
+\multirow{7}{*}{Material}
+& - materialID: string
+& Mã định danh của tài liệu \\ \cline{2-3}
+& - title: string
+& Tiêu đề tài liệu \\ \cline{2-3}
+& - description: string
+& Mô tả tài liệu \\ \cline{2-3}
+& - fileType: string
+& Loại file \\ \cline{2-3}
+& - filePath: string
+& Đường dẫn file \\ \cline{2-3}
+& - uploadDate: date
+& Ngày tải lên \\ \cline{2-3}
+& - owner: Tutor
+& Tutor sở hữu tài liệu \\ \cline{2-3}
+& - session: Session
+& Buổi học của tài liệu \\ \cline{2-3}
+& + upload(materialID, fileType, filePath): void
+& Nhận materialID, fileType, filePath, giúp tải tài liệu lên hệ thống (biên bản buổi học, tài liệu học tập). \\ \cline{2-3}
+& + delete(): bool
+& Xóa tập tin hiện tại khỏi hệ thống, trả về True nếu tập tin được xóa thành công, ngược lại trả về False. \\ \cline{2-3}
+& + download(): bool
+& Tải về tập tin hiện tại, trả về True nếu tập tin được tải về thành công, ngược lại trả về False. \\ \cline{2-3}
+& + view(): void
+& Hiển thị nội dung tập tin hiện tại. \\ \hline
+
+% ========== Evaluation ==========
+\multicolumn{3}{|c|}{\textbf{Evaluation}} \\ \hline
+\multirow{9}{*}{Evaluation}
+& - evaluationID: string
+& Mã định danh của đánh giá \\ \cline{2-3}
+& - tutorName: string
+& tên tutor thực hiện đánh giá \\ \cline{2-3}
+& - sessionID: strinh
+& Mã định danh của buổi học được đánh giá \\ \cline{2-3}
+& - evaluationDate: Date
+& Ngày đánh giá \\ \cline{2-3}
+& - detail: List<EvaluationDetail>
+& Danh sách đánh giá chi tiết của từng sinh viên\\ \cline{2-3}
+& + getDetails(): List<EvaluationDetail>
+& Lấy về danh sách đánh chi tiết của từng sinh viên. \\ \hline
+
+% ========== EvaluationDetail ==========
+\multicolumn{3}{|c|}{\textbf{Evaluation}} \\ \hline
+\multirow{9}{*}{Evaluation}
+& \# studentID: string
+& Mã định danh của sinh viên được đánh giá. \\ \cline{2-3}
+& \# studentName: string
+& tên sinh viên được đánh giá. \\ \cline{2-3}
+& \# passed: boolean
+& Đại diện cho việc sinh viên có hoàn thành buổi học hay không. \\ \cline{2-3}
+& \# comment: string
+& Lời đánh giá của tutor dành cho sinh viên đó.\\ \\ \hline
+
+% ========== Feedback ==========
+\multicolumn{3}{|c|}{\textbf{Feedback}} \\ \hline
+\multirow{13}{*}{Feedback}
+& - feedbackID: string
+& Mã định danh của phản hồi \\ \cline{2-3}
+& - session: Session
+& Buổi học được phản hồi \\ \cline{2-3}
+& - student: Student
+& Sinh viên gửi phản hồi \\ \cline{2-3}
+& - knowledge: bool
+& Đánh giá về kiến thức \\ \cline{2-3}
+& - attitude: bool
+& Đánh giá về thái độ \\ \cline{2-3}
+& - facilities: bool
+& Đánh giá về cơ sở vật chất \\ \cline{2-3}
+& - comments: string
+& Nhận xét \\ \cline{2-3}
+& - submittedDate: date
+& Ngày gửi phản hồi \\ \cline{2-3}
+& + calculateAverageAttitude(): double
+& Tính toán và trả về số thực biểu thị tỷ lệ phần trăm phản hồi có mục "Giảng viên nhiệt tình" được đánh dấu "Đạt". \\ \cline{2-3}
+& + calculateAverageFacilities(): double
+& Tính toán và trả về số thực biểu thị tỷ lệ phần trăm phản hồi có mục "Cơ sở vật chất tốt" được đánh dấu "Đạt". \\ \cline{2-3}
+& + calculateAverageKnowledge(): double
+& Tính toán và trả về số thực biểu thị tỷ lệ phần trăm phản hồi có mục "Nắm bắt được kiến thức" được đánh dấu "Đạt". \\ \cline{2-3}
+& + getFeedback(): void
+& Trả về phản hồi của sinh viên. \\ \cline{2-3}
+& +  editFeedback(knowledge: bool, attitude: bool, facilities: bool, comments: string): void
+& Nhận vào các tham số knowledge (True == Nắm bắt được kiến thức), attitude (True == Giảng viên nhiệt tình), facilities (True == Cơ sở vật chất tốt), string comments là phản hồi thêm nếu có. Chức năng là điều chỉnh phản hồi của sinh viên
+
+\end{longtable}
+
+
+\begin{longtable}{|P{3.2cm}|P{7.1cm}|P{5.5cm}|}
+\hline
+\textbf{Class} & \textbf{Attribute/Method} & \textbf{Mô tả} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Class} & \textbf{Attribute/Method} & \textbf{Mô tả} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+% ========== Controller ==========
+\multicolumn{3}{|c|}{\textbf{Controller}} \\ \hline
+\multirow{3}{*}{Controller}
+& \# controllerName: string
+& Tên của bộ điều khiển (ví dụ: 'SessionController') \\ \cline{2-3}
+& + validateRequest(): bool
+& Kiểm tra tính hợp lệ của yêu cầu từ người dùng và trả về bool (True/False)\\ \cline{2-3}
+& + processRequest(): void
+& Xử lý yêu cầu đã được xác thực \\ \hline
+
+% ========== SessionController ==========
+\multicolumn{3}{|c|}{\textbf{SessionController}} \\ \hline
+\multirow{2}{*}{\makecell{Session \\Controller}}
+& + joinSession(studentID: string, sessionID: int): bool
+& Nhận studentID và sessionID, thêm sinh viên vào buổi học và trả về True/False. \\ \cline{2-3}
+& + createSession(sessionData: SessionCreateData): Session
+& Nhận sessionData, tạo buổi học mới và trả về đối tượng Session. \\ \hline
+
+% ========== LearningController ==========
+\multicolumn{3}{|c|}{\textbf{LearningController}} \\ \hline
+\multirow{2}{*}{\makecell{Learning \\Controller}}
+& \# learningSection: string
+& Loại phần học tập (ví dụ: 'Material', 'Evaluate', 'Feedback') \\ \hline
+
+% ========== MaterialController ==========
+\multicolumn{3}{|c|}{\textbf{MaterialController}} \\ \hline
+\multirow{5}{*}{\makecell{Material \\Controller}}
+& + searchMaterialBySession(sessionID: string): List<Material>
+& Nhận vào sessionID, tìm tất cả tài liệu của buổi học và trả về danh sách Material. \\ \cline{2-3}
+& + searchMaterialByID(materialID: string): List<Material>
+& Nhận vào materialID, tìm tài liệu tương ứng và trả về danh sách Material \\ \cline{2-3}
+& + searchMaterialByTitle(title: string): List<Material>
+& Nhận vào title, tìm các tài liệu có tên phù hợp và trả về danh sách Material. \\ \cline{2-3}
+& + addMaterial(sessionID: string, material: Material): bool
+& Nhận sessionID và material, thêm tài liệu vào buổi học và trả về True/False. \\ \cline{2-3}
+& + deleteMaterial(sessionID: string, materialID: string): bool
+& Nhận sessionID và materialID, xoá tài liệu của buổi học và trả về True/False. \\ \hline
+
+
+% ========== EvaluateController ==========
+\multicolumn{3}{|c|}{\textbf{EvaluateController}} \\ \hline
+\multirow{2}{*}{\makecell{Evaluate \\Controller}}
+& + getEvaluationBySession(sessionId: string): List<EvaluationDetail>
+& Kiểm tra xem buổi học với sessionId được truyền vào đã có đánh giá chưa. Nếu có, trả về object Evaluation từ Database. \\ \cline{2-3}
+& + saveEvaluation(sessionID: string, details: List<EvaluationDetail>): bool
+& Cập nhật đáng giá mới của tutor và trả về kết quả thành công / thất bại. \\ \cline{2-3}
+& + searchEvaluation(key: map): List<Evaluation>
+& Nhận vào các khoá, tìm kiếm đánh giá theo tiêu chí và trả về danh sách đánh giá. \\ \hline
+
+% ========== FeedbackController ==========
+\multicolumn{3}{|c|}{\textbf{FeedbackController}} \\ \hline
+\multirow{5}{*}{\makecell{Feedback \\Controller}}
+& + submitFeedback(sessionID: string, studentID: string, feedback: Feedback): bool
+& Nhận sessionID, studentID và feedback; gửi phản hồi và trả về True/False. \\ \cline{2-3}
+& + getMyFeedback(sessionID: string, studentID: string): Feedback
+& Nhận sessionID và studentID; lấy phản hồi của sinh viên trong buổi học. \\ \cline{2-3}
+& + viewFeedbackBySession(sessionID: string): List<Feedback>
+& Nhận sessionID; xem tất cả phản hồi của buổi học. \\ \cline{2-3}
+& + viewFeedbackByTutor(tutorID: string): List<Feedback>
+& Nhận tutorID; xem các phản hồi liên quan đến tutor. \\ \cline{2-3}
+& + viewFeedbackByStudent(studentID: string): List<Feedback>
+& Nhận studentID; xem tất cả phản hồi của sinh viên. \\ \hline
+
+
+% ========== LoginController ==========
+\multicolumn{3}{|c|}{\textbf{LoginController}} \\ \hline
+\multirow{7}{*}{LoginController}
+& + handleSSOCallback(token: string): bool
+&  Nhận vào token và kiểm tra token trả về từ hệ thống SSO có hợp lệ không và gọi synsUserData(userID: string) để thêm User vào DB (nếu chưa có)  kết quả bool.\\ \cline{2-3}
+& - synsUserData(userID: string): void
+&  Nhận vào UserID và kiểm tra người dùng đã có trong DB chưa, nếu chưa có thì tạo đối tượng mới lưu vào DB dựa trên dữ liệu nhận được từ DATACORE, nếu đã có thì cập nhật lại dữ liệu của đối tượng. \\ \hline
+
+% ========== GroupController ==========
+\multicolumn{3}{|c|}{\textbf{GroupController}} \\ \hline
+\multirow{9}{*}{GroupController}
+& + studentCreateGroup(group: Group): bool
+&  Nhận thông tin cơ bản về group từ UI, tạo đối tượng Group và gọi storeGroup để lưu vào DB, trả về True nếu thành công\\ \cline{2-3}
+& + studentJoinGroup(groupID: string, student: Student): bool
+&  Nhận vào groupID và đối tượng student, thêm student vào group có ID tương ứng, True nếu thành công.\\ \cline{2-3}
+& + studentLeaveGroup(groupID: string, studentID: string): bool
+&  Nhận vào groupID và studentID, xóa student đó khỏi group có ID tương ứng, True nếu thành công. \\ \cline{2-3}
+& + coordinatorDeleteGroup(groupID: String): bool
+&  Nhận vào groupID, xóa group có ID tương ứng, True nếu thành công. \\ \cline{2-3}
+& + findTutors(subject: string): List<Tutor>
+&  Nhận vào tên môn học, tìm và trả về danh sách các tutor của môn học đó. \\ \cline{2-3}
+& + requestTutor(groupID: string, tutorID: string): bool
+&  Nhận vào groupID và tutorID, tạo yêu cầu tutor nhận nhóm có ID tương ứng và True nếu thành công.\\ \cline{2-3}
+& + tutorAcceptGroup(groupID: string): bool
+&  Nhận vào groupID, tutor thực hiện sẽ được thêm vào group tương ứng, và đặt lại trạng thái của group là "đã được hướng dẫn" True nếu thành công. \\ \cline{2-3}
+& + tutorRejectGroup(groupID: string): bool
+&  Nhận vào groupID, xóa group có ID tương ứng khỏi danh sách nhóm được yêu cầu của turor, và trả về True nếu thành công. \\ \cline{2-3}
+& + searchGroup(key: map): List<Group>
+&  Nhận vào giá trị khóa key và trả về danh sách các group tương ứng với khóa đó.\\ \hline
+
+\multicolumn{3}{|c|}{\textbf{HCMUT\_SSO}} \\ \hline
+\multirow{7}{*}{HCMUT\_SSO}
+& + getUserID(token: string): userID: string 
+&  Nhận vào giá trị token và trả về userID tương ứng của token đó\\ \cline{2-3}
+& + authenticateUser(username: string, password: string): token: string
+&  Nhận vào username và password lấy từ UI và xác thực người dùng từ dữ liệu trong datacore, nếu xác thực đúng thì trả về token.\\ \hline
+
+\multicolumn{3}{|c|}{\textbf{HCMUT\_DATACORE}} \\ \hline
+\multirow{7}{*}{\makecell{HCMUT\\ \_DATACORE} }
+& + getUserProfile(userID: string): User
+&  Nhận vào userID, một user được khởi tạo bên trong hàm với các thông tin lấy từ datacore và trả về đối tượng user đó.\\ \hline
+
+\multicolumn{3}{|c|}{\textbf{HCMUT\_LIBRARY}} \\ \hline
+\multirow{1}{*}{\makecell{HCMUT\\
+\_LIBRARY}}
+& + searchMaterial(query: string): List<Material> 
+&  Nhận vào giá trị query là từ khóa để truy vấn tài liệu, tìm và trả về danh sách các tài liệu tương ứng với từ khóa.\\ \cline{2-3}
+& + getMaterial(materialID: string): Material
+&  Nhận vào materialID, đối tượng material được tạo trong hàm với các thông tin lấy từ LIBRARY và trả về đối tượng vừa tạo.\\ \hline
+
+
+% ========== Database ==========
+\multicolumn{3}{|c|}{\textbf{Database}} \\ \hline
+\multirow{7}{*}{Database}
+& \# dataBaseType: string
+& Loại database (Login, Group, Session, Learning) \\ \cline{2-3}
+& \# isConnected: bool
+& Một biến boolen để kiểm tra xem đã kết nối với database chưa \\ \cline{2-3}
+& \# itemQuantity: int
+& Số lượng banr ghi lưu trong database \\ \cline{2-3}
+& + connect(): void
+&  Thiết lập kết nối đến database. \\ \cline{2-3}
+& + disconnect(): void
+&  Ngắt kết nối với database. \\ \cline{2-3}
+& + commit(): void
+&  Ghi lại những thay đổi. \\ \cline{2-3}
+& + rollback(): void
+&  Hoàn tác thay đổi. \\ \hline
+
+% ========== LoginDatabase ==========
+\multicolumn{3}{|c|}{\textbf{LoginDatabase}} \\ \hline
+\multirow{3}{*}{LoginDatabase}
+& + getUserByUserID(userID: string): User
+& Nhận giá trị userID, trả về một object User. \\ \cline{2-3}
+& + getUserByName(username: string): User
+& Nhận giá trị username, trả về một object User. \\ \cline{2-3}
+& + updataLastLogin(user: User): bool
+& Nhận giá trị là một đối tượng User, cập nhật thời điểm đăng nhập gần nhất và trả về bool (True/False). \\ \hline
+
+% ========== GroupDatabase ==========
+\multicolumn{3}{|c|}{\textbf{GroupDatabase}} \\ \hline
+\multirow{8}{*}{GroupDatabase}
+& + storeGroup(group: Group): bool
+& Nhận giá trị là một đối tượng Group, lưu nhóm mới và trả về bool (True/False). \\ \cline{2-3}
+& + getGroupByStatus(status: string): List<Group>
+& Nhận giá trị status, trả về danh sách các nhóm (List<Group>) theo trạng thái. \\ \cline{2-3}
+& + getGroupByTutor(tutorID: string): List<Group>
+& Nhận giá trị tutorID, trả về danh sách các nhóm (List<Group>) theo ID của tutor. \\ \cline{2-3}
+& + getGroupByStudent(studentID: string): List<Group>
+& Nhận giá trị studentID, trả về danh sách các nhóm (List<Group>) của Student. \\ \cline{2-3}
+& + getGroupBySubject(subject: string): List<Group>
+& Nhận giá trị subject, trả về danh sách các nhóm (List<Group>) theo môn học. \\ \cline{2-3}
+& + getGroupByDate(date: Date): List<Group>
+& Nhận giá trị date, trả về danh sách nhóm (List<Group>) theo ngày. \\ \cline{2-3}
+& + updateGroup(groupID: string, update: map): bool
+& Nhận giá trị groupID và map update, cập nhật nhóm và trả về bool (True/False). \\ \cline{2-3}
+& + deleteGroup(groupID: string): bool
+& Nhận giá trị groupID, xóa nhóm và trả về bool (True/False). \\ \hline
+
+% ========== SessionDatabase ==========
+\multicolumn{3}{|c|}{\textbf{SessionDatabase}} \\ \hline
+\multirow{10}{*}{SessionDatabase}
+& + storeSession(session: Session): bool
+& Nhận giá trị là một đối tượng Session, lưu buổi học và trả về bool (True/False). \\ \cline{2-3}
+& + getSessionsByTutor(tutorID: string): List<Session>
+& Nhận giá trị tutorID, trả về danh sách buổi học (List<Session>) theo tutorID. \\ \cline{2-3}
+& + getAvailableSessions(): List<Session>
+& Trả về danh sách các buổi học (List<Session>) có thể tham gia. \\ \cline{2-3}
+& + getSessionBySubject(subject: string): List<Session>
+& Nhận giá trị subject, trả về danh sách các buổi học (List<Session>) theo môn. \\ \cline{2-3}
+& + getSessionByDate(date: date): List<Session>
+& Nhận giá trị date, trả về danh sách các buổi học (List<Session>) theo ngày. \\ \cline{2-3}
+& + updateSessionAttendance\newline(sessionID: string, attendance: map): bool
+& Nhận giá trị sessionID và map attendance, cập nhật điểm danh và trả về bool (True/False). \\ \cline{2-3}
+& + getSessionParticipants(sessionID: string): List<User>
+& Nhận giá trị sessionID, trả về danh sách người tham dự (List<User>). \\ \cline{2-3}
+& + getSessionByGroup(groupID: string): List<Session>
+& Nhận giá trị groupID, trả về danh sách các lớp học (List<Session>) theo groupID. \\ \cline{2-3}
+& + updateSession(sessionID: string, updates: map): bool
+& Nhận giá trị sessionID và map updates, cập nhật thông tin buổi học và trả về bool (True/False). \\ \cline{2-3}
+& + deleteSession(sessionID: string): bool
+& Nhận giá trị sessionID, xóa buổi học và trả về bool (True/False). \\ \hline
+
+% ========== LearningDatabase ==========
+\multicolumn{3}{|c|}{\textbf{LearningDatabase}} \\ \hline
+\multirow{1}{*}{LearningDatabase}
+& \# learningSection: string
+& Loại learning database \\ \hline
+
+% ========== MaterialDatabase ==========
+\multicolumn{3}{|c|}{\textbf{MaterialDatabase}} \\ \hline
+\multirow{6}{*}{MaterialDatabase}
+& + storeMaterial(material: Material): bool
+& Nhận giá trị là một đối tượng Material, lưu tài liệu học tập và trả về bool (True/False). \\ \cline{2-3}
+& + getMaterialBySession(sessionID: string): List<Material>
+& Nhận giá trị sessionID, trả về danh sách tài liệu (List<Material>) theo ID buổi học. \\ \cline{2-3}
+& + getMaterialByID(materialID: string): List<Material>
+& Nhận giá trị materialID, trả về danh sách tài liệu (List<Material>) theo ID tài liệu. \\ \cline{2-3}
+& + getMaterialByTitle(title: string): List<Material>
+& Nhận giá trị title, trả về danh sách tài liệu (List<Material>) theo tên tài liệu. \\ \cline{2-3}
+& + updateMaterial(materialID: string, updates: map): bool
+& Nhận giá trị materialID và map updates, cập nhật tài liệu và trả về bool (True/False). \\ \cline{2-3}
+& + deleteMaterial(materialID: string): bool
+& Nhận giá trị materialID, xóa tài liệu và trả về bool (True/False). \\ \hline
+
+% ========== EvaluateDatabase ==========
+\multicolumn{3}{|c|}{\textbf{EvaluateDatabase}} \\ \hline
+\multirow{6}{*}{EvaluateDatabase}
+& + storeEvaluation(evaluation: Evaluation): bool
+& Lưu một bản ghi đánh giá mới hoặc cập nhật bản ghi cũ và trả về kết quả thành công hay thất bại.\\ \cline{2-3}
+& + getAllEvaluations(): List<Evaluation>
+& Trả về danh sách toàn bộ các đánh giá. \\ \cline{2-3}
+& + getEvaluationBySessionID(evaluationID: string): Evaluation
+& Nhận giá trị ID của bản đánh giá, trả về bài đánh giá của tutor cho buổi học đó. \\ \cline{2-3}
+& + updateEvaluation(evaluationID: string, updates: map): bool
+& Nhận giá trị evaluationID và map updates, cập nhật đánh giá và trả về bool (True/False). \\ \cline{2-3}
+& + getEvaluationByTutor(tutorName: string): List<Evaluation>
+& Nhận giá trị tên của tutor, trả về tất cả các bài đánh giá của tutor. \\ \cline{2-3}
+& + deleteEvaluation(evaluationID: string): bool
+& Nhận giá trị evaluationID, xóa đánh giá và trả về bool (True/False). \\ \hline
+
+% ========== FeedbackDatabase ==========
+\multicolumn{3}{|c|}{\textbf{FeedbackDatabase}} \\ \hline
+\multirow{6}{*}{FeedbackDatabase}
+& + storeFeedback (feedback: Feedback): bool
+& Nhận giá trị là một đối tượng Feedback, lưu phản hồi và trả về bool (True/False). \\ \cline{2-3}
+& + getFeedbackBySession(sessionID: string): List<Feedback>
+& Nhận giá trị sessionID, trả về danh sách phản hồi (List<Feedback>) theo buổi học. \\ \cline{2-3}
+& + getFeedbackByStudent(studentID: string): List<Feedback>
+& Nhận giá trị studentID, trả về danh sách phản hồi (List<Feedback>) theo sinh viên. \\ \cline{2-3}
+& + getFeedbackByTutor(tutorID: string): List<Feedback>
+& Nhận giá trị tutorID, trả về danh sách phản hồi (List<Feedback>) của Tutor. \\ \cline{2-3}
+& + updateFeedback(feedbackID: string, updates: map): bool
+& Nhận giá trị feedbackID và map updates, cập nhật phản hồi và trả về bool (True/False). \\ \cline{2-3}
+& + deleteFeedback(feedbackID: string): bool
+& Nhận giá trị feedbackID, xóa phản hồi và trả về bool (True/False). \\ \hline
+
+
+\end{longtable}
+
+
+
+\section{Testcase}
+
+% \geometry{left=2cm,right=2cm,top=1.8cm,bottom=2cm}
+
+\renewcommand{\arraystretch}{1.25}
+
+%==================== TESTCASE DK-01 ====================%
+\begin{longtable}{|p{4cm}|p{11cm}|}
+\hline
+\textbf{Test case ID} & DK-01 \\ \hline
+
+\textbf{ Description} &
+Kiểm tra khi sinh viên điền thông tin hợp lệ, hệ thống thêm nhóm thành công \\ \hline
+
+\textbf{Pre-conditions} &
+Người dùng đã đăng nhập thành công vào hệ thống \\ \hline
+
+\textbf{Steps} &
+\begin{enumerate}[leftmargin=*]
+\item Sinh viên chọn đăng ký nhóm.
+\item Hệ thống hiện bảng điền thông tin nhóm.
+\item Sinh viên chọn lĩnh vực/môn học cần hỗ trợ, đặt tiêu đề, điền mô tả nội dung cần hỗ trợ, chọn số lượng thành viên và chọn “Đăng ký”. 
+\end{enumerate} \\ \hline
+
+\textbf{Expected Result} &
+\begin{enumerate}[leftmargin=*]
+\item Hệ thống tạo một đối tượng là nhóm với các thông tin người dùng đã điền và đặt trạng thái đăng ký là đang chờ hướng dẫn.
+\item Hệ thống thêm nhóm vào kho danh sách các nhóm đang yêu cầu của lĩnh vực.
+\item Hệ thống thêm nhóm vào kho danh sách nhóm của sinh viên đăng ký.
+\item Hệ thống gửi thông báo xác nhận đăng ký thành công.
+\end{enumerate} \\ \hline
+
+\textbf{Actual Result} & \\ \hline
+\textbf{Status} & \\ \hline
+\end{longtable}
+
+
+%==================== TESTCASE DK-02 ====================%
+\begin{longtable}{|p{4cm}|p{11cm}|}
+\hline
+\textbf{Test case ID} & DK-02 \\ \hline
+
+\textbf{ Description} &
+Kiểm tra khi sinh viên huỷ yêu cầu trong lúc điền thông tin \\ \hline
+
+\textbf{Pre-conditions} &
+\begin{enumerate}
+    \item Hệ thống đang hiển thị bảng điền thông tin nhóm.
+\end{enumerate} \\ \hline
+
+\textbf{Steps} &
+\begin{enumerate}
+    \item Sinh viên chọn “Huỷ yêu cầu”.
+\end{enumerate} \\ \hline
+
+\textbf{Expected Result} &
+\begin{enumerate}
+    \item Hệ thống huỷ tác vụ và quay lại trang đăng ký nhóm.
+    \item Hệ thống thông báo đã huỷ yêu cầu.
+\end{enumerate} \\ \hline
+
+\textbf{Actual Result} & \\ \hline
+\textbf{Status} & \\ \hline
+\end{longtable}
+
+%==================== TESTCASE TG-01 ====================%
+\begin{longtable}{|p{4cm}|p{11cm}|}
+\hline
+\textbf{Test case ID} & TG-01 \\ \hline
+
+\textbf{ Description} &
+Kiểm tra khi Tutor nhận một yêu cầu hướng dẫn của nhóm sinh viên \\ \hline
+
+\textbf{Pre-conditions} &
+\begin{enumerate}
+    \item Có ít nhất một nhóm gửi yêu cầu hướng dẫn.
+\end{enumerate} \\ \hline
+
+\textbf{Steps} &
+\begin{enumerate}
+    \item Tutor chọn xem danh sách nhóm yêu cầu.
+    \item Hệ thống hiển thị danh sách các nhóm đang yêu cầu.
+    \item Tutor chọn xem thông tin chi tiết của một nhóm.
+    \item Tutor chọn “Chấp nhận”.
+\end{enumerate} \\ \hline
+
+\textbf{Expected Result} &
+\begin{enumerate}
+    \item Hệ thống cập nhật trạng thái nhóm thành “Đã chấp nhận”.
+    \item Hệ thống tạo thông báo chấp nhận gửi cho sinh viên.
+    \item Hệ thống hiển thị thông báo: “Xác nhận chấp nhận thành công”.
+\end{enumerate} \\ \hline
+
+\textbf{Actual Result} & \\ \hline
+\textbf{Status} & \\ \hline
+\end{longtable}
+
+%==================== TESTCASE TG-02 ====================%
+\begin{longtable}{|p{4cm}|p{11cm}|}
+\hline
+\textbf{Test case ID} & TG-02 \\ \hline
+
+\textbf{Description} &
+Kiểm tra khi Tutor từ chối một yêu cầu hướng dẫn của nhóm sinh viên \\ \hline
+
+\textbf{Pre-conditions} &
+\begin{enumerate}
+    \item Có ít nhất một nhóm gửi yêu cầu hướng dẫn.
+\end{enumerate} \\ \hline
+
+\textbf{Steps} &
+\begin{enumerate}
+    \item Tutor chọn xem danh sách nhóm yêu cầu.
+    \item Hệ thống hiển thị danh sách các nhóm đang yêu cầu.
+    \item Tutor chọn xem thông tin chi tiết của một nhóm.
+    \item Tutor chọn “Từ chối”.
+\end{enumerate} \\ \hline
+
+\textbf{Expected Result} &
+\begin{enumerate}
+    \item Hệ thống cập nhật trạng thái nhóm thành “Đã từ chối”.
+    \item Hệ thống tạo thông báo từ chối gửi cho sinh viên.
+    \item Hệ thống hiển thị thông báo: “Xác nhận từ chối thành công”.
+\end{enumerate} \\ \hline
+
+\textbf{Actual Result} & \\ \hline
+\textbf{Status} & \\ \hline
+\end{longtable}
+
+%==================== TESTCASE BH-01 ====================%
+\begin{longtable}{|p{4cm}|p{11cm}|}
+\hline
+\textbf{Test case ID} & BH-01 \\ \hline
+
+\textbf{ Description} &
+Kiểm tra khi Tutor đăng ký buổi dạy mới \\ \hline
+
+\textbf{Pre-conditions} &
+\begin{enumerate}
+    \item Tutor đã đăng nhập vào hệ thống.
+\end{enumerate} \\ \hline
+
+\textbf{Steps} &
+\begin{enumerate}
+    \item Tutor chọn chức năng “Đăng ký buổi dạy”.
+    \item Hệ thống hiển thị bảng điền thông tin buổi dạy.
+    \item Tutor nhập đầy đủ tất cả thông tin.
+    \item Tutor chọn “Đăng ký”.
+\end{enumerate} \\ \hline
+
+\textbf{Expected Result} &
+\begin{enumerate}
+    \item Hệ thống kiểm tra dữ liệu hợp lệ.
+    \item Hệ thống tạo một đối tượng buổi học và đặt trạng thái “có thể đăng ký”.
+    \item Hệ thống thêm buổi học vào danh sách buổi học của tutor.
+    \item Hệ thống thêm buổi học vào danh sách buổi học mở đăng ký.
+    \item Hệ thống gửi thông báo xác nhận đăng ký thành công.
+\end{enumerate} \\ \hline
+
+\textbf{Actual Result} & \\ \hline
+\textbf{Status} & \\ \hline
+\end{longtable}
+
