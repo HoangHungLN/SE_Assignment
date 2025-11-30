@@ -28,6 +28,72 @@
   \caption{Development/Implementation view}   % ← thay caption của ảnh
 \end{figure}
 
+\subsection{Package Diagram Descriptions}
+\noindent\textbf{Presentation Layer}
+
+\noindent\textbf{Authentication UI (gói giao diện xác thực)}  \\
+Hiển thị màn hình "Trang đăng nhập" , thu thập thông tin đăng nhập và chuyển cho tầng nghiệp vụ để gọi dịch vụ SSO.
+
+\noindent\textbf{Home page / Dashboard UI (gói giao diện trang chủ)}  \\
+Chịu trách nhiệm hiển thị trang chủ chứa các chức năng tương ứng với từng vai trò của người dùng .
+
+\noindent\textbf{GroupUI (gói giao diện nhóm)}  \\
+Chịu trách nhiệm hiển thị tất cả các giao diện liên quan đến việc lập nhóm, bao gồm:
+"Sinh viên đăng ký nhóm học" ,
+"Tutor tiếp nhận nhóm hướng dẫn" ,
+và các popup chi tiết như "Thông tin nhóm chi tiết", "Danh sách tutor phù hợp", "Thông tin tutor".
+
+\noindent\textbf{Schedule / Session UI (gói giao diện buổi học)}  \\
+Chịu trách nhiệm hiển thị giao diện cho toàn bộ chức năng liên quan đến các buổi học: tutor mở buổi học, sinh viên đăng ký, tutor quản lý buổi học,...
+
+\noindent\textbf{Report UI (gói giao diện báo cáo và phản hồi)}  \\
+Chịu trách nhiệm hiển thị giao diện cho các phòng ban khi xem báo cáo để quản lý và đánh giá chương trình.
+
+
+\noindent\textbf{Business Layer}
+
+\noindent\textbf{Authentication Service (gói dịch vụ xử lý đăng nhập)}  \\
+Xử lý nghiệp vụ liên quan đến đăng nhập và phân quyền người dùng.
+Auth Service nhận yêu cầu từ Authentication UI, gọi các adapter SSOAdapter, DataCoreAdapter ở Integration Layer để xác thực, sau đó trả về vai trò của người dùng cho Presentation Layer hiển thị.
+
+\noindent\textbf{Group Service (gói dịch vụ quản lý nhóm hướng dẫn)}  \\
+Xử lý nghiệp vụ liên quan đến việc đăng ký và quản lý nhóm như "Sinh viên đăng ký nhóm",
+"Tutor nhận nhóm", "Xem tutor phù hợp",...
+Đây cũng là nơi chứa logic của Group Controller trong các Sequence Diagram.
+
+\noindent\textbf{Session Register Service (gói dịch vụ quản lý đăng ký buổi học)}  \\
+Xử lý logic cho việc "Mở buổi học" của tutor, "Tham gia buổi học" của sinh viên và thông báo về lịch học.
+
+\noindent\textbf{Session Management Service (gói dịch vụ quản lý buổi học)}  \\
+Xử lý logic cho việc tutor điểm danh, đánh giá tiến độ, chia sẻ tài liệu và sinh viên phản hồi về buổi học.
+Việc chia sẻ tài liệu sẽ gọi đến Integration Layer để đồng bộ với HCMUT\_LIBRARY.
+
+\noindent\textbf{Report Service (gói dịch vụ báo cáo cho các phòng ban quản lý)}  \\
+Xử lý nghiệp vụ thống kê, đánh giá tình hình chương trình; chịu trách nhiệm cung cấp kết quả cho các báo cáo để các phòng ban xem.
+
+
+\noindent\textbf{Data Layer}
+
+\noindent\textbf{Entities (gói các thực thể)}  \\
+Chứa các lớp đối tượng (entity) được lưu trữ, đại diện cho các thực thể chính của hệ thống.
+
+\noindent\textbf{Data Service (gói các dịch vụ tương tác với thực thể)}  \\
+Chứa các phương thức để Business Layer thực hiện thao tác với dữ liệu như truy xuất, thêm mới, chỉnh sửa, xóa,...
+
+
+\noindent\textbf{Integration Layer}
+
+\noindent\textbf{SSO Adapter (gói logic giao tiếp với HCMUT\_SSO)}  \\
+Cung cấp phương thức để Business Layer gọi đến HCMUT\_SSO cho nhiệm vụ xác thực và phân quyền.
+
+\noindent\textbf{Data Core Adapter (gói logic giao tiếp với HCMUT\_DATACORE)}  \\
+Cung cấp các phương thức để Business Layer gọi đến HCMUT\_DATACORE cho việc đồng bộ dữ liệu cá nhân của sinh viên và tutor.
+
+\noindent\textbf{Library Adapter (gói logic giao tiếp với HCMUT\_LIBRARY)}  \\
+Cung cấp các phương thức tìm kiếm, chia sẻ và truy cập tài liệu từ HCMUT\_LIBRARY cho Business Layer.
+
+
+
 \section{Class diagram and  Method descriptions}
 \subsection{Class diagram}
 \begin{figure}[H]
