@@ -44,9 +44,9 @@
 \contentsline {subsubsection}{\numberline {4.3.4}Sinh viên tham gia buổi học:}{57}{subsubsection.4.3.4}%
 \contentsline {subsubsection}{\numberline {4.3.5}Sinh viên truy cập tài liệu:}{59}{subsubsection.4.3.5}%
 \contentsline {subsection}{\numberline {4.4}State-chart diagrams }{61}{subsection.4.4}%
-\contentsline {section}{\numberline {5}Deloyment view}{63}{section.5}%
-\contentsline {section}{\numberline {6}Development/Implementation view}{64}{section.6}%
-\contentsline {section}{\numberline {7}Class diagram and Method descriptions}{65}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Class diagram}{65}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Method descriptions}{66}{subsection.7.2}%
-\contentsline {section}{\numberline {8}Testcase}{85}{section.8}%
+\contentsline {section}{\numberline {5}Deloyment view}{64}{section.5}%
+\contentsline {section}{\numberline {6}Development/Implementation view}{65}{section.6}%
+\contentsline {section}{\numberline {7}Class diagram and Method descriptions}{66}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Class diagram}{66}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Method descriptions}{67}{subsection.7.2}%
+\contentsline {section}{\numberline {8}Testcase}{86}{section.8}%

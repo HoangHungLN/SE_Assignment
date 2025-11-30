@@ -627,13 +627,56 @@ Người dùng sau đó chọn một tài liệu cụ thể để truy cập, ng
 \end{figure}
 \pagebreak
 \textbf{Mô tả  state diagram của đối tượng buổi học} \\
-State chart mô tả toàn bộ vòng đời của một buổi học, từ khi được tạo ra cho đến khi hoàn thành. Buổi học bắt đầu ở trạng thái Khởi tạo, nơi tutor tạo buổi học, thiết lập các thông tin cơ bản như tiêu đề, thời gian, mô tả, số lượng sinh viên tối đa và có thể cập nhật lại các thông tin sau đó. \\
-Khi tutor mở đăng ký, buổi học chuyển sang trạng thái Mở đăng ký. Ở trạng thái này, buổi học được hiển thị công khai, cho phép sinh viên xem buổi học và đăng ký tham gia. Hệ thống theo dõi số lượng sinh viên tham gia và phản ánh lên giao diện. Sinh viên có thể đăng ký hoặc hủy đăng ký trong thời gian này. \\
-Khi đủ số lượng, hết hạn đăng ký hoặc tutor chủ động đóng, buổi học chuyển sang Đóng đăng ký. Lúc này, hệ thống khóa form đăng ký và cập nhật danh sách sinh viên chính thức.\\
 
-Khi tutor đóng đăng ký, hết thời hạn đăng ký hoặc đủ số lượng sinh viên, buổi học chuyển sang Đóng đăng ký. Tại đây hệ thống khóa đăng ký tham gia nhưng vẫn cho phép sinh viên hủy đăng ký. Gần thời gian bắt đầu, hệ thống chốt danh sách và chuyển buổi học sang trạng thái Chờ diễn ra, nơi hệ thống gửi thông báo cho các sinh viên đã đăng ký.\\
-Đến thời điểm bắt đầu, tutor khởi động buổi học và trạng thái chuyển sang Đang diễn ra, bao gồm điểm danh và theo dõi quá trình học. Khi buổi học kết thúc, hệ thống chuyển sang Hoàn thành, nơi ghi nhận phản hồi, đánh giá và lưu trữ kết quả. Trong toàn bộ quá trình, tutor có thể hủy buổi học ở nhiều thời điểm, dẫn đến trạng thái kết thúc sớm.\\
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|p{12cm}|}
+        \hline
+        \centering \textbf{State} & \multicolumn{1}{c|}{\textbf{Mô tả}} \\
+        \hline
+        \textbf{Khởi tạo} & Buổi học được tạo và xuất hiện trong danh sách của tutor. Tutor có thể kiểm tra và cập nhật các thông tin của buổi học trước khi mở đăng ký. \\
+        \hline
+        \textbf{Mở đăng ký} & Buổi học được hiển thị công khai cho sinh viên; hệ thống cho phép sinh viên đăng ký / hủy đăng ký và liên tục cập nhật số lượng sinh viên đã đăng ký. \\
+        \hline
+        \textbf{Đóng đăng ký} & Buổi học vẫn được hiển thị công khai. Hệ thống ngừng nhận đăng ký mới (chỉ cho phép hủy). Số lượng sinh viên vẫn được cập nhật khi có sinh viên hủy tham gia và khi rời state thì danh sách sinh viên được khóa. \\
+        \hline
+        \textbf{Chờ diễn ra} & Danh sách sinh viên đã được chốt, buổi học chờ tới giờ bắt đầu. Hệ thống gửi thông báo nhắc nhở đến các sinh viên đã đăng ký. \\
+        \hline
+        \textbf{Đang diễn ra} & Buổi học đang được tổ chức. Hệ thống hỗ trợ điểm danh sinh viên tham gia và khi kết thúc state sẽ lưu lại kết quả điểm danh. \\
+        \hline
+        \textbf{Hoàn thành} & Buổi học đã kết thúc. Hệ thống cho phép ghi nhận phản hồi, đánh giá từ tutor/sinh viên và lưu trữ toàn bộ thông tin liên quan đến buổi học. \\
+        \hline
+    \end{tabular}
+\end{table}
 
-
+\begin{table}[h]
+    \centering
+    % Sử dụng p{...} cho cả 2 cột để văn bản tự xuống dòng khi quá dài
+    \begin{tabular}{|l|p{7.6cm}|}
+        \hline
+        \centering \textbf{Stimulus} & \multicolumn{1}{c|}{\textbf{Mô tả}} \\
+        \hline
+        \textbf{Tutor chỉnh sửa thông tin} & Tutor thay đổi hoặc cập nhật lại các thông tin chi tiết của buổi học \\
+        \hline
+        \textbf{Tutor mở đăng ký} & Tutor quyết định mở form đăng ký cho buổi học \\
+        \hline
+        \textbf{Sinh viên tham gia / Hủy tham gia} & Một sinh viên mới đăng ký tham gia buổi học hoặc hủy đăng ký \\
+        \hline
+        \textbf{Tutor đóng đăng ký} & Trong trạng thái “khởi tạo”, Tutor chủ động đóng form đăng ký. \\
+        \hline
+        \textbf{Tutor đóng đăng ký / Đủ số lượng} & Trong trạng thái “Mở đăng ký”, tutor thực hiện thao tác đóng đăng ký. \\
+        \hline
+        \textbf{Sinh viên hủy tham gia} & Khi đã ở trạng thái “Đóng đăng ký”, một sinh viên hủy tham gia \\
+        \hline
+        \textbf{Gần đến thời gian bắt đầu} & Thời điểm bắt đầu buổi học sắp đến \\
+        \hline
+        \textbf{Đến hạn bắt đầu} & Đến đúng giờ bắt đầu buổi học \\
+        \hline
+        \textbf{Hết thời gian buổi học} & Thời lượng buổi học kết thúc \\
+        \hline
+        \textbf{Tutor hủy} & Tutor quyết định hủy buổi học tại bất kỳ giai đoạn nào (Khởi tạo, Mở/Đóng đăng ký, Chờ diễn ra, Đang diễn ra) \\
+        \hline
+    \end{tabular}
+\end{table}
 
 

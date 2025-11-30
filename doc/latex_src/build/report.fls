@@ -849,6 +849,7 @@ INPUT ./graphics/sub2/state_diagram.png
 INPUT ./graphics/sub2/state_diagram.png
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/hcmut.png
+INPUT ./graphics/hcmut.png
 INPUT ./content/sub3.tex
 OUTPUT build/content/sub3.aux
 INPUT ./content/sub3.tex
