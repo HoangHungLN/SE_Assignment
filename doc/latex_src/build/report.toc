@@ -34,7 +34,7 @@
 \contentsline {subsection}{\numberline {4.2}Sequence diagrams}{42}{subsection.4.2}%
 \contentsline {subsubsection}{\numberline {4.2.1}Sinh viên đăng ký nhóm:}{42}{subsubsection.4.2.1}%
 \contentsline {subsubsection}{\numberline {4.2.2}Tutor chấp nhận/từ chối nhóm:}{44}{subsubsection.4.2.2}%
-\contentsline {subsubsection}{\numberline {4.2.3}Tutor mở buổi học:}{46}{subsubsection.4.2.3}%
+\contentsline {subsubsection}{\numberline {4.2.3}Tutor mở đăng ký dạy:}{46}{subsubsection.4.2.3}%
 \contentsline {subsubsection}{\numberline {4.2.4}Sinh viên tham gia buổi học:}{48}{subsubsection.4.2.4}%
 \contentsline {subsubsection}{\numberline {4.2.5}Sinh viên truy cập tài liệu:}{50}{subsubsection.4.2.5}%
 \contentsline {subsection}{\numberline {4.3}Activity diagrams}{52}{subsection.4.3}%

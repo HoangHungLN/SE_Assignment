@@ -444,23 +444,22 @@ Sau khi xem xét, Tutor có hai lựa chọn:
 \end{itemize}
 
 \pagebreak
-\subsubsection{Tutor mở buổi học:}
+\subsubsection{Tutor mở đăng ký dạy:}
 \begin{figure}[H]
   \centering
   \adjincludegraphics[
     width=\linewidth,
     trim={{0\width} {0\height} {0\width} {0\height}},
     clip
-  ]{graphics/sub2/Sequence/Seq_tutordangkyday.png} % ← thay bằng đường dẫn thực tế của ảnh
-  \caption{Sequence diagram: Tutor mở buổi học}   % ← thay caption của ảnh
+  ]{graphics/sub2/Sequence/Seq_tutordangkyday_v2.png} % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{Sequence diagram: Tutor đăng ký dạy}   % ← thay caption của ảnh
 \end{figure}
 
 \pagebreak
-\textbf{Mô tả sequence diagram: Tutor mở buổi học} \\
-Diagram gồm bốn lifelines: Actor là Tutor; Boundary là SystemInterface (SI) chịu trách nhiệm tiếp nhận thao tác từ tutor và hiển thị giao diện; Control là GroupController (GC) điều khiển toàn bộ logic khi tạo nhóm dạy; cuối cùng là Entity-GroupDatabase (GD) đảm nhiệm việc lưu trữ dữ liệu nhóm vào cơ sở dữ liệu.\\
-Khi Tutor chọn chức năng “Đăng ký dạy”, SI nhận tín hiệu và hiển thị bảng cho tutor nhập thông tin. Nếu tutor nhấn “Đăng ký”, SI tiếp nhận dữ liệu và gửi thông tin sang GC, yêu cầu tạo một nhóm mới. GC tạo đối tượng nhóm dựa trên dữ liệu do tutor cung cấp, đặt trạng thái nhóm là “Có thể đăng ký”, sau đó yêu cầu GD thêm nhóm này vào danh sách nhóm trong cơ sở dữ liệu.\\
-GD tiếp nhận yêu cầu lưu. Nếu xảy ra lỗi làm nhóm không được thêm vào danh sách, GD phản hồi về GC, GC gửi tín hiệu cho SI, và SI thông báo cho tutor rằng đăng ký dạy không thành công. Ngược lại, nếu việc lưu thành công, GC phản hồi ngược về SI và SI hiển thị thông báo đăng ký dạy thành công cho tutor.\\
-Trong trường hợp tutor đang nhập thông tin nhưng chọn “Đặt lại”, SI sẽ nhận yêu cầu hủy thao tác và kết thúc quy trình mà không tạo nhóm.\\
+\textbf{Mô tả sequence diagram: Tutor đăng ký dạy} \\
+Diagram gồm bốn lifelines: Actor là Tutor; Boundary là SystemInterface (SI) chịu trách nhiệm tiếp nhận thao tác từ tutor và hiển thị giao diện; Control là SessionController (SC) điều khiển toàn bộ logic khi tạo buổi học (buổi dạy); cuối cùng là Entity SessionDatabase (SD) đảm nhiệm việc lưu trữ dữ liệu buổi học vào cơ sở dữ liệu.\\
+Khi Tutor chọn chức năng “Đăng ký dạy”, SI nhận tín hiệu và hiển thị bảng cho tutor nhập thông tin. Nếu tutor nhấn "Lưu buổi học", SI tiếp nhận dữ liệu và gửi thông tin sang SC, yêu cầu tạo một buổi học mới. SC tạo đối tượng buổi học dựa trên dữ liệu do tutor cung cấp, đặt trạng thái buổi học là “Có thể đăng ki”, sau đó yêu cầu SD thêm buổi học này vào danh sách nhóm trong cơ sở dữ liệu.\\
+SD tiếp nhận yêu cầu lưu. Nếu xảy ra lỗi làm buổi học không được thêm vào danh sách, SD phản hồi về SC, SC gửi tín hiệu cho SI, và SI thông báo cho tutor rằng đăng ký dạy không thành công. Ngược lại, nếu việc lưu thành công, GC phản hồi ngược về SI và SI hiển thị thông báo đăng ký dạy thành công cho tutor.\\
 
 
 \subsubsection{Sinh viên tham gia buổi học:}
