@@ -9,28 +9,26 @@
 \contentsline {figure}{\numberline {2.8}{\ignorespaces Use-case Tổ chức buổi học}}{24}{figure.caption.16}%
 \contentsline {figure}{\numberline {2.9}{\ignorespaces Use-case Đăng ký buổi học}}{26}{figure.caption.17}%
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Giao diện trang chủ và đăng nhập.}}{31}{figure.caption.18}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Các giao diện của chức năng đăng ký nhóm.}}{32}{figure.caption.19}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Các bước thao tác trong quá trình đăng ký nhóm học.}}{32}{figure.caption.20}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Thông tin của giảng viên.}}{33}{figure.caption.21}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Đăng ký mở buổi học}}{34}{figure.caption.22}%
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Chỉnh sửa thông tin buổi học}}{34}{figure.caption.22}%
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Giao diện chính quản lý buổi học}}{34}{figure.caption.22}%
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Giao diện quản lý buổi học của giảng viên.}}{34}{figure.caption.22}%
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Giao diện chức năng đăng ký buổi học của sinh viên.}}{35}{figure.caption.23}%
-\contentsline {figure}{\numberline {4.14}{\ignorespaces Phòng CTSV xem báo cáo.}}{40}{figure.caption.28}%
-\contentsline {figure}{\numberline {4.15}{\ignorespaces Khoa/Bộ môn xem báo cáo.}}{41}{figure.caption.29}%
-\contentsline {figure}{\numberline {4.16}{\ignorespaces Chức năng xem báo cáo và phản hồi của PĐT \& Điều phối viên.}}{42}{figure.caption.30}%
-\contentsline {figure}{\numberline {4.17}{\ignorespaces Sequence diagram: Sinh viên đăng ký nhóm}}{43}{figure.caption.31}%
-\contentsline {figure}{\numberline {4.18}{\ignorespaces Sequence diagram: Tutor chấp nhận/từ chối nhóm}}{45}{figure.caption.32}%
-\contentsline {figure}{\numberline {4.19}{\ignorespaces Sequence diagram: Tutor đăng ký dạy}}{47}{figure.caption.33}%
-\contentsline {figure}{\numberline {4.20}{\ignorespaces Sequence diagram: Sinh viên tham gia buổi học}}{49}{figure.caption.34}%
-\contentsline {figure}{\numberline {4.21}{\ignorespaces Sequence diagram: Truy cập tài liệu}}{51}{figure.caption.35}%
-\contentsline {figure}{\numberline {4.22}{\ignorespaces Activity diagram: Sinh viên đăng ký nhóm}}{53}{figure.caption.36}%
-\contentsline {figure}{\numberline {4.23}{\ignorespaces Activity diagram: Tutor chấp nhận/từ chối nhóm yêu cầu}}{55}{figure.caption.37}%
-\contentsline {figure}{\numberline {4.24}{\ignorespaces Activity diagram: Tutor đăng ký dạy}}{57}{figure.caption.38}%
-\contentsline {figure}{\numberline {4.25}{\ignorespaces Activity diagram: Sinh viên tham gia buổi học}}{58}{figure.caption.39}%
-\contentsline {figure}{\numberline {4.26}{\ignorespaces Activity diagram: Truy cập tài liệu}}{60}{figure.caption.40}%
-\contentsline {figure}{\numberline {4.27}{\ignorespaces State diagram của đối tượng buổi học}}{62}{figure.caption.42}%
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Deloyment view}}{65}{figure.caption.45}%
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Development/Implementation view}}{66}{figure.caption.46}%
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Class diagram}}{69}{figure.caption.47}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Các giao diện của chức năng đăng ký nhóm.}}{33}{figure.caption.19}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Đăng ký mở buổi học}}{36}{figure.caption.23}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Chỉnh sửa thông tin buổi học}}{36}{figure.caption.23}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Giao diện chính quản lý buổi học}}{36}{figure.caption.23}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Giao diện quản lý buổi học của giảng viên.}}{36}{figure.caption.23}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Giao diện chức năng đăng ký buổi học của sinh viên.}}{37}{figure.caption.24}%
+\contentsline {figure}{\numberline {4.15}{\ignorespaces Phòng CTSV xem báo cáo.}}{42}{figure.caption.29}%
+\contentsline {figure}{\numberline {4.16}{\ignorespaces Khoa/Bộ môn xem báo cáo.}}{43}{figure.caption.30}%
+\contentsline {figure}{\numberline {4.17}{\ignorespaces Chức năng xem báo cáo và phản hồi của PĐT \& Điều phối viên.}}{44}{figure.caption.31}%
+\contentsline {figure}{\numberline {4.18}{\ignorespaces Sequence diagram: Sinh viên đăng ký nhóm}}{45}{figure.caption.32}%
+\contentsline {figure}{\numberline {4.19}{\ignorespaces Sequence diagram: Tutor chấp nhận/từ chối nhóm}}{47}{figure.caption.33}%
+\contentsline {figure}{\numberline {4.20}{\ignorespaces Sequence diagram: Tutor đăng ký dạy}}{49}{figure.caption.34}%
+\contentsline {figure}{\numberline {4.21}{\ignorespaces Sequence diagram: Sinh viên tham gia buổi học}}{51}{figure.caption.35}%
+\contentsline {figure}{\numberline {4.22}{\ignorespaces Sequence diagram: Truy cập tài liệu}}{53}{figure.caption.36}%
+\contentsline {figure}{\numberline {4.23}{\ignorespaces Activity diagram: Sinh viên đăng ký nhóm}}{55}{figure.caption.37}%
+\contentsline {figure}{\numberline {4.24}{\ignorespaces Activity diagram: Tutor chấp nhận/từ chối nhóm yêu cầu}}{57}{figure.caption.38}%
+\contentsline {figure}{\numberline {4.25}{\ignorespaces Activity diagram: Tutor đăng ký dạy}}{59}{figure.caption.39}%
+\contentsline {figure}{\numberline {4.26}{\ignorespaces Activity diagram: Sinh viên tham gia buổi học}}{60}{figure.caption.40}%
+\contentsline {figure}{\numberline {4.27}{\ignorespaces Activity diagram: Truy cập tài liệu}}{62}{figure.caption.41}%
+\contentsline {figure}{\numberline {4.28}{\ignorespaces State diagram của đối tượng buổi học}}{64}{figure.caption.43}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Deloyment view}}{67}{figure.caption.46}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Development/Implementation view}}{68}{figure.caption.47}%
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Class diagram}}{71}{figure.caption.48}%
