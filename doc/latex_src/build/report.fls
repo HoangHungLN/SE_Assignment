@@ -544,11 +544,11 @@ INPUT ./graphics/sub1/uc_login.png
 INPUT ./graphics/sub1/uc_login.png
 INPUT ./graphics/sub1/uc_login.png
 INPUT ./graphics/sub1/uc_login.png
-INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc.png
-INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc.png
-INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc.png
-INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc.png
-INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc.png
+INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc_v2.png
+INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc_v2.png
+INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc_v2.png
+INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc_v2.png
+INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc_v2.png
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/sub1/uc_dang_ky_buoi_hoc.png
 INPUT ./graphics/sub1/uc_dang_ky_buoi_hoc.png
@@ -572,10 +572,10 @@ INPUT ./graphics/hcmut.png
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/hcmut.png
-INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc.png
-INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc.png
-INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc.png
-INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc.png
+INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc_v2.png
+INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc_v2.png
+INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc_v2.png
+INPUT ./graphics/sub1/uc_to_chuc_buoi_hoc_v2.png
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/sub1/uc_dang_ky_buoi_hoc.png
@@ -624,23 +624,22 @@ INPUT ./graphics/sub2/UI_mockup/Group/1tutor_teachingRegister.png
 INPUT ./graphics/sub2/UI_mockup/Group/1tutor_teachingRegister.png
 INPUT ./graphics/sub2/UI_mockup/Group/1tutor_teachingRegister.png
 INPUT ./graphics/hcmut.png
+INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_GrDetail_v2.png
+INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_GrDetail_v2.png
+INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_GrDetail_v2.png
+INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_GrDetail_v2.png
+INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_GrDetail_v2.png
+INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_NewReg.png
+INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_NewReg.png
+INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_NewReg.png
+INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_NewReg.png
+INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_NewReg.png
+INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_TutorList.png
+INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_TutorList.png
+INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_TutorList.png
+INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_TutorList.png
+INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_TutorList.png
 INPUT ./graphics/hcmut.png
-INPUT ./graphics/hcmut.png
-INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_GrDetail_v2.png
-INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_GrDetail_v2.png
-INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_GrDetail_v2.png
-INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_GrDetail_v2.png
-INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_GrDetail_v2.png
-INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_NewReg.png
-INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_NewReg.png
-INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_NewReg.png
-INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_NewReg.png
-INPUT ./graphics/sub2/UI_mockup/Group/2SV_DKGroup_NewReg.png
-INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_TutorList.png
-INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_TutorList.png
-INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_TutorList.png
-INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_TutorList.png
-INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_TutorList.png
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_TutorInfor.png
 INPUT ./graphics/sub2/UI_mockup/Group/3SV_DKGroup_TutorInfor.png
@@ -878,11 +877,11 @@ INPUT ./graphics/sub3/PkgDiagram.png
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/hcmut.png
-INPUT ./graphics/sub3/Class diagram.png
-INPUT ./graphics/sub3/Class diagram.png
-INPUT ./graphics/sub3/Class diagram.png
-INPUT ./graphics/sub3/Class diagram.png
-INPUT ./graphics/sub3/Class diagram.png
+INPUT ./graphics/sub3/Class diagram_v2.png
+INPUT ./graphics/sub3/Class diagram_v2.png
+INPUT ./graphics/sub3/Class diagram_v2.png
+INPUT ./graphics/sub3/Class diagram_v2.png
+INPUT ./graphics/sub3/Class diagram_v2.png
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/hcmut.png
 INPUT ./graphics/hcmut.png

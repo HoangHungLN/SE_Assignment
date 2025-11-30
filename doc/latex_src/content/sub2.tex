@@ -23,7 +23,7 @@
     \caption{Trang chủ admin}
   \end{subfigure}
 
-  \vspace{0.6em} % khoảng cách giữa hàng trên và hàng dưới
+  % \vspace{0.6em} % khoảng cách giữa hàng trên và hàng dưới
 
   % Hai ảnh hàng dưới
   \begin{subfigure}[b]{0.48\textwidth}
@@ -44,7 +44,7 @@
 
 % ===== Nhóm 1: 2 ảnh =====
 \subsubsection{Sinh viên đăng ký nhóm và tutor nhận/từ chối yêu cầu hướng dẫn}
-\begin{figure}[H]
+\begin{figure}[htbp]
   \centering
   \begin{subfigure}[b]{0.6\textwidth}
     \centering
@@ -378,19 +378,34 @@
 \end{figure}
 \pagebreak
 \textbf{Mô tả sequence diagram: Sinh viên đăng ký nhóm mới} \\
-Diagram gồm 4 lifelines bao gồm Actor là Sinh viên, Boundary là SystemInterface (SI)  
-đóng gói lại hệ thống và cung cấp phương thức cho người dùng tương tác, với bộ phận Control 
-điều khiển logic cho quá trình đăng ký nhóm là GroupController (GC), cuối cùng là hệ thống 
-dữ liệu Entity là GroupDatabase (GD) chịu trách nhiệm lưu trữ dữ liệu của các nhóm được tạo.  \\
-Khi Sinh viên nhấn nút đăng ký nhóm trên giao diện, SI sẽ nhận tín hiệu và hiển thị bảng để
-sinh viên điền thông tin. Trường hợp đầu tiên, sinh viên nhấn gửi thông tin, SI sẽ nhận thông 
-tin đó và yêu cầu GC tạo một đối tượng là nhóm với các thuộc tính được người dùng điền vào và 
-đặt trạng thái cho nhóm vừa tạo là “đang chờ hướng dẫn” sau đó yêu cầu lưu nhóm vừa tạo vào GB. 
-GB nhận yêu cầu và thực hiện lưu nhóm vừa tạo vào cơ sở dữ liệu, nếu xảy ra vấn đề dẫn đến không lưu được, 
-GB sẽ phản hồi lại thông tin cho GC, GC báo cho SI, và SI hiển thị cho người dùng biết là tạo nhóm 
-không thành công. Trường hợp thứ hai là khi Sinh viên đang điền thông tin mà bấm hủy thì SI sẽ nhận 
-yêu cầu hủy và chấm dứt hành động. 
+\begin{itemize}
+    \item Diagram có bốn lifelines:
+    \begin{itemize}
+        \item Actor: Sinh viên, người thao tác đăng ký nhóm.
+        \item Boundary SystemInterface (SI): giao diện và điểm tiếp nhận thao tác.
+        \item Control GroupController (GC): xử lý logic cho quá trình đăng ký nhóm.
+        \item Entity GroupDatabase (GD): lưu trữ dữ liệu nhóm.
+    \end{itemize}
 
+    \item Khi sinh viên nhấn nút đăng ký nhóm, SI nhận tín hiệu và hiển thị bảng để nhập thông tin.
+
+    \item Trường hợp sinh viên gửi thông tin:
+    \begin{itemize}
+        \item SI gửi dữ liệu sang GC để yêu cầu tạo nhóm mới.
+        \item GC tạo đối tượng nhóm với thuộc tính do sinh viên nhập, đặt trạng thái “đang chờ hướng dẫn”.
+        \item GC yêu cầu GD lưu nhóm vào cơ sở dữ liệu.
+        \item GD lưu dữ liệu:
+        \begin{itemize}
+            \item Nếu lỗi, GD phản hồi cho GC; GC báo lại SI; SI hiển thị thông báo tạo nhóm không thành công.
+            \item Nếu lưu thành công, GC báo lại SI để hiển thị thông báo tạo nhóm thành công.
+        \end{itemize}
+    \end{itemize}
+
+    \item Trường hợp sinh viên nhấn hủy:
+    \begin{itemize}
+        \item SI nhận yêu cầu và kết thúc thao tác mà không gửi dữ liệu sang GC.
+    \end{itemize}
+\end{itemize}
 
 \pagebreak
 \subsubsection{Tutor chấp nhận/từ chối nhóm:}
@@ -453,10 +468,25 @@ Sau khi xem xét, Tutor có hai lựa chọn:
 
 \pagebreak
 \textbf{Mô tả sequence diagram: Tutor đăng ký dạy} \\
-Diagram gồm bốn lifelines: Actor là Tutor; Boundary là SystemInterface (SI) chịu trách nhiệm tiếp nhận thao tác từ tutor và hiển thị giao diện; Control là SessionController (SC) điều khiển toàn bộ logic khi tạo buổi học (buổi dạy); cuối cùng là Entity SessionDatabase (SD) đảm nhiệm việc lưu trữ dữ liệu buổi học vào cơ sở dữ liệu.\\
-Khi Tutor chọn chức năng “Đăng ký dạy”, SI nhận tín hiệu và hiển thị bảng cho tutor nhập thông tin. Nếu tutor nhấn "Lưu buổi học", SI tiếp nhận dữ liệu và gửi thông tin sang SC, yêu cầu tạo một buổi học mới. SC tạo đối tượng buổi học dựa trên dữ liệu do tutor cung cấp, đặt trạng thái buổi học là “Có thể đăng ki”, sau đó yêu cầu SD thêm buổi học này vào danh sách nhóm trong cơ sở dữ liệu.\\
-SD tiếp nhận yêu cầu lưu. Nếu xảy ra lỗi làm buổi học không được thêm vào danh sách, SD phản hồi về SC, SC gửi tín hiệu cho SI, và SI thông báo cho tutor rằng đăng ký dạy không thành công. Ngược lại, nếu việc lưu thành công, GC phản hồi ngược về SI và SI hiển thị thông báo đăng ký dạy thành công cho tutor.\\
+\begin{itemize}
+    \item Diagram gồm bốn lifelines:
+    \begin{itemize}
+        \item Actor: Tutor, người thao tác đăng ký buổi dạy.
+        \item Boundary SystemInterface (SI): tiếp nhận thao tác và hiển thị giao diện.
+        \item Control SessionController (SC): xử lý toàn bộ logic tạo buổi học.
+        \item Entity SessionDatabase (SD): lưu trữ dữ liệu buổi học.
+    \end{itemize}
 
+    \item Khi tutor chọn “Đăng ký dạy”, SI hiển thị bảng nhập thông tin.
+    \item Khi tutor nhấn “Lưu buổi học”, SI gửi dữ liệu sang SC để yêu cầu tạo buổi học mới.
+    \item SC tạo đối tượng buổi học, đặt trạng thái “Có thể đăng ký”, và yêu cầu SD lưu vào cơ sở dữ liệu.
+
+    \item SD xử lý yêu cầu lưu:
+    \begin{itemize}
+        \item Nếu lỗi, SD phản hồi cho SC; SC báo về SI; SI thông báo đăng ký dạy không thành công.
+        \item Nếu lưu thành công, SD phản hồi cho SC; SC gửi lại SI; SI hiển thị thông báo đăng ký dạy thành công.
+    \end{itemize}
+\end{itemize}
 
 \subsubsection{Sinh viên tham gia buổi học:}
 \begin{figure}[H]
@@ -471,10 +501,27 @@ SD tiếp nhận yêu cầu lưu. Nếu xảy ra lỗi làm buổi học không 
 
 \pagebreak
 \textbf{Mô tả sequence diagram: Sinh viên đăng ký tham gia buổi học} \\
-Sequence diagram gồm 4 lifelines: Actor Sinh viên, người trực tiếp thao tác nhận buổi học trên giao diện. Boundary  SystemInterface (SI) chịu trách nhiệm hiển thị giao diện và cung cấp các chức năng cho sinh viên tương tác. Control  SessionController (SC) đảm nhiệm xử lý logic nghiệp vụ liên quan đến việc lấy danh sách buổi học và đăng ký tham gia. Entity  SessionDatabase (SD) thực hiện truy xuất và lưu trữ dữ liệu thông tin buổi học và thông tin đăng ký của sinh viên. \\
-Sau khi sinh viên đăng nhập vào hệ thống, SI thực hiện hiển thị danh sách các buổi học. Khi sinh viên truy cập trang “Đăng ký học”, SI gửi yêu cầu đến SC để lấy danh sách các buổi học mà sinh viên có thể tham gia. SC tiếp tục yêu cầu SD truy xuất dữ liệu tất cả các buổi học hiện có. Sau khi nhận được dữ liệu phản hồi từ SD, SC xử lý thông tin và trả kết quả về cho SI. Tùy vào trạng thái buổi học thì SC sẽ gửi cho SI các thông báo tương ứng đồng thời SI cũng hiển thị danh sách buổi học và các nút tương ứng. \\
-Khi sinh viên nhấn nút “tham gia” thì SI gửi yêu cầu đăng kí đến SC để SC tiến hành kiểm tra thông tin các buổi học từ SD. Tùy theo tình trạng mà SC xử lý (trùng lịch, đăng kí thành công) thì sẽ hiển thị thông báo tương ứng ở SI và nếu đăng kí thành công thì SD sẽ lưu thông tin vào hệ thống. \\
+\begin{itemize}
+    \item Sequence diagram gồm bốn lifelines:
+    \begin{itemize}
+        \item Actor Sinh viên: người trực tiếp thao tác nhận buổi học.
+        \item Boundary SystemInterface (SI): hiển thị giao diện và cung cấp chức năng tương tác.
+        \item Control SessionController (SC): xử lý nghiệp vụ lấy danh sách và đăng ký buổi học.
+        \item Entity SessionDatabase (SD): truy xuất và lưu trữ dữ liệu buổi học và đăng ký.
+    \end{itemize}
 
+    \item Sau khi sinh viên đăng nhập, SI hiển thị danh sách buổi học.
+    \item Khi sinh viên truy cập trang “Đăng ký học”, SI gửi yêu cầu đến SC để lấy danh sách các buổi học khả dụng.
+    \item SC yêu cầu SD truy xuất dữ liệu tất cả buổi học, nhận phản hồi, xử lý thông tin và trả kết quả về SI.
+    \item Dựa vào trạng thái từng buổi học, SC gửi thông báo phù hợp để SI hiển thị danh sách và các nút thao tác tương ứng.
+    
+    \item Khi sinh viên nhấn “Tham gia”, SI gửi yêu cầu đăng ký tới SC.
+    \item SC kiểm tra dữ liệu buổi học từ SD và xử lý theo tình trạng:
+    \begin{itemize}
+        \item Trùng lịch: SC báo lỗi để SI hiển thị thông báo.
+        \item Đăng ký thành công: SC báo thành công và SD lưu thông tin đăng ký.
+    \end{itemize}
+\end{itemize}
 
 
 \subsubsection{Sinh viên truy cập tài liệu:}
@@ -490,9 +537,19 @@ Khi sinh viên nhấn nút “tham gia” thì SI gửi yêu cầu đăng kí đ
 
 \pagebreak
 \textbf{Mô tả sequence diagram: Sinh viên truy cập tài liệu} \\
-Sequence diagram “Truy cập tài liệu” mô tả chi tiết cách các thành phần trong hệ thống khi người dùng thực hiện truy cập tài liệu. Đầu tiên, User gửi yêu cầu truy cập bằng cách chọn chức năng “Truy cập tài liệu” trên giao diện. SystemInterface (SI) tiếp nhận và chuyển tiếp yêu cầu lấy danh sách tài liệu cho LearningController (LC). LC truy vấn LearningDatabase (DB), nhận về danh sách tài liệu rồi trả lại cho SI. Nếu danh sách không rỗng, SI hiển thị cho người dùng; nếu rỗng, hệ thống chỉ đơn giản thông báo danh sách trống. \\
-Khi người dùng chọn một tài liệu cụ thể cùng chế độ thao tác (xem hoặc tải xuống), SI gửi yêu cầu mở tài liệu đến LC. LC tiếp tục truy vấn DB để lấy thông tin meta của tài liệu, bao gồm tồn tại và quyền truy cập. Nếu tài liệu khả dụng, với chế độ View, LC yêu cầu DB stream nội dung và chuyển luồng dữ liệu ngược lại cho người dùng xem trực tiếp. Với chế độ Download, LC lấy thông tin cho phép tải file và kích hoạt tiến trình tải xuống trên SI. Song song đó, LC ghi nhận log truy cập (user, tài liệu, thời điểm) xuống DB ở dạng bất đồng bộ. Ngược lại, nếu tài liệu không khả dụng, LC báo truy cập thất bại để SI hiển thị thông báo lỗi “Tài liệu không tồn tại” cho người dùng.\\ 
-
+\begin{itemize}
+    \item Người dùng chọn chức năng “Truy cập tài liệu”. SystemInterface (SI) nhận và chuyển yêu cầu đến LearningController (LC).
+    \item LC truy vấn LearningDatabase (DB) để lấy danh sách tài liệu, trả về cho SI. SI hiển thị danh sách nếu không rỗng, ngược lại thông báo danh sách trống.
+    \item Khi người dùng chọn một tài liệu và chế độ thao tác (xem hoặc tải xuống), SI gửi yêu cầu mở tài liệu đến LC.
+    \item LC truy vấn DB để lấy thông tin meta, gồm tồn tại và quyền truy cập của tài liệu.
+    \item Nếu tài liệu khả dụng:
+    \begin{itemize}
+        \item Với chế độ View: LC yêu cầu DB stream nội dung và trả luồng dữ liệu để người dùng xem trực tiếp.
+        \item Với chế độ Download: LC lấy thông tin cho phép tải và kích hoạt quá trình tải xuống trên SI.
+    \end{itemize}
+    \item LC đồng thời ghi log truy cập (user, tài liệu, thời điểm) xuống DB theo cơ chế bất đồng bộ.
+    \item Nếu tài liệu không khả dụng: LC báo lỗi để SI hiển thị thông báo “Tài liệu không tồn tại”.
+\end{itemize}
 
 
 % =======================Activity diagrams===========================
@@ -509,9 +566,25 @@ Khi người dùng chọn một tài liệu cụ thể cùng chế độ thao t�
   \caption{Activity diagram: Sinh viên đăng ký nhóm}   % ← thay caption của ảnh
 \end{figure}
 
-
+\pagebreak
 \textbf{Mô tả Activity diagram: Sinh viên đăng ký nhóm} \\
-Diagram mô tả các hành động mà sinh viên và hệ thống thực hiện trong quá trình Sinh viên đăng ký nhóm mới. Để đăng ký nhóm, sinh viên sẽ chọn nút “Đăng ký nhóm” sau đó sinh viên điền thông tin, nếu đổi ý thông tin có thể nhấn “Hủy” và kết thúc hành động, hoặc nếu sinh viên quyết định sẽ tạo nhóm thì sẽ nhấn “Gửi. Sau khi hệ thống nhận được thông tin, hệ thống sẽ kiểm tra nếu thông tin, nếu thông tin không đầy đủ, hệ thống sẽ yêu cầu sinh viên điền lại. Nếu thông tin đã đầy đủ, hệ thống thực hiện hành động và tạo ra đối tượng là “Nhóm” rồi đặt trạng thái cho nhóm vừa tạo là “Đang chờ hướng dẫn”. Sau khi tạo đối tượng “Nhóm”, hệ thống tiếp tục lưu vào danh sách nhóm trong cơ sở dữ liệu. Lưu dữ liệu xong nếu thành công hoặc không thành công hệ thống đề thông báo cho người dùng tùy trường hợp rồi kết thúc hành động.
+\begin{itemize}
+    \item Diagram mô tả các bước sinh viên và hệ thống thực hiện khi đăng ký nhóm mới.
+    \item Sinh viên nhấn nút “Đăng ký nhóm” và nhập thông tin nhóm.
+    \item Nếu sinh viên đổi ý và nhấn “Hủy”, hệ thống dừng quy trình và không xử lý thêm.
+    \item Nếu sinh viên nhấn “Gửi”, hệ thống nhận dữ liệu và kiểm tra tính đầy đủ:
+    \begin{itemize}
+        \item Nếu thông tin thiếu, hệ thống yêu cầu sinh viên nhập lại.
+        \item Nếu thông tin đầy đủ, hệ thống tạo đối tượng “Nhóm” và đặt trạng thái “Đang chờ hướng dẫn”.
+    \end{itemize}
+    \item Hệ thống lưu nhóm vừa tạo vào cơ sở dữ liệu.
+    \item Sau khi lưu:
+    \begin{itemize}
+        \item Nếu lưu thất bại, hệ thống thông báo lỗi cho sinh viên.
+        \item Nếu lưu thành công, hệ thống thông báo tạo nhóm thành công.
+    \end{itemize}
+    \item Quy trình kết thúc.
+\end{itemize}
 
 \subsubsection{Tutor chấp nhận/từ chối nhóm yêu cầu:}
 \begin{figure}[H]
@@ -566,11 +639,13 @@ Sau khi mọi hành động được hoàn tất, quy trình sẽ kết thúc.
   \caption{Activity diagram: Tutor đăng ký dạy}   % ← thay caption của ảnh
 \end{figure}
 
-\textbf{Mô tả Activity diagram: Tutor đăng ký dạy} \\
-Tutor chọn chức năng “Đăng ký dạy” và nhập thông tin buổi dạy. Nếu muốn gửi yêu cầu, tutor nhấn “Lưu buổi học”. \\
-Hệ thống nhận thông tin và kiểm tra. Nếu thông tin chưa đầy đủ, hệ thống yêu cầu tutor điền lại. Nếu hợp lệ, hệ thống tạo đối tượng "Buổi học" (cũng là đối tượng "buổi dạy" đối với tutor), đặt trạng thái “Có thể đăng ký”, rồi lưu vào danh sách buổi học có thể đăng ký và danh sách buổi dạy của tutor. \\
-Cuối cùng, hệ thống thông báo kết quả tùy theo việc lưu dữ liệu thành công hoặc thất bại, rồi kết thúc quy trình. \\
+\textbf{Mô tả Activity diagram: Tutor đăng ký dạy} 
 
+\begin{itemize}
+    \item Tutor chọn chức năng “Đăng ký dạy”, nhập thông tin buổi dạy và nhấn “Lưu buổi học” nếu muốn gửi yêu cầu.
+    \item Hệ thống kiểm tra dữ liệu. Nếu thiếu, hệ thống yêu cầu nhập lại. Nếu hợp lệ, hệ thống tạo đối tượng “Buổi học”, đặt trạng thái “Có thể đăng ký”, và lưu vào danh sách buổi học khả dụng cùng danh sách buổi dạy của tutor.
+    \item Hệ thống thông báo kết quả tùy theo việc lưu dữ liệu thành công hoặc thất bại và kết thúc quy trình.
+\end{itemize}
 
 \pagebreak
 \subsubsection{Sinh viên tham gia buổi học:}
@@ -584,11 +659,13 @@ Cuối cùng, hệ thống thông báo kết quả tùy theo việc lưu dữ li
   \caption{Activity diagram: Sinh viên tham gia buổi học}   % ← thay caption của ảnh
 \end{figure}
 
+\pagebreak
 \textbf{Mô tả Activity diagram: Sinh viên tham gia buổi học} \\
 
-Activity diagram mô tả chuỗi hoạt động giữa sinh viên và hệ thống trong quá trình sinh viên xem danh sách và đăng ký một buổi học. Ban đầu, sinh viên truy cập vào trang đăng ký học. Hệ thống tiếp nhận yêu cầu và tiến hành truy vấn cơ sở dữ liệu để lấy thông tin các buổi học hiện có, sau đó trả kết quả về cho giao diện để hiển thị theo từng trạng thái như: buổi học đã đăng ký, buổi học chưa đăng ký hoặc buổi học bị trùng lịch.\\
-Khi đã xem danh sách, sinh viên có thể lựa chọn một buổi học để đăng ký. Nếu không chọn buổi học nào, tiến trình kết thúc ngay tại giao diện. Trường hợp sinh viên chọn buổi học để đăng ký, hệ thống sẽ gửi yêu cầu kiểm tra thông tin đăng ký. Nếu bị trùng lịch với buổi đăng kí trước đó thì hệ thống sẽ xử lý và trả về “không thể đăng kí do trùng lịch”, sau đó giao diện hiển thị lỗi và kết thúc hành động. Ngược lại nếu không trùng lịch thì hệ thống gửi yêu cầu đăng ký vào hệ cơ sở dữ liệu, sau khi lưu thành công, hệ thống phải hồi lại và giao diện cập nhập trạng thái buổi học và gửi thông báo “Đăng ký thành công” cho sinh viên. \\
-
+\begin{itemize}
+  \item Activity diagram mô tả chuỗi hoạt động giữa sinh viên và hệ thống trong quá trình sinh viên xem danh sách và đăng ký một buổi học. Ban đầu, sinh viên truy cập vào trang đăng ký học. Hệ thống tiếp nhận yêu cầu và tiến hành truy vấn cơ sở dữ liệu để lấy thông tin các buổi học hiện có, sau đó trả kết quả về cho giao diện để hiển thị theo từng trạng thái như: buổi học đã đăng ký, buổi học chưa đăng ký hoặc buổi học bị trùng lịch.
+  \item Khi đã xem danh sách, sinh viên có thể lựa chọn một buổi học để đăng ký. Nếu không chọn buổi học nào, tiến trình kết thúc ngay tại giao diện. Trường hợp sinh viên chọn buổi học để đăng ký, hệ thống sẽ gửi yêu cầu kiểm tra thông tin đăng ký. Nếu bị trùng lịch với buổi đăng kí trước đó thì hệ thống sẽ xử lý và trả về “không thể đăng kí do trùng lịch”, sau đó giao diện hiển thị lỗi và kết thúc hành động. Ngược lại nếu không trùng lịch thì hệ thống gửi yêu cầu đăng ký vào hệ cơ sở dữ liệu, sau khi lưu thành công, hệ thống phải hồi lại và giao diện cập nhập trạng thái buổi học và gửi thông báo “Đăng ký thành công” cho sinh viên. 
+\end{itemize}
 
 \pagebreak
 \subsubsection{Sinh viên truy cập tài liệu:}
@@ -603,9 +680,12 @@ Khi đã xem danh sách, sinh viên có thể lựa chọn một buổi học đ
 \end{figure}
 
 \pagebreak
-\textbf{Mô tả Activity diagram: Truy cập tài liệu} \\
-Activity diagram mô tả quy trình người dùng truy cập và xem tài liệu trong hệ thống. Quy trình bắt đầu khi người dùng chọn chức năng “Xem danh sách tài liệu”. Hệ thống tiếp nhận yêu cầu và thực hiện bước lấy danh sách tài liệu từ kho dữ liệu. Tại đây, hệ thống kiểm tra xem danh sách có trống hay không. Nếu không có tài liệu, hệ thống hiển thị thông báo danh sách rỗng và kết thúc quy trình. Nếu có dữ liệu, hệ thống hiển thị danh sách tài liệu cho người dùng.\\
-Người dùng sau đó chọn một tài liệu cụ thể để truy cập, người dùng chọn xem hoặc tải tài liệu. Yêu cầu này được gửi đến hệ thống, hệ thống tiến hành kiểm tra tính khả dụng của tài liệu. Trong trường hợp tài liệu không khả dụng (ví dụ: bị xóa, hết quyền truy cập, lỗi lưu trữ), hệ thống hiển thị thông báo lỗi “Tài liệu không khả dụng” và kết thúc tiến trình. Nếu tài liệu khả dụng, hệ thống cho phép người dùng tiếp tục. Nếu người dùng chọn xem, hệ thống thực hiện stream tài liệu và hiển thị nội dung. Nếu người dùng chọn tải xuống, hệ thống kích hoạt chức năng tải file về thiết bị. Sau khi hoàn tất việc xem hoặc tải, hệ thống tiến hành bước cuối cùng là ghi nhận lại lịch sử truy cập, bao gồm thông tin về loại thao tác và thời điểm truy cập.\\
+\textbf{Mô tả Activity diagram: Truy cập tài liệu} 
+
+\begin{itemize}
+  \item Activity diagram mô tả quy trình người dùng truy cập và xem tài liệu trong hệ thống. Quy trình bắt đầu khi người dùng chọn chức năng “Xem danh sách tài liệu”. Hệ thống tiếp nhận yêu cầu và thực hiện bước lấy danh sách tài liệu từ kho dữ liệu. Tại đây, hệ thống kiểm tra xem danh sách có trống hay không. Nếu không có tài liệu, hệ thống hiển thị thông báo danh sách rỗng và kết thúc quy trình. Nếu có dữ liệu, hệ thống hiển thị danh sách tài liệu cho người dùng.
+  \item Người dùng sau đó chọn một tài liệu cụ thể để truy cập, người dùng chọn xem hoặc tải tài liệu. Yêu cầu này được gửi đến hệ thống, hệ thống tiến hành kiểm tra tính khả dụng của tài liệu. Trong trường hợp tài liệu không khả dụng (ví dụ: bị xóa, hết quyền truy cập, lỗi lưu trữ), hệ thống hiển thị thông báo lỗi “Tài liệu không khả dụng” và kết thúc tiến trình. Nếu tài liệu khả dụng, hệ thống cho phép người dùng tiếp tục. Nếu người dùng chọn xem, hệ thống thực hiện stream tài liệu và hiển thị nội dung. Nếu người dùng chọn tải xuống, hệ thống kích hoạt chức năng tải file về thiết bị. Sau khi hoàn tất việc xem hoặc tải, hệ thống tiến hành bước cuối cùng là ghi nhận lại lịch sử truy cập, bao gồm thông tin về loại thao tác và thời điểm truy cập.
+\end{itemize}
 
 % =======================State-chart diagrams===========================
 \pagebreak
