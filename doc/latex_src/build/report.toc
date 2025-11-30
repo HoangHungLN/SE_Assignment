@@ -40,7 +40,7 @@
 \contentsline {subsection}{\numberline {4.3}Activity diagrams}{52}{subsection.4.3}%
 \contentsline {subsubsection}{\numberline {4.3.1}Sinh viên đăng ký nhóm:}{52}{subsubsection.4.3.1}%
 \contentsline {subsubsection}{\numberline {4.3.2}Tutor chấp nhận/từ chối nhóm yêu cầu:}{54}{subsubsection.4.3.2}%
-\contentsline {subsubsection}{\numberline {4.3.3}Tutor mở buổi học:}{56}{subsubsection.4.3.3}%
+\contentsline {subsubsection}{\numberline {4.3.3}Tutor đăng ký dạy:}{56}{subsubsection.4.3.3}%
 \contentsline {subsubsection}{\numberline {4.3.4}Sinh viên tham gia buổi học:}{57}{subsubsection.4.3.4}%
 \contentsline {subsubsection}{\numberline {4.3.5}Sinh viên truy cập tài liệu:}{59}{subsubsection.4.3.5}%
 \contentsline {subsection}{\numberline {4.4}State-chart diagrams }{61}{subsection.4.4}%
