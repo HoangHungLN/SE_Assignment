@@ -554,20 +554,20 @@ Sau khi mọi hành động được hoàn tất, quy trình sẽ kết thúc.
 
 
 
-\subsubsection{Tutor mở buổi học:}
+\subsubsection{Tutor đăng ký dạy:}
 \begin{figure}[H]
   \centering
   \adjincludegraphics[
     width=\linewidth,
     trim={{0\width} {0\height} {0\width} {0\height}},
     clip
-  ]{graphics/sub2/activity/Ac_tutordangkyday.png} % ← thay bằng đường dẫn thực tế của ảnh
-  \caption{Activity diagram: Tutor mở buổi học}   % ← thay caption của ảnh
+  ]{graphics/sub2/activity/Ac_tutordangkyday_v2.png} % ← thay bằng đường dẫn thực tế của ảnh
+  \caption{Activity diagram: Tutor đăng ký dạy}   % ← thay caption của ảnh
 \end{figure}
 
-\textbf{Mô tả Activity diagram: Tutor đăng ký buổi dạy mới} \\
-Tutor chọn chức năng “Đăng ký dạy” và nhập thông tin buổi dạy. Nếu muốn chỉnh lại dữ liệu, tutor có thể nhấn “Đặt lại” để quay về bước nhập thông tin. Nếu muốn gửi yêu cầu, tutor nhấn “Đăng ký”. \\
-Hệ thống nhận thông tin và kiểm tra. Nếu thông tin chưa đầy đủ, hệ thống yêu cầu tutor điền lại. Nếu hợp lệ, hệ thống tạo đối tượng “Nhóm”, đặt trạng thái “Có thể đăng ký”, rồi lưu nhóm vào danh sách nhóm có thể đăng ký và danh sách nhóm của tutor. \\
+\textbf{Mô tả Activity diagram: Tutor đăng ký dạy} \\
+Tutor chọn chức năng “Đăng ký dạy” và nhập thông tin buổi dạy. Nếu muốn gửi yêu cầu, tutor nhấn “Lưu buổi học”. \\
+Hệ thống nhận thông tin và kiểm tra. Nếu thông tin chưa đầy đủ, hệ thống yêu cầu tutor điền lại. Nếu hợp lệ, hệ thống tạo đối tượng "Buổi học" (cũng là đối tượng "buổi dạy" đối với tutor), đặt trạng thái “Có thể đăng ký”, rồi lưu vào danh sách buổi học có thể đăng ký và danh sách buổi dạy của tutor. \\
 Cuối cùng, hệ thống thông báo kết quả tùy theo việc lưu dữ liệu thành công hoặc thất bại, rồi kết thúc quy trình. \\
 
 
