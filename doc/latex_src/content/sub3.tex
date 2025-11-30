@@ -75,76 +75,6 @@
 \endlastfoot
 
 % ========== User ==========
-\multicolumn{3}{|c|}{\textbf{Session}} \\ \hline
-
-\multirow{15}{*}{Session}
-& - sessionID: string
-& Mã định danh buổi học. \\ \cline{2-3}
-
-& - group: Group
-& Nhóm học mà buổi học thuộc về. \\ \cline{2-3}
-
-& - tutor: Tutor
-& Tutor phụ trách buổi học. \\ \cline{2-3}
-
-& - subject: string
-& Môn học hoặc chủ đề của buổi học. \\ \cline{2-3}
-
-& - schedule: date
-& Ngày và giờ diễn ra buổi học. \\ \cline{2-3}
-
-& - duration: int
-& Thời lượng buổi học. \\ \cline{2-3}
-
-& - format: string
-& Hình thức học: \textit{"on site"} hoặc \textit{"off site"}. \\ \cline{2-3}
-
-& - status: string
-& Trạng thái buổi học (đang mở đăng ký, đã đóng đăng ký, đã kết thúc...). \\ \cline{2-3}
-
-& - location: string
-& Địa điểm diễn ra buổi học. \\ \cline{2-3}
-
-& - materials: List<Material>
-& Danh sách tài liệu chia sẻ trong buổi học. \\ \cline{2-3}
-
-& - evaluations: List<Evaluation>
-& Danh sách các đánh giá của tutor cho sinh viên. \\ \cline{2-3}
-
-& - feedback: List<Feedback>
-& Danh sách phản hồi của sinh viên. \\ \cline{2-3}
-
-& - attendanceList: Map<Student, bool>
-& Danh sách điểm danh: mỗi sinh viên kèm theo trạng thái có mặt. \\ \cline{2-3}
-
-& - participants: List<Student>
-& Danh sách sinh viên tham gia buổi học. \\ \cline{2-3}
-
-% ===== METHODS =====
-
-& + registerStudent(student: Student): void
-& Đăng ký sinh viên vào buổi học. \\ \cline{2-3}
-
-& + cancleRegistration(student: Student): void
-& Hủy đăng ký của một sinh viên. \\ \cline{2-3}
-
-& + updateInfo(subject, schedule, location, format, maxParticipant): void
-& Cập nhật thông tin buổi học. \\ \cline{2-3}
-
-& + addMaterial(material: Material): void
-& Thêm tài liệu mới cho buổi học. \\ \cline{2-3}
-
-& + markAttendance(student: Student, present: bool): void
-& Đánh dấu điểm danh cho sinh viên. \\ \cline{2-3}
-
-& + getAttendanceRate(): double
-& Tính và trả về tỉ lệ tham dự buổi học. \\ \cline{2-3}
-
-& + summarizeMinutes(): string
-& Tổng hợp nội dung buổi học dưới dạng văn bản. \\ \hline
-
-
-% ========== User ==========
 \multicolumn{3}{|c|}{\textbf{User}} \\ \hline
 \multirow{4}{*}{User}
 & + userID: string
@@ -160,11 +90,11 @@
 
 % ========== Student ==========
 \multicolumn{3}{|c|}{\textbf{Student}} \\ \hline
-\multirow{6}{*}{Student}
+\multirow{1}{*}{Student}
 & - studentID: string
 & Mã số sinh viên. \\ \cline{2-3}
 & - GPA: float
-& điểm GPA của sinh viên. \\ \hline
+& Điểm GPA của sinh viên. \\ \hline
 
 % ========== Tutor ==========
 \multicolumn{3}{|c|}{\textbf{Tutor}} \\ \hline
@@ -178,7 +108,7 @@
 
 % ========== Group ==========
 \multicolumn{3}{|c|}{\textbf{Group}} \\ \hline
-\multirow{16}{*}{Group}
+\multirow{1}{*}{Group}
 & - groupID: string
 & Mã định danh của nhóm \\ \cline{2-3}
 & - createStudent: Student
@@ -216,7 +146,7 @@
 
 % ========== Session ==========
 \multicolumn{3}{|c|}{\textbf{Session}} \\ \hline
-\multirow{20}{*}{Session}
+\multirow{4}{*}{Session}
 & - sessionID: string
 & Mã định danh của buổi học \\ \cline{2-3}
 & - group: Group
@@ -369,7 +299,7 @@
 
 % ========== Controller ==========
 \multicolumn{3}{|c|}{\textbf{Controller}} \\ \hline
-\multirow{3}{*}{Controller}
+\multirow{1}{*}{Controller}
 & \# controllerName: string
 & Tên của bộ điều khiển (ví dụ: 'SessionController') \\ \cline{2-3}
 & + validateRequest(): bool
@@ -379,11 +309,32 @@
 
 % ========== SessionController ==========
 \multicolumn{3}{|c|}{\textbf{SessionController}} \\ \hline
-\multirow{2}{*}{\makecell{Session \\Controller}}
-& + joinSession(studentID: string, sessionID: int): bool
-& Nhận studentID và sessionID, thêm sinh viên vào buổi học và trả về True/False. \\ \cline{2-3}
-& + createSession(sessionData: SessionCreateData): Session
-& Nhận sessionData, tạo buổi học mới và trả về đối tượng Session. \\ \hline
+\multirow{13}{*}{\makecell{Session \\ Controller}}
+& + tutorCreateSession(session: Session): bool
+& Nhận đối tượng session, tạo buổi học mới và trả về True/False. \\ \cline{2-3}
+& + tutorUpdateSession(sessionID: string, updates: map): bool
+& Nhận sessionID và các cập nhật, sửa thông tin buổi học và trả về True/False. \\ \cline{2-3}
+& + tutorCancelSession(sessionID: string): bool
+& Nhận sessionID, hủy buổi học và trả về True/False. \\ \cline{2-3}
+& + studentJoinSession(sessionID: string, studentID: string): void
+& Sinh viên tham gia buổi học dựa trên sessionID. \\ \cline{2-3}
+& + studentLeaveSession(sessionID: string, studentID: string): void
+& Sinh viên rời khỏi buổi học dựa trên sessionID. \\ \cline{2-3}
+& + manageAttendance(sessionID: string): void
+& Quản lý danh sách điểm danh của buổi học. \\ \cline{2-3}
+& + searchSession(key: map): List<Session>
+& Tìm kiếm các buổi học dựa trên bộ từ khóa key. \\ \cline{2-3}
+& + notifySessionCreated(sessionID: string): bool
+& Gửi thông báo buổi học mới được tạo, trả về True/False. \\ \cline{2-3}
+& + notifySessionCancelled(sessionID: string): bool
+& Gửi thông báo buổi học bị hủy, trả về True/False. \\ \cline{2-3}
+& + notifySessionUpdated(sessionID: string): bool
+& Gửi thông báo buổi học được cập nhật, trả về True/False. \\ \cline{2-3}
+& + remind(sessionID: string, time: date, minuteBefore: int): bool
+& Nhắc nhở buổi học trước thời gian đã định, trả về True/False. \\ \cline{2-3}
+& + saveNotification(sessionID: string, time: date, status: string): bool
+& Lưu thông báo với trạng thái cụ thể, trả về True/False. \\ \hline
+
 
 % ========== LearningController ==========
 \multicolumn{3}{|c|}{\textbf{LearningController}} \\ \hline
@@ -469,12 +420,12 @@
 &  Nhận vào username và password lấy từ UI và xác thực người dùng từ dữ liệu trong datacore, nếu xác thực đúng thì trả về token.\\ \hline
 
 \multicolumn{3}{|c|}{\textbf{HCMUT\_DATACORE}} \\ \hline
-\multirow{7}{*}{\makecell{HCMUT\\ \_DATACORE} }
+\multirow{2}{*}{\makecell{HCMUT\\ \_DATACORE} }
 & + getUserProfile(userID: string): User
 &  Nhận vào userID, một user được khởi tạo bên trong hàm với các thông tin lấy từ datacore và trả về đối tượng user đó.\\ \hline
 
 \multicolumn{3}{|c|}{\textbf{HCMUT\_LIBRARY}} \\ \hline
-\multirow{1}{*}{\makecell{HCMUT\\
+\multirow{2}{*}{\makecell{HCMUT\\
 \_LIBRARY}}
 & + searchMaterial(query: string): List<Material> 
 &  Nhận vào giá trị query là từ khóa để truy vấn tài liệu, tìm và trả về danh sách các tài liệu tương ứng với từ khóa.\\ \cline{2-3}
@@ -484,7 +435,7 @@
 
 % ========== Database ==========
 \multicolumn{3}{|c|}{\textbf{Database}} \\ \hline
-\multirow{7}{*}{Database}
+\multirow{1}{*}{Database}
 & \# dataBaseType: string
 & Loại database (Login, Group, Session, Learning) \\ \cline{2-3}
 & \# isConnected: bool
@@ -532,7 +483,7 @@
 
 % ========== SessionDatabase ==========
 \multicolumn{3}{|c|}{\textbf{SessionDatabase}} \\ \hline
-\multirow{10}{*}{SessionDatabase}
+\multirow{3}{*}{SessionDatabase}
 & + storeSession(session: Session): bool
 & Nhận giá trị là một đối tượng Session, lưu buổi học và trả về bool (True/False). \\ \cline{2-3}
 & + getSessionsByTutor(tutorID: string): List<Session>
@@ -578,7 +529,7 @@
 
 % ========== EvaluateDatabase ==========
 \multicolumn{3}{|c|}{\textbf{EvaluateDatabase}} \\ \hline
-\multirow{6}{*}{EvaluateDatabase}
+\multirow{2}{*}{EvaluateDatabase}
 & + storeEvaluation(evaluation: Evaluation): bool
 & Lưu một bản ghi đánh giá mới hoặc cập nhật bản ghi cũ và trả về kết quả thành công hay thất bại.\\ \cline{2-3}
 & + getAllEvaluations(): List<Evaluation>
