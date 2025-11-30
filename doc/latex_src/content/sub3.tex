@@ -444,8 +444,8 @@
 \multirow{9}{*}{GroupController}
 & + studentCreateGroup(group: Group): bool
 &  Nhận thông tin cơ bản về group từ UI, tạo đối tượng Group và gọi storeGroup để lưu vào DB, trả về True nếu thành công\\ \cline{2-3}
-& + studentJoinGroup(groupID: string, studentID: string): bool
-&  Nhận vào groupID và studentID, thêm student vào group có ID tương ứng, True nếu thành công.\\ \cline{2-3}
+& + studentJoinGroup(groupID: string, student: Student): bool
+&  Nhận vào groupID và đối tượng student, thêm student vào group có ID tương ứng, True nếu thành công.\\ \cline{2-3}
 & + studentLeaveGroup(groupID: string, studentID: string): bool
 &  Nhận vào groupID và studentID, xóa student đó khỏi group có ID tương ứng, True nếu thành công. \\ \cline{2-3}
 & + coordinatorDeleteGroup(groupID: String): bool
